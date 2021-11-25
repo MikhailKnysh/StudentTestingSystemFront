@@ -2,36 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d465c453-9b6c-48b0-90ec-d4eb9ccaaf97" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Drawer/DrawerHeader.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Drawer/studentsDrawer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Drawer/teachersDrawer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layouts/signin.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layouts/signup.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layouts/student/studentsLayout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layouts/teacher/config.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layouts/teacher/profile/teachersProfile.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layouts/teacher/questions/allquestions.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layouts/teacher/questions/createQuestion.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layouts/teacher/studentsTests/completedTests.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layouts/teacher/subjects/addSubject.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layouts/teacher/subjects/allSubjects.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layouts/teacher/teacherLayout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layouts/teacher/testsThemes/addTheme.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layouts/teacher/testsThemes/allThemes.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/RootRouter.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/StudentTestingSystemFront.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/layouts/teacher/profile/additional.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/layouts/teacher/profile/personalInfo.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/layouts/teacher/profile/security.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/layouts/teacher/profile/teacherLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/logo192.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/logo192.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/logo512.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/logo512.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Drawer/studentsDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Drawer/studentsDrawer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/profile/teachersProfile.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/teacherLayout.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/RootRouter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/RootRouter.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +31,9 @@
     </file-type-list>
   </component>
   <component name="ProjectId" id="21HNTHFcUJ1hTS6quteeYoAke3t" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="autoscrollToSource" value="true" />
@@ -57,25 +41,26 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../react-website-trs" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
-    <property name="ts.external.directory.path" value="C:\Users\user\student-testing-system-front\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="C:\Users\Дизайнер2\source\repos\StudentTestingSystemFront\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Дизайнер2\source\repos\StudentTestingSystemFront\src\layouts\teacher\profile" />
       <recent name="C:\Users\user\student-testing-system-front\src\layouts\teacher\questions" />
       <recent name="C:\Users\user\student-testing-system-front\src\layouts\teacher\tests" />
       <recent name="C:\Users\user\student-testing-system-front\src\layouts\teacher" />
       <recent name="C:\Users\user\student-testing-system-front\src\layouts\student" />
-      <recent name="C:\Users\user\student-testing-system-front\src\layouts" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm start">
@@ -105,6 +90,7 @@
       <workItem from="1637649743771" duration="497000" />
       <workItem from="1637650536045" duration="9865000" />
       <workItem from="1637737004514" duration="9053000" />
+      <workItem from="1637836524782" duration="5755000" />
     </task>
     <servers />
   </component>
@@ -122,6 +108,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

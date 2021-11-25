@@ -18,10 +18,9 @@ import {UserRole} from "../../layouts/teacher/config";
 const drawerWidth = 240;
 
 export function StudentsDrawer(props: any) {
-    const {handleUserRole, handleAuth} = props;
+    const {handleUserRole} = props;
     const handleLogout = React.useCallback(() =>  {
         handleUserRole(UserRole.guest);
-        handleAuth(false);
     }, [])
     return (
         <>
