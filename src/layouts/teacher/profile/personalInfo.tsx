@@ -30,6 +30,7 @@ export const PersonalInfo = () => {
                     id="email"
                     name="email"
                     label="E-mail"
+                    type="email"
                     fullWidth
                     variant="outlined"
                 />
@@ -39,6 +40,7 @@ export const PersonalInfo = () => {
                     id="confirm-email"
                     name="confirm-email"
                     label="Confirm e-mail"
+                    type="email"
                     fullWidth
                     variant="outlined"
                 />

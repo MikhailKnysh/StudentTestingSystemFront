@@ -1,53 +1,68 @@
 import React from 'react';
 import Box from "@mui/material/Box";
-import {Grid, TextField} from "@mui/material";
+import {Grid, IconButton, InputAdornment, TextField} from "@mui/material";
 import Button from "@mui/material/Button";
+import {Visibility, VisibilityOff} from "@mui/icons-material";
+import { PasswordInput } from '../../../components/PasswordInput/PasswordInput';
 
 export const Security = () => {
+const [isEditable, setIsEditable] = React.useState<boolean>(false);
+
+const handleIsEditable = React.useCallback(() => setIsEditable(prevState => !prevState), []);
+
     return (
         <Grid component="form" container spacing={3} sx={{maxWidth: "800px"}}>
             <Grid item xs={12}>
-                <TextField
-                    id="current-password"
-                    name="current-password"
-                    label="Current password"
+                <PasswordInput
+                    id={"current-password"}
+                    name={"current-password"}
+                    autoComplete={"current-password"}
+                    label={"Current new password"}
                     fullWidth
-                    variant="outlined"
+                    required
+                    disabled={!isEditable}
                 />
             </Grid>
             <Grid item xs={12}>
-                <TextField
-                    id="new-password"
-                    name="new-password"
-                    label="New password"
+                <PasswordInput
+                    id={"new-password"}
+                    name={"new-password"}
+                    autoComplete={"new-password"}
+                    label={"New password"}
                     fullWidth
-                    variant="outlined"
+                    required
+                    disabled={!isEditable}
                 />
             </Grid>
             <Grid item xs={12}>
-                <TextField
-                    id="confirm-password"
-                    name="confirm-password"
-                    label="Confirm new password"
-                    multiline
+                <PasswordInput
+                    id={"confirm-password"}
+                    name={"confirm-password"}
+                    autoComplete={"confirm-password"}
+                    label={"Confirm new password"}
                     fullWidth
-                    variant="outlined"
+                    required
+                    disabled={!isEditable}
                 />
             </Grid>
-            <Grid item xs={12} sx={{ mt: '20px', textAlign: 'right' }}>
-                <Box>
-                    <Button color="secondary" variant="contained" type="submit">
-                        Save
-                    </Button>
-                    <Button sx={{ ml: '10px' }} color="secondary" variant="contained">
-                        Cancel
-                    </Button>
-                </Box>
-
-                <Button variant="outlined">
-                    Edit
-                </Button>
-            </Grid>
+            {
+                isEditable
+                ? <Grid item xs={12} sx={{ mt: '20px', textAlign: 'right' }}>
+                        <Box>
+                            <Button color="secondary" variant="contained" type="submit">
+                                Save
+                            </Button>
+                            <Button sx={{ ml: '10px' }} color="secondary" variant="contained" onClick={handleIsEditable}>
+                                Cancel
+                            </Button>
+                        </Box>
+                  </Grid>
+                : <Grid item xs={12} sx={{ mt: '20px', textAlign: 'right' }}>
+                        <Button variant="outlined" onClick={handleIsEditable}>
+                            Edit
+                        </Button>
+                  </Grid>
+            }
         </Grid>
     );
 };
