@@ -1,9 +1,8 @@
 import React from 'react';
 import Box from "@mui/material/Box";
-import {Grid, IconButton, InputAdornment, TextField} from "@mui/material";
+import {Grid} from "@mui/material";
 import Button from "@mui/material/Button";
-import {Visibility, VisibilityOff} from "@mui/icons-material";
-import { PasswordInput } from '../../../components/PasswordInput/PasswordInput';
+import { PasswordInput } from './PasswordInput';
 
 export const Security = () => {
 const [isEditable, setIsEditable] = React.useState<boolean>(false);
@@ -14,10 +13,10 @@ const handleIsEditable = React.useCallback(() => setIsEditable(prevState => !pre
         <Grid component="form" container spacing={3} sx={{maxWidth: "800px"}}>
             <Grid item xs={12}>
                 <PasswordInput
-                    id={"current-password"}
-                    name={"current-password"}
-                    autoComplete={"current-password"}
-                    label={"Current new password"}
+                    id="current-password"
+                    name="current-password"
+                    autoComplete="current-password"
+                    label="Current password"
                     fullWidth
                     required
                     disabled={!isEditable}

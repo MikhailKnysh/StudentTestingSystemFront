@@ -1,23 +1,29 @@
 import React from "react";
 import {Button, Typography} from "@mui/material";
 import {Link} from "react-router-dom";
-import {UserRole} from "./teacher/config";
+import {User, UserRole} from "./teacher/config";
 
-export const SignIn = (props:any) => {
-    const {handleUserRole} = props;
-    
+type Props = {
+    handleUser: React.Dispatch<React.SetStateAction<User>>
+}
+
+export const SignIn = (props:Props) => {
+    const {handleUser} = props;
+    const handleUserLogin = (newUserRole: UserRole) => {
+        handleUser(prev => ({...prev, userRole: newUserRole}))
+    }
 
     return (
         <div>
             <Typography variant="h1">Sign in form</Typography>
             <br />
             <Link to="/student">
-                <Button variant="contained" onClick={()=>handleUserRole(UserRole.student.toString())}>Sign in as Student</Button>
+                <Button variant="contained" onClick={() => handleUserLogin(UserRole.student)}>Sign in as Student</Button>
             </Link>
             <br />
             <br />
             <Link to="/teacher">
-                <Button variant="contained" onClick={()=>handleUserRole(UserRole.teacher.toString())}>Sign in as Teacher</Button>
+                <Button variant="contained" onClick={() => handleUserLogin(UserRole.teacher)}>Sign in as Teacher</Button>
             </Link>
         </div>
     )

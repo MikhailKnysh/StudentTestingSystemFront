@@ -37,6 +37,17 @@ export type StudentAnswer = {
 }
 
 export type StudentsTest = {
+    id: string,
+    idUser: string,
+    idTheme: string,
+    dateTimeStart: number,
+    dateTimeFinish: number,
+    mark: number,
+    timePreparation: number,
+    countOfHelpChecks: number
+}
+
+export type User = {
     idUser: string,
     firstName: string,
     lastName: string,
@@ -49,4 +60,3 @@ export enum UserRole {
     student = "student",
     teacher = "teacher"
 }
-

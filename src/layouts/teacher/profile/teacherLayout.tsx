@@ -5,8 +5,9 @@ import Tabs from "@mui/material/Tabs";
 import {Tab, Typography} from "@mui/material";
 import {DrawerHeader} from "../../../components/Drawer/DrawerHeader";
 import {PersonalInfo} from "./personalInfo";
-import {Security} from "./security";
+import {Security} from "../../../components/PasswordInput/security";
 import {Additional} from "./additional";
+import {User} from "../config";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -42,7 +43,7 @@ function a11yProps(index: number) {
 }
 
 export const TeacherLayout = (props: any) => {
-    const {handleUserRole} = props;
+    const {user, handleUser} = props;
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -51,7 +52,7 @@ export const TeacherLayout = (props: any) => {
 
     return (
         <Box sx={{display: 'flex'}}>
-            <TeachersDrawer handleUserRole={handleUserRole}/>
+            <TeachersDrawer user={user} handleUser={handleUser}/>
             <Box sx={{ flexGrow: 1, p: 3 }}>
                 <DrawerHeader />
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

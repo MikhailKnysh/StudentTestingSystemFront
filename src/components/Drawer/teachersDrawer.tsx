@@ -13,13 +13,20 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import {Button} from "@mui/material";
-import {UserRole} from "../../layouts/teacher/config";
+import {User, UserRole} from "../../layouts/teacher/config";
+import {userInitialState} from "../../App";
 
 const drawerWidth = 240;
+type Props = {
+    user: User,
+    handleUser: React.Dispatch<React.SetStateAction<User>>
+}
 
-export function TeachersDrawer(props: any) {
-    const {handleUserRole} = props;
-
+export function TeachersDrawer(props: Props) {
+    const {user, handleUser} = props;
+    const handleLogout = () =>  {
+        handleUser(userInitialState);
+    }
     return (
         <>
             <CssBaseline />
@@ -29,7 +36,7 @@ export function TeachersDrawer(props: any) {
                         Teachers tests platform
                     </Typography>
                     <Box sx={{flexGrow: 1}} />
-                    <Button onClick={() => handleUserRole(UserRole.guest)} variant="outlined" sx={{borderRadius: 10, color: "white"}}>Logout</Button>
+                    <Button onClick={handleLogout} variant="outlined" sx={{borderRadius: 10, color: "white"}}>Logout</Button>
                 </Toolbar>
             </AppBar>
             <Drawer

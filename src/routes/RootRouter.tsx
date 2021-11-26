@@ -7,27 +7,25 @@ import {TeacherLayout} from "../layouts/teacher/profile/teacherLayout";
 import {UserRole} from "../layouts/teacher/config";
 
 export const RootRouter = (props:any) => {
-    const {handleUserRole} = props;
-    const role = localStorage.getItem("userRole");
-
+    const {user, handleUser} = props;
 
     return (
         <BrowserRouter>
             <Routes>
-                {role === UserRole.guest.toString() &&
+                {user.userRole === UserRole.guest &&
                 <>
-                    <Route path="/*" element={<SignIn handleUserRole={handleUserRole}/>}/>
+                    <Route path="/*" element={<SignIn handleUser={handleUser}/>}/>
                     <Route path="/signup" element={<SignUp />}/>
                 </>
                 }
-                {role === UserRole.student.toString() &&
+                {user.userRole === UserRole.student &&
                 <>
-                    <Route path="/student*" element={<StudentsLayout handleUserRole={handleUserRole}/>}/>
+                    <Route path="/student*" element={<StudentsLayout user={user} handleUser={handleUser}/>}/>
                 </>
                 }
-                {role === UserRole.teacher.toString() &&
+                {user.userRole === UserRole.teacher &&
                 <>
-                    <Route path="/teacher" element={<TeacherLayout handleUserRole={handleUserRole}/>}/>
+                    <Route path="/teacher" element={<TeacherLayout user={user} handleUser={handleUser}/>}/>
                 </>
                 }
 

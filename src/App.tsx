@@ -1,18 +1,26 @@
 import React from 'react';
 import './App.css';
 import {RootRouter} from "./routes/RootRouter";
-import {UserRole} from "./layouts/teacher/config";
+import {User, UserRole} from "./layouts/teacher/config";
+
+export const userInitialState: User = {
+    idUser: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    userRole: UserRole.guest
+}
 
 function App() {
-    const role = localStorage.getItem("userRole");
-    const [userRole, setUserRole] = React.useState<string>(role || UserRole.guest.toString());
+    const currentUser = JSON.parse(localStorage.getItem("user") || JSON.stringify(userInitialState));
+    const [user, setUser] = React.useState<User>(currentUser);
     React.useEffect(() => {
-        localStorage.setItem("userRole", userRole);
-    }, [userRole])
+        localStorage.setItem("user", JSON.stringify(user));
+    }, [user])
 
   return (
     <div className="App">
-      <RootRouter handleUserRole={setUserRole}/>
+      <RootRouter user={user} handleUser={setUser}/>
     </div>
   );
 }
