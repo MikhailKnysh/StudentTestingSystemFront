@@ -8,7 +8,9 @@ export const userInitialState: User = {
     firstName: "",
     lastName: "",
     email: "",
-    userRole: UserRole.guest
+    userRole: UserRole.guest,
+    token: "",
+    expires: 0
 }
 
 function App() {

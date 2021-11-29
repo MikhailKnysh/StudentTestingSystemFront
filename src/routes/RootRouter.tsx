@@ -25,7 +25,7 @@ export const RootRouter = (props:any) => {
                 }
                 {user.userRole === UserRole.teacher &&
                 <>
-                    <Route path="/teacher" element={<TeacherLayout user={user} handleUser={handleUser}/>}/>
+                    <Route path="/teacher*" element={<TeacherLayout user={user} handleUser={handleUser}/>}/>
                 </>
                 }
 

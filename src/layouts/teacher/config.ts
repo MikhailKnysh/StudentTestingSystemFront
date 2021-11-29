@@ -52,7 +52,9 @@ export type User = {
     firstName: string,
     lastName: string,
     email: string,
-    userRole: UserRole
+    userRole: UserRole,
+    token: string,
+    expires: number
 }
 
 export enum UserRole {

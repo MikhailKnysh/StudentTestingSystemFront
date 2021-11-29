@@ -2,7 +2,7 @@ import React from 'react';
 import Box from "@mui/material/Box";
 import {Grid} from "@mui/material";
 import Button from "@mui/material/Button";
-import { PasswordInput } from './PasswordInput';
+import { PasswordInput } from '../PasswordInput/PasswordInput';
 
 export const Security = () => {
 const [isEditable, setIsEditable] = React.useState<boolean>(false);

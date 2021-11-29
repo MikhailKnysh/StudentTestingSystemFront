@@ -12,9 +12,11 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import {Button} from "@mui/material";
+import {Button, Link} from "@mui/material";
 import {User, UserRole} from "../../layouts/teacher/config";
 import {userInitialState} from "../../App";
+import {teacherRouting} from "../../routes/config";
+import {NavLink} from "react-router-dom";
 
 const drawerWidth = 240;
 type Props = {
@@ -36,7 +38,9 @@ export function TeachersDrawer(props: Props) {
                         Teachers tests platform
                     </Typography>
                     <Box sx={{flexGrow: 1}} />
+                    <Link to="/" component={NavLink}>
                     <Button onClick={handleLogout} variant="outlined" sx={{borderRadius: 10, color: "white"}}>Logout</Button>
+                    </Link>
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -50,24 +54,28 @@ export function TeachersDrawer(props: Props) {
                 <Toolbar />
                 <Box sx={{ overflow: 'auto' }}>
                     <List>
-                        {['Available studentsTests', 'Completed studentsTests'].map((text, index) => (
-                            <ListItem button key={text}>
+                        {teacherRouting.map(({path, name, Icon}) => (
+                            <Link variant="body1" to={path} key={name} component={NavLink} color="#2F2F2F" sx={{textDecoration: 'none'}}>
+                            <ListItem button key={name}>
                                 <ListItemIcon>
-                                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                                    <Icon />
                                 </ListItemIcon>
-                                <ListItemText primary={text} />
+                                <ListItemText primary={name} />
                             </ListItem>
+                            </Link>
                         ))}
                     </List>
                     <Divider />
                     <List>
                         {['My profile'].map((text, index) => (
+                            <Link variant="body1" to="/teacher" component={NavLink} color="#2F2F2F" sx={{textDecoration: 'none'}}>
                             <ListItem button key={text}>
                                 <ListItemIcon>
-                                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                                    <InboxIcon />
                                 </ListItemIcon>
                                 <ListItemText primary={text} />
                             </ListItem>
+                            </Link>
                         ))}
                     </List>
                 </Box>

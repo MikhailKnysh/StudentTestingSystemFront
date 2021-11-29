@@ -5,17 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d465c453-9b6c-48b0-90ec-d4eb9ccaaf97" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/Profile/UserLayout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Drawer/studentsDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Drawer/studentsDrawer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Drawer/teachersDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Drawer/teachersDrawer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/signin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/signin.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PasswordInput/security.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/security.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layouts/student/studentsLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/student/studentsLayout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layouts/teacher/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/profile/additional.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/profile/additional.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/profile/personalInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/profile/personalInfo.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/profile/security.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PasswordInput/security.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/profile/additional.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/additional.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/profile/personalInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/personalInfo.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layouts/teacher/profile/teacherLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/profile/teacherLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/subjects/allSubjects.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/subjects/allSubjects.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/RootRouter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/RootRouter.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,11 +64,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\user\student-testing-system-front\src\components\Profile" />
       <recent name="C:\Users\user\student-testing-system-front\src\components\PasswordInput" />
       <recent name="C:\Users\Дизайнер2\source\repos\StudentTestingSystemFront\src\layouts\teacher\profile" />
       <recent name="C:\Users\user\student-testing-system-front\src\layouts\teacher\questions" />
       <recent name="C:\Users\user\student-testing-system-front\src\layouts\teacher\tests" />
-      <recent name="C:\Users\user\student-testing-system-front\src\layouts\teacher" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm start">
@@ -98,6 +100,7 @@
       <workItem from="1637737004514" duration="9053000" />
       <workItem from="1637836524782" duration="5755000" />
       <workItem from="1637848727041" duration="3011000" />
+      <workItem from="1638169022651" duration="9697000" />
     </task>
     <servers />
   </component>

@@ -15,6 +15,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import {Button} from "@mui/material";
 import {User, UserRole} from "../../layouts/teacher/config";
 import {userInitialState} from "../../App";
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 type Props = {
@@ -36,7 +37,9 @@ export function StudentsDrawer(props: Props) {
                         Students tests platform
                     </Typography>
                     <Box sx={{flexGrow: 1}} />
+                    <Link to="/">
                     <Button onClick={handleLogout} variant="outlined" sx={{borderRadius: 10, color: "white"}}>Logout</Button>
+                    </Link>
                 </Toolbar>
             </AppBar>
             <Drawer
