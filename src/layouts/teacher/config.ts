@@ -5,6 +5,7 @@ export type Subject = {
 
 export type SubjectTheme = {
     id: string,
+    subjectId: string,
     title: string
 }
 

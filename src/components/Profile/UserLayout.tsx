@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
-import {Tab, Typography} from "@mui/material";
+import {Paper, Tab, Typography} from "@mui/material";
 import {PersonalInfo} from "./personalInfo";
 import {Security} from "./security";
 import {Additional} from "./additional";
@@ -53,7 +53,7 @@ export const UserLayout = (props: Props) => {
     };
 
     return (
-        <>
+        <Paper elevation={3} sx={{ maxWidth: '800px', minHeight: '600px' ,mx: 'auto', p:2}}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                     <Tab label="Personal Info" {...a11yProps(0)} />
@@ -70,6 +70,6 @@ export const UserLayout = (props: Props) => {
             <TabPanel value={value} index={2}>
                 <Additional />
             </TabPanel>
-        </>
+        </Paper>
     );
 };

@@ -1,6 +1,10 @@
 import {OverridableComponent} from "@mui/material/OverridableComponent";
 import {SvgIconTypeMap} from "@mui/material";
 import TableChartIcon from '@mui/icons-material/TableChart';
+import MenuBookTwoToneIcon from "@mui/icons-material/MenuBookTwoTone";
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import QuizIcon from '@mui/icons-material/Quiz';
+import FeedIcon from '@mui/icons-material/Feed';
 
 
 type CustomRoute = {
@@ -13,22 +17,22 @@ export const teacherRouting: CustomRoute[] = [
     {
         path: '/teacher/subjects',
         name: "Subjects",
-        Icon: TableChartIcon
+        Icon: MenuBookTwoToneIcon
     },
     {
         path: '/teacher/themes',
         name: "Themes",
-        Icon: TableChartIcon
+        Icon: FeedIcon
     },
     {
         path: '/teacher/questions',
         name: "Questions",
-        Icon: TableChartIcon
+        Icon: QuestionAnswerIcon
     },
     {
         path: '/teacher/tests',
         name: "Students tests",
-        Icon: TableChartIcon
+        Icon: QuizIcon
     }
 ];
 

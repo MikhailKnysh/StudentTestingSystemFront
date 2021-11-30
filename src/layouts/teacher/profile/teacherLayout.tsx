@@ -5,6 +5,7 @@ import {DrawerHeader} from "../../../components/Drawer/DrawerHeader";
 import {UserLayout} from "../../../components/Profile/UserLayout";
 import {Route, Routes} from "react-router-dom";
 import {AllSubjects} from "../subjects/allSubjects";
+import AllThemes from "../testsThemes/allThemes";
 
 export const TeacherLayout = (props: any) => {
     const {user, handleUser} = props;
@@ -17,7 +18,7 @@ export const TeacherLayout = (props: any) => {
                 <Routes>
                     <Route path="/" element={<UserLayout user={user} handleUser={handleUser}/>} />
                     <Route path="/subjects" element={<AllSubjects />} />
-                    <Route path="/themes" element={<UserLayout user={user} handleUser={handleUser}/>} />
+                    <Route path="/themes" element={<AllThemes />} />
                     <Route path="/questions" element={<UserLayout user={user} handleUser={handleUser}/>} />
                     <Route path="/tests" element={<UserLayout user={user} handleUser={handleUser}/>} />
                 </Routes>

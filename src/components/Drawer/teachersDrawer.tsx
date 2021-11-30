@@ -10,7 +10,7 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
+import PersonIcon from '@mui/icons-material/Person';
 import MailIcon from '@mui/icons-material/Mail';
 import {Button, Link} from "@mui/material";
 import {User, UserRole} from "../../layouts/teacher/config";
@@ -71,7 +71,7 @@ export function TeachersDrawer(props: Props) {
                             <Link variant="body1" to="/teacher" component={NavLink} color="#2F2F2F" sx={{textDecoration: 'none'}}>
                             <ListItem button key={text}>
                                 <ListItemIcon>
-                                    <InboxIcon />
+                                    <PersonIcon />
                                 </ListItemIcon>
                                 <ListItemText primary={text} />
                             </ListItem>

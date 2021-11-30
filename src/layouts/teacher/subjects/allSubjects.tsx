@@ -1,73 +1,49 @@
 import React from 'react';
 import {
-    Avatar,
-    Grid, IconButton,
-    ListItem, ListItemAvatar,
-    ListItemText, TextField,
+    Grid, Paper, Tab,
     Typography
 } from "@mui/material";
-import Box from "@mui/material/Box";
 import List from "@mui/material/List";
-import EditIcon from '@mui/icons-material/Edit';
-import MenuBookTwoToneIcon from '@mui/icons-material/MenuBookTwoTone';
 import {Subject} from "../config";
+import {SubjectItem} from "./components/subjectItem";
+import AddSubject from "./addSubject";
+import Tabs from "@mui/material/Tabs";
+import Box from "@mui/material/Box";
 
-const subjectsMock: Subject[] = [
+export const subjectsMock: Subject[] = [
     {id: "1", title: 'Math'},
     {id: "2", title: 'History'},
     {id: "3", title: 'English'},
-    {id: "4", title: 'Ukrainian'},
-    {id: "5", title: 'C#'}
+    {id: "4", title: 'C#'},
+    {id: "5", title: 'React'}
 ]
 
 export const AllSubjects = () => {
     const [subjects, setSubjects] = React.useState<Subject[]>(subjectsMock);
-    const [subjectToUpdate, setSubjectToUpdate] = React.useState<Subject>({id:'', title:''});
-    const [isEditable, setIsEditable] = React.useState<boolean>(false);
+
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSubjects(
             subjects.map(subject => subject.id === event.target.id ? {...subject, title: event.target.value} : subject)
         )
     }
     return (
-        <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
-            <Grid container spacing={2}>
-                <Grid item xs={12} md={6}>
-                    <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
-                        Subjects
-                    </Typography>
+        <Paper elevation={3} sx={{ maxWidth: '800px', mx: 'auto', p:2}}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 3 }}>
+            <Tabs value={0}>
+                <Tab label="Subjects" />
+            </Tabs>
+            </Box>
+            <Grid spacing={2}>
+                <Grid item xs={12}>
+                    <AddSubject handleSubjects={setSubjects}/>
                         <List>
                             {subjects.map((subject) =>
-                                <Box>
-                                <ListItem
-                                    secondaryAction={
-                                        <IconButton edge="end" aria-label="delete" onClick={() => setIsEditable(prev=>!prev)}>
-                                            <EditIcon />
-                                        </IconButton>
-                                    }
-                                >
-                                    <ListItemAvatar>
-                                        <Avatar sx={{bgcolor: "#1976D2"}}>
-                                            <MenuBookTwoToneIcon />
-                                        </Avatar>
-                                    </ListItemAvatar>
-                                    <ListItemText
-                                        primary = {subject.title}
-                                    />
-                                </ListItem>
-                                    {isEditable &&
-                                        <TextField
-                                        value={subject.title}
-                                        id = {subject.id}
-                                        onChange={handleChange}
-                                        />
-                                    }
-                                </Box>,
+                                <SubjectItem subject={subject} handleChange={handleChange}/>
                             )}
                         </List>
                 </Grid>
             </Grid>
-        </Box>
+        </Paper>
     );
 };
 
