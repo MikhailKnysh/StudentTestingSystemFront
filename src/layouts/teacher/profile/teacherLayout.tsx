@@ -6,9 +6,26 @@ import {UserLayout} from "../../../components/Profile/UserLayout";
 import {Route, Routes} from "react-router-dom";
 import {AllSubjects} from "../subjects/allSubjects";
 import AllThemes from "../testsThemes/allThemes";
+import {Subject, SubjectTheme} from "../config";
 
+export const subjectsMock: Subject[] = [
+    {id: "1", title: 'Math'},
+    {id: "2", title: 'History'},
+    {id: "3", title: 'English'},
+    {id: "4", title: 'C#'},
+    {id: "5", title: 'React'}
+]
+export const themesMock: SubjectTheme[] = [
+    {id: "1", subjectId: '5', title: 'React'},
+    {id: "2", subjectId: '5', title: 'React Native'},
+    {id: "3", subjectId: '5', title: 'React Router Dom'},
+    {id: "4", subjectId: '5', title: 'Mob x'},
+    {id: "5", subjectId: '5', title: 'Redux'}
+]
 export const TeacherLayout = (props: any) => {
     const {user, handleUser} = props;
+    const [subjects, setSubjects] = React.useState<Subject[]>(subjectsMock);
+    const [themes, setThemes] = React.useState<SubjectTheme[]>(themesMock);
 
     return (
         <Box sx={{display: 'flex'}}>
@@ -17,8 +34,8 @@ export const TeacherLayout = (props: any) => {
                 <DrawerHeader />
                 <Routes>
                     <Route path="/" element={<UserLayout user={user} handleUser={handleUser}/>} />
-                    <Route path="/subjects" element={<AllSubjects />} />
-                    <Route path="/themes" element={<AllThemes />} />
+                    <Route path="/subjects" element={<AllSubjects subjects={subjects} handleSubjects={setSubjects}/>} />
+                    <Route path="/themes" element={<AllThemes subjects={subjects} themes={themes} handleThemes={setThemes}/>} />
                     <Route path="/questions" element={<UserLayout user={user} handleUser={handleUser}/>} />
                     <Route path="/tests" element={<UserLayout user={user} handleUser={handleUser}/>} />
                 </Routes>

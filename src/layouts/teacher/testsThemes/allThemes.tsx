@@ -5,20 +5,18 @@ import List from "@mui/material/List";
 import {SubjectItem} from "../subjects/components/subjectItem";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
-import {subjectsMock} from "../subjects/allSubjects";
 
-const themesMock: SubjectTheme[] = [
-    {id: "1", subjectId: '5', title: 'React'},
-    {id: "2", subjectId: '5', title: 'React Native'},
-    {id: "3", subjectId: '5', title: 'React Router Dom'},
-    {id: "4", subjectId: '5', title: 'Mob x'},
-    {id: "5", subjectId: '5', title: 'Redux'}
-]
+type Props = {
+    subjects: Subject[],
+    themes: SubjectTheme[],
+    handleThemes: React.Dispatch<React.SetStateAction<SubjectTheme[]>>
+}
 
-const AllThemes = () => {
-    const [themes, setThemes] = React.useState<SubjectTheme[]>(themesMock);
+const AllThemes = (props: Props) => {
+    const {subjects, themes, handleThemes} = props;
+
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setThemes(
+        handleThemes(
             themes.map(theme => theme.id === event.target.id ? {...theme, title: event.target.value} : theme)
         )
     }
@@ -38,7 +36,7 @@ const AllThemes = () => {
                         id="select-subject"
                         label="Subject"
                     >
-                        {subjectsMock.map((subject) =>
+                        {subjects.map((subject) =>
                             <MenuItem value={10}>{subject.title}</MenuItem>
                         )}
                     </Select>

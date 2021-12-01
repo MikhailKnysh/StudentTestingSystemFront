@@ -10,19 +10,16 @@ import AddSubject from "./addSubject";
 import Tabs from "@mui/material/Tabs";
 import Box from "@mui/material/Box";
 
-export const subjectsMock: Subject[] = [
-    {id: "1", title: 'Math'},
-    {id: "2", title: 'History'},
-    {id: "3", title: 'English'},
-    {id: "4", title: 'C#'},
-    {id: "5", title: 'React'}
-]
+type Props = {
+    subjects: Subject[],
+    handleSubjects: React.Dispatch<React.SetStateAction<Subject[]>>
+}
 
-export const AllSubjects = () => {
-    const [subjects, setSubjects] = React.useState<Subject[]>(subjectsMock);
+export const AllSubjects = (props: Props) => {
+    const {subjects, handleSubjects} = props;
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSubjects(
+        handleSubjects(
             subjects.map(subject => subject.id === event.target.id ? {...subject, title: event.target.value} : subject)
         )
     }
@@ -35,7 +32,7 @@ export const AllSubjects = () => {
             </Box>
             <Grid spacing={2}>
                 <Grid item xs={12}>
-                    <AddSubject handleSubjects={setSubjects}/>
+                    <AddSubject handleSubjects={handleSubjects}/>
                         <List>
                             {subjects.map((subject) =>
                                 <SubjectItem subject={subject} handleChange={handleChange}/>
