@@ -1,10 +1,11 @@
 import React from 'react';
 import {Subject, SubjectTheme} from "../config";
-import {FormControl, Grid, InputLabel, MenuItem, Paper, Select, Tab, Typography} from "@mui/material";
+import {FormControl, Grid, InputLabel, MenuItem, Paper, Select, SelectChangeEvent, Tab} from "@mui/material";
 import List from "@mui/material/List";
 import {SubjectItem} from "../subjects/components/subjectItem";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
+import {TestsThemesItem} from "./components/testsThemesItem";
 
 type Props = {
     subjects: Subject[],
@@ -14,12 +15,24 @@ type Props = {
 
 const AllThemes = (props: Props) => {
     const {subjects, themes, handleThemes} = props;
+    const [currentSubjectId, setCurrentSubjectId] = React.useState<string>('0');
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         handleThemes(
             themes.map(theme => theme.id === event.target.id ? {...theme, title: event.target.value} : theme)
         )
     }
+
+    const handleSubjectIdChange = (id: string, subjectId: string) => {
+        handleThemes(
+            themes.map(theme => theme.id === id ? {...theme, subjectId: subjectId} : theme)
+        )
+    }
+
+    React.useEffect(() => {
+        console.log("current ", currentSubjectId);
+    }, [currentSubjectId])
+
     return (
         <Paper elevation={3} sx={{ maxWidth: '800px', mx: 'auto', p:2}}>
             <Grid spacing={2}>
@@ -35,15 +48,16 @@ const AllThemes = (props: Props) => {
                         labelId="select-subject"
                         id="select-subject"
                         label="Subject"
+                        onChange={(event: SelectChangeEvent) => (setCurrentSubjectId(event.target.value))}
                     >
                         {subjects.map((subject) =>
-                            <MenuItem value={10}>{subject.title}</MenuItem>
+                            <MenuItem value={subject.id}>{subject.title}</MenuItem>
                         )}
                     </Select>
                     </FormControl>
                     <List>
-                        {themes.map((theme) =>
-                            <SubjectItem subject={theme} />
+                        {themes.map((theme) => (theme.subjectId === currentSubjectId) &&
+                            <TestsThemesItem theme={theme} subjects={subjects} handleTitleChange={handleTitleChange} handleSubjectIdChange={handleSubjectIdChange}/>
                         )}
                     </List>
                 </Grid>

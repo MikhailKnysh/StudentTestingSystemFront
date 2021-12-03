@@ -11,7 +11,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import PersonIcon from '@mui/icons-material/Person';
-import MailIcon from '@mui/icons-material/Mail';
 import {Button, Link} from "@mui/material";
 import {User, UserRole} from "../../layouts/teacher/config";
 import {userInitialState} from "../../App";

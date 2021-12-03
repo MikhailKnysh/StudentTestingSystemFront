@@ -1,0 +1,1 @@
+export const questionsSteps = ["Question", "Answers", "Review"];

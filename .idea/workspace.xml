@@ -5,16 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d465c453-9b6c-48b0-90ec-d4eb9ccaaf97" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/layouts/teacher/subjects/components/subjectItem.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/layouts/teacher/questions/components/colorLibStepIcon.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/layouts/teacher/questions/components/colorLibStepIconRoot.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/layouts/teacher/questions/config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/layouts/teacher/testsThemes/components/testsThemesItem.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Drawer/teachersDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Drawer/teachersDrawer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Profile/UserLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/UserLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layouts/teacher/profile/teacherLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/profile/teacherLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/subjects/addSubject.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/subjects/addSubject.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/subjects/allSubjects.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/subjects/allSubjects.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/questions/createQuestion.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/questions/createQuestion.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layouts/teacher/testsThemes/allThemes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/testsThemes/allThemes.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +96,10 @@
       <workItem from="1637836524782" duration="5755000" />
       <workItem from="1637848727041" duration="3011000" />
       <workItem from="1638169022651" duration="9864000" />
-      <workItem from="1638254035487" duration="10613000" />
+      <workItem from="1638254035487" duration="10688000" />
+      <workItem from="1638341067393" duration="4833000" />
+      <workItem from="1638426446722" duration="2613000" />
+      <workItem from="1638518540228" duration="1533000" />
     </task>
     <servers />
   </component>

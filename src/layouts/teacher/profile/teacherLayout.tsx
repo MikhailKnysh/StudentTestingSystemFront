@@ -7,6 +7,7 @@ import {Route, Routes} from "react-router-dom";
 import {AllSubjects} from "../subjects/allSubjects";
 import AllThemes from "../testsThemes/allThemes";
 import {Subject, SubjectTheme} from "../config";
+import {CreateQuestion} from "../questions/createQuestion";
 
 export const subjectsMock: Subject[] = [
     {id: "1", title: 'Math'},
@@ -36,7 +37,7 @@ export const TeacherLayout = (props: any) => {
                     <Route path="/" element={<UserLayout user={user} handleUser={handleUser}/>} />
                     <Route path="/subjects" element={<AllSubjects subjects={subjects} handleSubjects={setSubjects}/>} />
                     <Route path="/themes" element={<AllThemes subjects={subjects} themes={themes} handleThemes={setThemes}/>} />
-                    <Route path="/questions" element={<UserLayout user={user} handleUser={handleUser}/>} />
+                    <Route path="/questions" element={<CreateQuestion />} />
                     <Route path="/tests" element={<UserLayout user={user} handleUser={handleUser}/>} />
                 </Routes>
             </Box>
