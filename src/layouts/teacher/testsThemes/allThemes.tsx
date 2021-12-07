@@ -2,7 +2,6 @@ import React from 'react';
 import {Subject, SubjectTheme} from "../config";
 import {FormControl, Grid, InputLabel, MenuItem, Paper, Select, SelectChangeEvent, Tab} from "@mui/material";
 import List from "@mui/material/List";
-import {SubjectItem} from "../subjects/components/subjectItem";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import {TestsThemesItem} from "./components/testsThemesItem";

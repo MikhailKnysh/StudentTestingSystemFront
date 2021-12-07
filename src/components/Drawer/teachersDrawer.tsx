@@ -12,7 +12,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import PersonIcon from '@mui/icons-material/Person';
 import {Button, Link} from "@mui/material";
-import {User, UserRole} from "../../layouts/teacher/config";
+import {User} from "../../layouts/teacher/config";
 import {userInitialState} from "../../App";
 import {teacherRouting} from "../../routes/config";
 import {NavLink} from "react-router-dom";
@@ -67,7 +67,7 @@ export function TeachersDrawer(props: Props) {
                     <Divider />
                     <List>
                         {['My profile'].map((text, index) => (
-                            <Link variant="body1" to="/teacher" component={NavLink} color="#2F2F2F" sx={{textDecoration: 'none'}}>
+                            <Link variant="body1" to="/teacher" key={index} component={NavLink} color="#2F2F2F" sx={{textDecoration: 'none'}}>
                             <ListItem button key={text}>
                                 <ListItemIcon>
                                     <PersonIcon />

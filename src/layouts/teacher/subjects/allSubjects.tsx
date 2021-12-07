@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     Grid, Paper, Tab,
-    Typography
 } from "@mui/material";
 import List from "@mui/material/List";
 import {Subject} from "../config";

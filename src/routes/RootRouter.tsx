@@ -20,12 +20,12 @@ export const RootRouter = (props:any) => {
                 }
                 {user.userRole === UserRole.student &&
                 <>
-                    <Route path="/student*" element={<StudentsLayout user={user} handleUser={handleUser}/>}/>
+                    <Route path="/student/*" element={<StudentsLayout user={user} handleUser={handleUser}/>}/>
                 </>
                 }
                 {user.userRole === UserRole.teacher &&
                 <>
-                    <Route path="/teacher*" element={<TeacherLayout user={user} handleUser={handleUser}/>}/>
+                    <Route path="/teacher/*" element={<TeacherLayout user={user} handleUser={handleUser}/>}/>
                 </>
                 }
 

@@ -1,3 +1,5 @@
+import {questionType} from "./questions/config";
+
 export type Subject = {
     id: string,
     title: string
@@ -20,7 +22,7 @@ export type Question = {
     linkForHelp: string,
     difficulty: number,
     timeLimit: number,
-    type: string,
+    type: questionType,
     answers: Answer[]
 }
 
