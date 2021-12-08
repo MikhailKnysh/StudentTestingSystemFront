@@ -28,6 +28,7 @@ export const TeacherLayout = (props: any) => {
     const {user, handleUser} = props;
     const [subjects, setSubjects] = React.useState<Subject[]>(subjectsMock);
     const [themes, setThemes] = React.useState<SubjectTheme[]>(themesMock);
+    const [currentThemeId, setCurrentThemeId] = React.useState<string>('');
 
     return (
         <Box sx={{display: 'flex'}}>
@@ -38,7 +39,8 @@ export const TeacherLayout = (props: any) => {
                     <Route path="/" element={<UserLayout user={user} handleUser={handleUser}/>} />
                     <Route path="/subjects" element={<AllSubjects subjects={subjects} handleSubjects={setSubjects}/>} />
                     <Route path="/themes" element={<AllThemes subjects={subjects} themes={themes} handleThemes={setThemes}/>} />
-                    <Route path="/questions" element={<AllQuestions subjects={subjects} themes={themes} handleThemes={setThemes}/>} />
+                    <Route path="/questions/add" element={<CreateQuestion user={user} themeId={currentThemeId}/>} />
+                    <Route path="/questions" element={<AllQuestions subjects={subjects} themes={themes} handleCurrentThemeId={setCurrentThemeId}/>}/>
                     <Route path="/tests" element={<UserLayout user={user} handleUser={handleUser}/>} />
                 </Routes>
             </Box>

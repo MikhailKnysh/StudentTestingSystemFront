@@ -7,14 +7,26 @@ import React from 'react';
 import {questionInitialState, questionsSteps} from "./config";
 import {ColorLibStepIcon} from "./components/colorLibStepIcon";
 import {StepContentContainer} from "./components/stepContentContainer";
-import {Question} from "../config";
+import {Question, User} from "../config";
 import {Button, Link, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
 import {NavLink} from "react-router-dom";
 
-export const CreateQuestion = () => {
+type Props = {
+    user: User,
+    themeId: string,
+}
+
+export const CreateQuestion = (props: Props) => {
+    const {user, themeId} = props;
     const [step, setStep] = React.useState(0);
     const [questionState, setQuestionState] = React.useState<Question>(questionInitialState);
+
+    const handleFinish = () => {
+        setQuestionState((prev) => ({...prev, idTheme: themeId, idTeacher: user.idUser}));
+        setStep(prev => ++prev);
+    }
+
     return (
         <Paper elevation={3} sx={{mx:'auto', maxWidth:'800px', minHeight: '600px', p:4}}>
             <Stack spacing={4}>

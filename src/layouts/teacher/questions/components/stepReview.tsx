@@ -16,6 +16,7 @@ import Box from "@mui/material/Box";
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import {blue} from "@mui/material/colors";
 import {AnswersView} from "./answersView";
+import {QuestionCard} from "./questionCard";
 
 type Props = {
     handleNext: ()=>void,
@@ -31,32 +32,7 @@ const StepReview = (props: Props) => {
             <Grid item xs={12}>
                 <Typography variant='h6' sx={{mb:1}}>Make sure everything is right:</Typography>
             </Grid>
-            <Card sx={{width: '100%'}}>
-                <CardHeader
-                    sx={{textAlign: 'left'}}
-                    avatar={<Avatar sx={{bgcolor: blue[700]}}><QuestionAnswerIcon /></Avatar>}
-                    title={questionState.title}
-                />
-                {questionState.imageLink &&
-                    <CardMedia
-                        component='img'
-                        image={questionState.imageLink}
-                        alt='question'
-                    />
-                }
-                <CardContent>
-                    <Typography>
-                        {questionState.questionBody}
-                    </Typography>
-                    <Grid container spacing={2} sx={{mt:2}}>
-                    {questionState.answers.map(answer =>
-                        <Grid item xs={6} >
-                            <AnswersView answer={answer} />
-                        </Grid>
-                    )}
-                    </Grid>
-                </CardContent>
-            </Card>
+            <QuestionCard questionState={questionState} />
             <Grid item xs={12} sx={{display: 'flex'}}>
                 <Button
                     variant='contained'

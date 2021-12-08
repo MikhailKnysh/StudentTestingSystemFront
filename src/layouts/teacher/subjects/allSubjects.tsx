@@ -29,12 +29,12 @@ export const AllSubjects = (props: Props) => {
                 <Tab label="Subjects" />
             </Tabs>
             </Box>
-            <Grid spacing={2}>
+            <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <AddSubject handleSubjects={handleSubjects}/>
                         <List>
                             {subjects.map((subject) =>
-                                <SubjectItem subject={subject} handleChange={handleChange}/>
+                                <SubjectItem key={subject.title} subject={subject} handleChange={handleChange}/>
                             )}
                         </List>
                 </Grid>

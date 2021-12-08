@@ -1,51 +1,33 @@
 import React from 'react';
-import {Subject, SubjectTheme} from "../config";
-import {
-    Button,
-    FormControl,
-    Grid,
-    InputLabel,
-    Link,
-    MenuItem,
-    Paper,
-    Select,
-    SelectChangeEvent,
-    Tab,
-    TextField
-} from "@mui/material";
-import List from "@mui/material/List";
+import {Question, Subject, SubjectTheme} from "../config";
+import {Button, Grid, Link, List, MenuItem, Paper, Tab, TextField} from "@mui/material";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
-import {TestsThemesItem} from "../testsThemes/components/testsThemesItem";
 import Divider from "@mui/material/Divider";
 import {NavLink} from "react-router-dom";
+import {questionsMock} from "./questionsMock";
+import {QuestionCard} from "./components/questionCard";
 
 type Props = {
     subjects: Subject[],
     themes: SubjectTheme[],
-    handleThemes: React.Dispatch<React.SetStateAction<SubjectTheme[]>>
+    handleCurrentThemeId: React.Dispatch<React.SetStateAction<string>>
 }
 
 export const AllQuestions = (props: Props) => {
-    const {subjects, themes, handleThemes} = props;
-    const [currentSubjectId, setCurrentSubjectId] = React.useState<string>('0');
-    const [currentThemesId, setCurrentThemesId] = React.useState<string>('0');
+    const {subjects, themes, handleCurrentThemeId} = props;
+    const [currentSubjectId, setCurrentSubjectId] = React.useState<string>('');
+    const [currentThemeId, setCurrentThemeId] = React.useState<string>('');
+    const [questions, setQuestions] = React.useState<Question[]>(questionsMock);
 
-    const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        handleThemes(
-            themes.map(theme => theme.id === event.target.id ? {...theme, title: event.target.value} : theme)
-        )
+    const handleSubjectChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setCurrentSubjectId(event.target.value);
+        setCurrentThemeId('');
     }
-
-    const handleSubjectIdChange = (id: string, subjectId: string) => {
-        handleThemes(
-            themes.map(theme => theme.id === id ? {...theme, subjectId: subjectId} : theme)
-        )
+    const handleThemeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setCurrentThemeId(event.target.value);
+        handleCurrentThemeId(event.target.value);
     }
-
-    React.useEffect(() => {
-        console.log("current ", currentSubjectId);
-    }, [currentSubjectId])
 
     return (
         <Paper elevation={3} sx={{ maxWidth: '800px', mx: 'auto', p:2}}>
@@ -59,7 +41,7 @@ export const AllQuestions = (props: Props) => {
                 </Grid>
                 <Grid item xs={12}>
                     <Link to="/teacher/questions/add" key="Bot table" component={NavLink} sx={{ textDecoration: 'none' }}>
-                        <Button fullWidth variant="contained" color="primary" >
+                        <Button fullWidth variant="contained" color="primary" disabled={currentThemeId === ''}>
                             Add question
                         </Button>
                     </Link>
@@ -73,10 +55,11 @@ export const AllQuestions = (props: Props) => {
                         fullWidth
                         label="Subject"
                         id="select-subject"
-                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => (setCurrentSubjectId(event.target.value))}
+                        value={currentSubjectId}
+                        onChange={handleSubjectChange}
                     >
                         {subjects.map((subject) =>
-                            <MenuItem value={subject.id}>{subject.title}</MenuItem>
+                            <MenuItem key={subject.id} value={subject.id}>{subject.title}</MenuItem>
                         )}
                     </TextField>
                 </Grid>
@@ -86,19 +69,22 @@ export const AllQuestions = (props: Props) => {
                         fullWidth
                         label="Themes"
                         id="select-themes"
+                        value={currentThemeId}
+                        onChange={handleThemeChange}
                     >
                         {themes.map((theme) => (theme.subjectId === currentSubjectId) &&
-                            <MenuItem value={theme.id}>{theme.title}</MenuItem>
+                            <MenuItem key={theme.id} value={theme.id}>{theme.title}</MenuItem>
                         )}
                     </TextField>
                 </Grid>
                 <Grid item xs={12}>
-                    <List>
-                        {themes.map((theme) => (theme.subjectId === currentSubjectId) &&
-                            <TestsThemesItem theme={theme} subjects={subjects} handleTitleChange={handleTitleChange} handleSubjectIdChange={handleSubjectIdChange}/>
-                        )}
-                    </List>
+                    <Divider />
                 </Grid>
+                {questions.map((question) => (question.idTheme === currentThemeId) &&
+                    <Grid item xs={12}>
+                    <QuestionCard key={question.id} questionState={question} />
+                    </Grid>
+                )}
             </Grid>
         </Paper>
     );
