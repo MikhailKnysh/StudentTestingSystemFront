@@ -37,7 +37,7 @@ export const CreateQuestion = () => {
                         </Box>
                         <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', pt: 2 }}>
                             <Link to="/teacher/questions" key="Bot table" component={NavLink} sx={{ textDecoration: 'none' }}>
-                                <Button variant="contained" color="primary" onClick={() => setStep(0)}>
+                                <Button variant="contained" color="primary" >
                                     All questions
                                 </Button>
                             </Link>
