@@ -34,7 +34,7 @@ const CompletedTests = (props: Props) => {
         <Paper elevation={3} sx={{ maxWidth: '800px', mx: 'auto', p:2}}>
             <Grid container spacing={4}>
                 <Grid item xs={12}>
-                    <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 3 }}>
+                    <Box sx={{ borderBottom: 1, borderColor: 'divider'}}>
                         <Tabs value={0}>
                             <Tab label="Completed Tests" />
                         </Tabs>
@@ -113,18 +113,8 @@ const CompletedTests = (props: Props) => {
                                 <Grid item xs={6}>
                                     <TextField
                                         disabled
-                                        margin="normal"
                                         fullWidth
-                                        value={test.timePreparation}
-                                        key="timePreparation"
-                                        label="Time preparation"
-                                    />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField
-                                        disabled
                                         margin="normal"
-                                        fullWidth
                                         value={test.dateTimeStart}
                                         key="timeStart"
                                         label="Time start"
@@ -133,8 +123,8 @@ const CompletedTests = (props: Props) => {
                                 <Grid item xs={6}>
                                     <TextField
                                         disabled
-                                        margin="normal"
                                         fullWidth
+                                        margin="normal"
                                         value={test.dateTimeFinish}
                                         key="timeFinish"
                                         label="Time finish"
@@ -143,8 +133,18 @@ const CompletedTests = (props: Props) => {
                                 <Grid item xs={6}>
                                     <TextField
                                         disabled
-                                        margin="normal"
                                         fullWidth
+                                        margin="normal"
+                                        value={test.timePreparation}
+                                        key="timePreparation"
+                                        label="Time preparation"
+                                    />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <TextField
+                                        disabled
+                                        fullWidth
+                                        margin="normal"
                                         value={test.idUser}
                                         key="student"
                                         label="Student"

@@ -19,6 +19,7 @@ export const AllQuestions = (props: Props) => {
     const [currentSubjectId, setCurrentSubjectId] = React.useState<string>('');
     const [currentThemeId, setCurrentThemeId] = React.useState<string>('');
     const [questions, setQuestions] = React.useState<Question[]>(questionsMock);
+    const [filter, setFilter] = React.useState<string>('');
 
     const handleSubjectChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCurrentSubjectId(event.target.value);
@@ -33,7 +34,7 @@ export const AllQuestions = (props: Props) => {
         <Paper elevation={3} sx={{ maxWidth: '800px', mx: 'auto', p:2}}>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 3 }}>
+                    <Box sx={{ borderBottom: 1, borderColor: 'divider'}}>
                         <Tabs value={0}>
                             <Tab label="Questions" />
                         </Tabs>
@@ -72,7 +73,7 @@ export const AllQuestions = (props: Props) => {
                         value={currentThemeId}
                         onChange={handleThemeChange}
                     >
-                        {themes.map((theme) => (theme.subjectId === currentSubjectId) &&
+                        {themes.map((theme) => ((theme.subjectId === currentSubjectId)) &&
                             <MenuItem key={theme.id} value={theme.id}>{theme.title}</MenuItem>
                         )}
                     </TextField>
@@ -80,10 +81,25 @@ export const AllQuestions = (props: Props) => {
                 <Grid item xs={12}>
                     <Divider />
                 </Grid>
-                {questions.map((question) => (question.idTheme === currentThemeId) &&
-                    <Grid item xs={12}>
-                    <QuestionCard key={question.id} questionState={question} />
-                    </Grid>
+
+                <Grid item xs={12}>
+                    <TextField
+                        key="filter"
+                        label="Search..."
+                        fullWidth
+                        value={filter}
+                        onChange={(event) => setFilter(event.target.value)}
+                    />
+                </Grid>
+
+                {questions
+                    .filter(questions =>
+                        (questions.title.toLowerCase().includes(filter.toLowerCase()) || questions.questionBody.toLowerCase().includes(filter.toLowerCase())))
+                    .map((question) =>
+                        (question.idTheme === currentThemeId) &&
+                            <Grid item xs={12}>
+                                <QuestionCard key={question.id} questionState={question} />
+                            </Grid>
                 )}
             </Grid>
         </Paper>

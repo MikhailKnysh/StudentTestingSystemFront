@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import {
     Avatar,
     Collapse, FormControl,
-    IconButton,
+    IconButton, InputAdornment,
     InputLabel,
     ListItem,
     ListItemAvatar,
@@ -14,24 +14,36 @@ import EditIcon from "@mui/icons-material/Edit";
 import FeedIcon from '@mui/icons-material/Feed';
 import {Subject, SubjectTheme} from "../../config";
 import Divider from "@mui/material/Divider";
+import CheckIcon from "@mui/icons-material/Check";
+import CloseIcon from "@mui/icons-material/Close";
 
 type Props = {
     theme: SubjectTheme,
     subjects: Subject[],
-    handleTitleChange: (event: React.ChangeEvent<HTMLInputElement>)=>void,
+    handleThemeChange: (themeToUpdate: SubjectTheme)=>void,
     handleSubjectIdChange: (id:string, subjectId:string)=>void
 }
 
 export const TestsThemesItem = (props: Props) => {
-    const {theme, subjects, handleTitleChange, handleSubjectIdChange} = props;
+    const {theme, subjects, handleThemeChange, handleSubjectIdChange} = props;
+    const [themeToUpdate, setThemeToUpdate] = React.useState<SubjectTheme>(theme);
     const [isEditable, setIsEditable] = React.useState<boolean>(false);
-    const [subjectToUpdate, setSubjectToUpdate] = React.useState<Subject>({id:'', title:''});
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    {
+        setThemeToUpdate(prevState => ({...prevState, title:event.target.value}));
+    }
+    const ToggleEditable = () => setIsEditable(prev=>!prev);
+    const handleClose = () => {
+        setThemeToUpdate((prevState) => ({...prevState, title:theme.title, id:theme.id, subjectId:theme.subjectId}));
+        ToggleEditable();
+    }
 
     return (
         <Box>
             <ListItem
                 secondaryAction={
-                    <IconButton edge="end" aria-label="delete" onClick={() => setIsEditable(prev=>!prev)}>
+                    <IconButton edge="end" aria-label="delete" onClick={ToggleEditable}>
                         <EditIcon />
                     </IconButton>
                 }
@@ -49,9 +61,21 @@ export const TestsThemesItem = (props: Props) => {
                 <TextField
                     sx={{px:"70px"}}
                     fullWidth
-                    value={theme.title}
-                    id = {theme.id}
-                    onChange={handleTitleChange}
+                    value={themeToUpdate.title}
+                    id = {themeToUpdate.id}
+                    onChange={handleChange}
+                    InputProps={{
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <IconButton onClick={() => handleThemeChange(themeToUpdate)}>
+                                    <CheckIcon color="success"/>
+                                </IconButton>
+                                <IconButton onClick={handleClose}>
+                                    <CloseIcon color="error"/>
+                                </IconButton>
+                            </InputAdornment>
+                        ),
+                    }}
                 />
                 <FormControl fullWidth sx={{ml:"70px", pr:'140px', mt:'20px'}}>
                     <InputLabel id="select-subject">Subject</InputLabel>

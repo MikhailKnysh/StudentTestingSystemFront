@@ -5,19 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d465c453-9b6c-48b0-90ec-d4eb9ccaaf97" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/layouts/teacher/questions/components/questionCard.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layouts/teacher/questions/questionsMock.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/profile/teacherLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/profile/teacherLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/questions/allquestions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/questions/allquestions.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/questions/components/stepReview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/questions/components/stepReview.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/questions/createQuestion.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/questions/createQuestion.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/subjects/allSubjects.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/subjects/allSubjects.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/studentsTests/completedTests.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/studentsTests/completedTests.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -53,7 +55,7 @@
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
-    <property name="ts.external.directory.path" value="C:\Users\user\student-testing-system-front\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="C:\Users\user\Projects\StudentTestingSystemFront\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -101,6 +103,7 @@
       <workItem from="1638518540228" duration="1533000" />
       <workItem from="1638774284823" duration="21426000" />
       <workItem from="1638858257620" duration="18980000" />
+      <workItem from="1639033976166" duration="15095000" />
     </task>
     <servers />
   </component>
