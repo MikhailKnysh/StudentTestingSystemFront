@@ -41,7 +41,7 @@ export const AllQuestions = (props: Props) => {
                     </Box>
                 </Grid>
                 <Grid item xs={12}>
-                    <Link to="/teacher/questions/add" key="Bot table" component={NavLink} sx={{ textDecoration: 'none' }}>
+                    <Link to="/teacher/questions/add" key="addQuestion" component={NavLink} sx={{ textDecoration: 'none' }}>
                         <Button fullWidth variant="contained" color="primary" disabled={currentThemeId === ''}>
                             Add question
                         </Button>

@@ -1,10 +1,11 @@
 import {OverridableComponent} from "@mui/material/OverridableComponent";
 import {SvgIconTypeMap} from "@mui/material";
-import TableChartIcon from '@mui/icons-material/TableChart';
 import MenuBookTwoToneIcon from "@mui/icons-material/MenuBookTwoTone";
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import QuizIcon from '@mui/icons-material/Quiz';
 import FeedIcon from '@mui/icons-material/Feed';
+import DynamicFormIcon from '@mui/icons-material/DynamicForm';
+import FactCheckIcon from '@mui/icons-material/FactCheck';
 
 
 type CustomRoute = {
@@ -38,14 +39,14 @@ export const teacherRouting: CustomRoute[] = [
 
 export const studentRouting: CustomRoute[] = [
     {
-        path: '/student/available-tests',
+        path: '/student/available',
         name: "Available Tests",
-        Icon: TableChartIcon
+        Icon: DynamicFormIcon
     },
     {
-        path: '/student/completed-tests',
+        path: '/student/completed',
         name: "Completed Tests",
-        Icon: TableChartIcon
+        Icon: FactCheckIcon
     }
 ];
 

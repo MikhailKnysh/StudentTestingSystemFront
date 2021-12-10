@@ -1,36 +1,23 @@
 import React from 'react';
-import {Subject, SubjectTheme} from "../config";
 import {FormControl, Grid, InputLabel, MenuItem, Paper, Select, SelectChangeEvent, Tab, TextField} from "@mui/material";
-import List from "@mui/material/List";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
-import {TestsThemesItem} from "./components/testsThemesItem";
 import Divider from "@mui/material/Divider";
-import { AddTheme } from './addTheme';
+import List from "@mui/material/List";
+import {AvailableTest, Subject, SubjectTheme} from "../../teacher/config";
+import {availableTestsMock} from "./availableTestsMock";
+import {AvailableTestItem} from "./components/availableTestItem";
 
 type Props = {
     subjects: Subject[],
-    themes: SubjectTheme[],
-    handleThemes: React.Dispatch<React.SetStateAction<SubjectTheme[]>>
+    handleCurrentThemeId: React.Dispatch<React.SetStateAction<string>>
 }
 
-export const AllThemes = (props: Props) => {
-    const {subjects, themes, handleThemes} = props;
-
-    const [currentSubjectId, setCurrentSubjectId] = React.useState<string>('');
+export const AvailableTests = (props: Props) => {
+    const {subjects, handleCurrentThemeId} = props;
+    const [currentSubjectId, setCurrentSubjectId] = React.useState<string>('All');
+    const [availableTests, setAvailableTests] = React.useState<AvailableTest[]>(availableTestsMock);
     const [filter, setFilter] = React.useState<string>('');
-
-    const handleThemeChange = (themeToUpdate:SubjectTheme) => {
-        handleThemes(
-            themes.map(theme => theme.id === themeToUpdate.id ? {...theme, title:themeToUpdate.title, subjectId: currentSubjectId} : theme)
-        )
-    }
-
-    const handleSubjectIdChange = (id: string, subjectId: string) => {
-        handleThemes(
-            themes.map(theme => theme.id === id ? {...theme, subjectId: subjectId} : theme)
-        )
-    }
 
     return (
         <Paper elevation={3} sx={{ maxWidth: '800px', mx: 'auto', p:2}}>
@@ -38,12 +25,9 @@ export const AllThemes = (props: Props) => {
                 <Grid item xs={12} >
                     <Box sx={{ borderBottom: 1, borderColor: 'divider'}}>
                         <Tabs value={0}>
-                            <Tab label="Themes" />
+                            <Tab label="Available tests" />
                         </Tabs>
                     </Box>
-                </Grid>
-                <Grid item xs={12}>
-                    <AddTheme handleThemes={handleThemes} currentSubjectId={currentSubjectId}/>
                 </Grid>
                 <Grid item xs={12}>
                     <Divider/>
@@ -57,10 +41,11 @@ export const AllThemes = (props: Props) => {
                             label="Subject"
                             value={currentSubjectId}
                             onChange={(event: SelectChangeEvent) => (setCurrentSubjectId(event.target.value))}
-                            >
+                        >
+                            <MenuItem key='all' value='All'>All</MenuItem>
                             {subjects.map((subject) =>
                                 <MenuItem key={subject.id} value={subject.id}>{subject.title}</MenuItem>
-                                )}
+                            )}
                         </Select>
                     </FormControl>
                 </Grid>
@@ -78,10 +63,11 @@ export const AllThemes = (props: Props) => {
                 </Grid>
                 <Grid item xs={12}>
                     <List>
-                        {themes
-                            .filter(theme => (theme.title.toLowerCase().includes(filter.toLowerCase())))
-                            .map((theme) => (theme.subjectId === currentSubjectId) &&
-                                <TestsThemesItem key={theme.id} theme={theme} subjects={subjects} handleThemeChange={handleThemeChange} handleSubjectIdChange={handleSubjectIdChange}/>
+                        {availableTests
+                            .filter(test => test.theme.title.toLowerCase().includes(filter.toLowerCase()))
+                            .filter(test => (currentSubjectId === 'All' || test.theme.subjectId === currentSubjectId))
+                            .map(test =>
+                            <AvailableTestItem test={test} handleCurrentThemeId={handleCurrentThemeId}/>
                         )}
                     </List>
                 </Grid>

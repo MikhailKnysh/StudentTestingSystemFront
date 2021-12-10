@@ -5,7 +5,7 @@ import {DrawerHeader} from "../../../components/Drawer/DrawerHeader";
 import {UserLayout} from "../../../components/Profile/UserLayout";
 import {Route, Routes} from "react-router-dom";
 import {AllSubjects} from "../subjects/allSubjects";
-import AllThemes from "../testsThemes/allThemes";
+import {AllThemes} from "../testsThemes/allThemes";
 import {Subject, SubjectTheme} from "../config";
 import {CreateQuestion} from "../questions/createQuestion";
 import {AllQuestions} from "../questions/allquestions";
@@ -43,7 +43,7 @@ export const TeacherLayout = (props: any) => {
                     <Route path="/themes" element={<AllThemes subjects={subjects} themes={themes} handleThemes={setThemes}/>} />
                     <Route path="/questions/add" element={<CreateQuestion user={user} themeId={currentThemeId}/>} />
                     <Route path="/questions" element={<AllQuestions subjects={subjects} themes={themes} handleCurrentThemeId={setCurrentThemeId}/>}/>
-                    <Route path="/tests" element={<CompletedTests  handleCurrentThemeId={setCurrentThemeId} themes={themes} subjects={subjects}/>} />
+                    <Route path="/tests" element={<CompletedTests handleCurrentThemeId={setCurrentThemeId} themes={themes} subjects={subjects}/>} />
                     <Route path="/tests/share" element={<ShareTest />} />
                 </Routes>
             </Box>

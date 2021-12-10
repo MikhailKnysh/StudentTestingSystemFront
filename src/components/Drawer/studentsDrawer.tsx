@@ -9,13 +9,15 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
+import PersonIcon from '@mui/icons-material/Person';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import {Button} from "@mui/material";
+import {Button, Link} from "@mui/material";
 import {User} from "../../layouts/teacher/config";
 import {userInitialState} from "../../App";
-import { Link } from 'react-router-dom';
+import {studentRouting} from "../../routes/config";
+import {NavLink} from "react-router-dom";
 
 const drawerWidth = 240;
 type Props = {
@@ -37,7 +39,7 @@ export function StudentsDrawer(props: Props) {
                         Students tests platform
                     </Typography>
                     <Box sx={{flexGrow: 1}} />
-                    <Link to="/">
+                    <Link to="/" component={NavLink}>
                     <Button onClick={handleLogout} variant="outlined" sx={{borderRadius: 10, color: "white"}}>Logout</Button>
                     </Link>
                 </Toolbar>
@@ -53,13 +55,15 @@ export function StudentsDrawer(props: Props) {
                 <Toolbar />
                 <Box sx={{ overflow: 'auto' }}>
                     <List>
-                        {['Available studentsTests', 'Completed studentsTests'].map((text, index) => (
-                            <ListItem button key={text}>
-                                <ListItemIcon>
-                                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                                </ListItemIcon>
-                                <ListItemText primary={text} />
-                            </ListItem>
+                        {studentRouting.map(({path, name, Icon}) => (
+                            <Link variant="body1" to={path} key={name} component={NavLink} color="#2F2F2F" sx={{textDecoration: 'none'}}>
+                                <ListItem button key={name}>
+                                    <ListItemIcon>
+                                        <Icon />
+                                    </ListItemIcon>
+                                    <ListItemText primary={name} />
+                                </ListItem>
+                            </Link>
                         ))}
                     </List>
                     <Divider />
@@ -67,7 +71,7 @@ export function StudentsDrawer(props: Props) {
                         {['My profile'].map((text, index) => (
                             <ListItem button key={text}>
                                 <ListItemIcon>
-                                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                                    <PersonIcon />
                                 </ListItemIcon>
                                 <ListItemText primary={text} />
                             </ListItem>

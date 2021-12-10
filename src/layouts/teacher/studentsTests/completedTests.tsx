@@ -6,6 +6,7 @@ import {NavLink} from "react-router-dom";
 import Divider from "@mui/material/Divider";
 import {StudentsTest, Subject, SubjectTheme} from "../config";
 import {StudentTestMock} from "./studentTestMock";
+import {TestItem} from "./testItem";
 
 type Props = {
     subjects: Subject[],
@@ -83,75 +84,7 @@ const CompletedTests = (props: Props) => {
                 </Grid>
                 {studentTests.map((test) => (test.idTheme === currentThemeId) &&
                     <Grid item xs={12}>
-                        <Paper sx={{m:'2', p:'2'}}>
-                            <Grid container spacing={2} >
-                                <Grid item xs={12}>
-                                    <Typography variant="h6">
-                                        Test Name
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField
-                                        disabled
-                                        margin="normal"
-                                        fullWidth
-                                        value={test.mark}
-                                        key="mark"
-                                        label="Test mark"
-                                    />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField
-                                        disabled
-                                        margin="normal"
-                                        fullWidth
-                                        value={test.countOfHelpChecks}
-                                        key="countOfHelpChecks"
-                                        label="Count of help checks"
-                                    />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField
-                                        disabled
-                                        fullWidth
-                                        margin="normal"
-                                        value={test.dateTimeStart}
-                                        key="timeStart"
-                                        label="Time start"
-                                    />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField
-                                        disabled
-                                        fullWidth
-                                        margin="normal"
-                                        value={test.dateTimeFinish}
-                                        key="timeFinish"
-                                        label="Time finish"
-                                    />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField
-                                        disabled
-                                        fullWidth
-                                        margin="normal"
-                                        value={test.timePreparation}
-                                        key="timePreparation"
-                                        label="Time preparation"
-                                    />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField
-                                        disabled
-                                        fullWidth
-                                        margin="normal"
-                                        value={test.idUser}
-                                        key="student"
-                                        label="Student"
-                                    />
-                                </Grid>
-                            </Grid>
-                        </Paper>
+                        <TestItem key={test.id} test={test} />
                     </Grid>
                 )}
             </Grid>

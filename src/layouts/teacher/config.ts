@@ -35,7 +35,7 @@ export type Answer = {
 export type StudentAnswer = {
     idTest: string,
     question: Question,
-    answer: Answer,
+    answer: Answer[],
     answerDuration: number
 }
 
@@ -43,11 +43,18 @@ export type StudentsTest = {
     id: string,
     idUser: string,
     idTheme: string,
+    title: string,
     dateTimeStart: number,
     dateTimeFinish: number,
     mark: number,
     timePreparation: number,
     countOfHelpChecks: number
+}
+
+export type Group = {
+    id: string,
+    title: string,
+    users: User[]
 }
 
 export type User = {
@@ -64,4 +71,9 @@ export enum UserRole {
     guest = "guest",
     student = "student",
     teacher = "teacher"
+}
+
+export type AvailableTest = {
+    theme: SubjectTheme,
+    studentId: string
 }
