@@ -2,10 +2,10 @@ import React from 'react';
 import {Button, Grid, Link, MenuItem, Paper, Tab, TextField, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
-import {NavLink} from "react-router-dom";
 import Divider from "@mui/material/Divider";
 import {StudentsTest, Subject, SubjectTheme} from "../../teacher/config";
 import {StudentTestMock} from "../../teacher/studentsTests/studentTestMock";
+import {TestItem} from "../../../components/TestItem/TestItem";
 
 
 type Props = {
@@ -14,12 +14,13 @@ type Props = {
     handleCurrentThemeId: React.Dispatch<React.SetStateAction<string>>
 }
 
-const CompletedTests = (props: Props) => {
+export const CompletedTests = (props: Props) => {
     const {subjects, themes, handleCurrentThemeId} = props;
 
     const [currentSubjectId, setCurrentSubjectId] = React.useState<string>('');
     const [currentThemeId, setCurrentThemeId] = React.useState<string>('');
     const [studentTests, setStudentTests] = React.useState<StudentsTest[]>(StudentTestMock);
+    const [filter, setFilter] = React.useState<string>('');
 
     const handleSubjectChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCurrentSubjectId(event.target.value);
@@ -40,16 +41,6 @@ const CompletedTests = (props: Props) => {
                             <Tab label="Completed Tests" />
                         </Tabs>
                     </Box>
-                </Grid>
-                <Grid item xs={12}>
-                    <Link to="/teacher/tests/share" key="completedTests" component={NavLink} sx={{ textDecoration: 'none' }}>
-                        <Button fullWidth variant="contained" color="primary" disabled={currentThemeId === ''}>
-                            Share test
-                        </Button>
-                    </Link>
-                </Grid>
-                <Grid item xs={12}>
-                    <Divider />
                 </Grid>
                 <Grid item xs={6}>
                     <TextField
@@ -82,78 +73,21 @@ const CompletedTests = (props: Props) => {
                 <Grid item xs={12}>
                     <Divider />
                 </Grid>
-                {studentTests.map((test) => (test.idTheme === currentThemeId) &&
-                    <Grid item xs={12}>
-                        <Paper sx={{m:'2', p:'2'}}>
-                            <Grid container spacing={2} >
-                                <Grid item xs={12}>
-                                    <Typography variant="h6">
-                                        Test Name
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField
-                                        disabled
-                                        margin="normal"
-                                        fullWidth
-                                        value={test.mark}
-                                        key="mark"
-                                        label="Test mark"
-                                    />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField
-                                        disabled
-                                        margin="normal"
-                                        fullWidth
-                                        value={test.countOfHelpChecks}
-                                        key="countOfHelpChecks"
-                                        label="Count of help checks"
-                                    />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField
-                                        disabled
-                                        fullWidth
-                                        margin="normal"
-                                        value={test.dateTimeStart}
-                                        key="timeStart"
-                                        label="Time start"
-                                    />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField
-                                        disabled
-                                        fullWidth
-                                        margin="normal"
-                                        value={test.dateTimeFinish}
-                                        key="timeFinish"
-                                        label="Time finish"
-                                    />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField
-                                        disabled
-                                        fullWidth
-                                        margin="normal"
-                                        value={test.timePreparation}
-                                        key="timePreparation"
-                                        label="Time preparation"
-                                    />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField
-                                        disabled
-                                        fullWidth
-                                        margin="normal"
-                                        value={test.idUser}
-                                        key="student"
-                                        label="Student"
-                                    />
-                                </Grid>
-                            </Grid>
-                        </Paper>
-                    </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        key="filter"
+                        label="Search..."
+                        fullWidth
+                        value={filter}
+                        onChange={(event) => setFilter(event.target.value)}
+                    />
+                </Grid>
+                {studentTests
+                    .filter(test => test.title.toLowerCase().includes(filter.toLowerCase()))
+                    .map((test) => (test.idTheme === currentThemeId) &&
+                        <Grid item xs={12}>
+                            <TestItem test={test} />
+                        </Grid>
                 )}
             </Grid>
         </Paper>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Grid, Paper, TextField, Typography} from "@mui/material";
-import {StudentsTest} from "../config";
+import {StudentsTest} from "../../layouts/teacher/config";
 
 type Props = {
     test: StudentsTest
@@ -65,16 +65,6 @@ export const TestItem = (props: Props) => {
                         value={test.timePreparation}
                         key="timePreparation"
                         label="Time preparation"
-                    />
-                </Grid>
-                <Grid item xs={6}>
-                    <TextField
-                        disabled
-                        fullWidth
-                        margin="normal"
-                        value={test.idUser}
-                        key="student"
-                        label="Student"
                     />
                 </Grid>
             </Grid>

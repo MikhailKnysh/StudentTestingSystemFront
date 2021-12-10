@@ -68,14 +68,14 @@ export function StudentsDrawer(props: Props) {
                     </List>
                     <Divider />
                     <List>
-                        {['My profile'].map((text, index) => (
-                            <ListItem button key={text}>
+                        <Link variant="body1" to="/student" component={NavLink} color="#2F2F2F" sx={{textDecoration: 'none'}}>
+                            <ListItem button key={'myProfile'}>
                                 <ListItemIcon>
                                     <PersonIcon />
                                 </ListItemIcon>
-                                <ListItemText primary={text} />
+                                <ListItemText primary={'My Profile'} />
                             </ListItem>
-                        ))}
+                        </Link>
                     </List>
                 </Box>
             </Drawer>

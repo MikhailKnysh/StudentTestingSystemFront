@@ -6,7 +6,7 @@ import {NavLink} from "react-router-dom";
 import Divider from "@mui/material/Divider";
 import {StudentsTest, Subject, SubjectTheme} from "../config";
 import {StudentTestMock} from "./studentTestMock";
-import {TestItem} from "./testItem";
+import {TestItem} from "../../../components/TestItem/TestItem";
 
 type Props = {
     subjects: Subject[],
@@ -20,6 +20,7 @@ const CompletedTests = (props: Props) => {
     const [currentSubjectId, setCurrentSubjectId] = React.useState<string>('');
     const [currentThemeId, setCurrentThemeId] = React.useState<string>('');
     const [studentTests, setStudentTests] = React.useState<StudentsTest[]>(StudentTestMock);
+    const [filter, setFilter] = React.useState<string>('');
 
     const handleSubjectChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCurrentSubjectId(event.target.value);
@@ -44,7 +45,7 @@ const CompletedTests = (props: Props) => {
                 <Grid item xs={12}>
                     <Link to="/teacher/tests/share" key="completedTests" component={NavLink} sx={{ textDecoration: 'none' }}>
                         <Button fullWidth variant="contained" color="primary" disabled={currentThemeId === ''}>
-                            Share test
+                            Assign test
                         </Button>
                     </Link>
                 </Grid>
@@ -82,7 +83,18 @@ const CompletedTests = (props: Props) => {
                 <Grid item xs={12}>
                     <Divider />
                 </Grid>
-                {studentTests.map((test) => (test.idTheme === currentThemeId) &&
+                <Grid item xs={12}>
+                    <TextField
+                        key="filter"
+                        label="Search..."
+                        fullWidth
+                        value={filter}
+                        onChange={(event) => setFilter(event.target.value)}
+                    />
+                </Grid>
+                {studentTests
+                    .filter(test => test.title.toLowerCase().includes(filter.toLowerCase()))
+                    .map((test) => (test.idTheme === currentThemeId) &&
                     <Grid item xs={12}>
                         <TestItem key={test.id} test={test} />
                     </Grid>
