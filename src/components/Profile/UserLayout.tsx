@@ -18,7 +18,7 @@ type Props = {
     handleUser: React.Dispatch<React.SetStateAction<User>>
 }
 
-function TabPanel(props: TabPanelProps) {
+export function TabPanel(props: TabPanelProps) {
     const { children, value, index, ...other } = props;
 
     return (
@@ -30,7 +30,7 @@ function TabPanel(props: TabPanelProps) {
             {...other}
         >
             {value === index && (
-                <Box sx={{ p: 3 }}>
+                <Box sx={{ p: 0 }}>
                     <Typography>{children}</Typography>
                 </Box>
             )}
