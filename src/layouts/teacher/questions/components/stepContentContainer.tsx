@@ -44,7 +44,6 @@ export const StepContentContainer = (props: Props) => {
                         handleNext={handleNext}
                         handlePrevious={handlePrevious}
                         questionState={questionState}
-                        handleQuestionState={handleQuestionState}
                     />
         default:
             throw new Error('No content')

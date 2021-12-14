@@ -101,7 +101,7 @@ export const AllQuestions = (props: Props) => {
                     .map((question) =>
                         (question.idTheme === currentThemeId) &&
                             <Grid item xs={12}>
-                                <QuestionCard user={user} key={question.id} questionState={question} handleQuestion={handleQuestion}/>
+                                <QuestionCard user={user} key={question.id} questionState={question} isEditable={true}/>
                             </Grid>
                 )}
             </Grid>

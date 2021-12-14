@@ -21,11 +21,11 @@ export const subjectsMock: Subject[] = [
     {id: "5", title: 'React'}
 ]
 export const themesMock: SubjectTheme[] = [
-    {id: "1", subjectId: '5', title: 'React'},
-    {id: "2", subjectId: '5', title: 'React Native'},
-    {id: "3", subjectId: '5', title: 'React Router Dom'},
-    {id: "4", subjectId: '5', title: 'Mob x'},
-    {id: "5", subjectId: '5', title: 'Redux'}
+    {id: "1", subjectId: '5', title: 'React', questionsQuantity: 10},
+    {id: "2", subjectId: '5', title: 'React Native', questionsQuantity: 10},
+    {id: "3", subjectId: '5', title: 'React Router Dom', questionsQuantity: 10},
+    {id: "4", subjectId: '5', title: 'Mob x', questionsQuantity: 10},
+    {id: "5", subjectId: '5', title: 'Redux', questionsQuantity: 10}
 ]
 export const TeacherLayout = (props: any) => {
     const {user, handleUser} = props;

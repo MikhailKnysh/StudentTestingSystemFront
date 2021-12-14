@@ -21,11 +21,11 @@ import {CreateQuestion} from "../createQuestion";
 type Props = {
     user: User,
     questionState: Question,
-    handleQuestion: React.Dispatch<React.SetStateAction<Question>>
+    isEditable?: boolean
 }
 
 export const QuestionCard = (props: Props) => {
-    const {user, questionState, handleQuestion} = props;
+    const {user, questionState, isEditable = false} = props;
     const [modalOpen, setModalOpen] = React.useState<boolean>(false);
     const [onHover, setOnHover] = React.useState<boolean>(false);
 
@@ -39,9 +39,9 @@ export const QuestionCard = (props: Props) => {
             <Modal open={modalOpen} onClose={handleClose} sx={{p: 2, overflow: 'auto', color: '#fff'}}>
                 <CreateQuestion user={user} themeId={questionState.idTheme} questionInitialState={questionState} />
             </Modal>
-            <Card sx={{width: '100%', minHeight: '600px', position: 'relative'}} onMouseEnter={handleHoverOn} onMouseLeave={handleHoverOff}>
+            <Card sx={{width: '100%', minHeight: '600px', position: 'relative'}} onMouseOver={handleHoverOn} onMouseLeave={handleHoverOff}>
                 <Backdrop
-                    open={onHover}
+                    open={onHover && isEditable}
                     sx={{
                         color: '#fff',
                         zIndex: 1,

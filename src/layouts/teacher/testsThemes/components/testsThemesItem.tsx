@@ -29,6 +29,10 @@ export const TestsThemesItem = (props: Props) => {
     const [themeToUpdate, setThemeToUpdate] = React.useState<SubjectTheme>(theme);
     const [isEditable, setIsEditable] = React.useState<boolean>(false);
 
+    const handleTheme = () => {
+        handleThemeChange(themeToUpdate);
+        ToggleEditable();
+    }
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     {
         setThemeToUpdate(prevState => ({...prevState, title:event.target.value}));
@@ -55,19 +59,21 @@ export const TestsThemesItem = (props: Props) => {
                 </ListItemAvatar>
                 <ListItemText
                     primary = {theme.title}
+                    secondary={'Questions to pass test: ' + theme.questionsQuantity.toString()}
                 />
             </ListItem>
-            <Collapse in={isEditable}>
+            <Collapse in={isEditable} sx={{px:'70px'}}>
                 <TextField
-                    sx={{px:"70px"}}
+                    sx={{mt:1}}
                     fullWidth
+                    label='Title'
                     value={themeToUpdate.title}
                     id = {themeToUpdate.id}
                     onChange={handleChange}
                     InputProps={{
                         endAdornment: (
                             <InputAdornment position="end">
-                                <IconButton onClick={() => handleThemeChange(themeToUpdate)}>
+                                <IconButton onClick={handleTheme}>
                                     <CheckIcon color="success"/>
                                 </IconButton>
                                 <IconButton onClick={handleClose}>
@@ -77,7 +83,17 @@ export const TestsThemesItem = (props: Props) => {
                         ),
                     }}
                 />
-                <FormControl fullWidth sx={{ml:"70px", pr:'140px', mt:'20px'}}>
+                <TextField
+                    sx={{ mt:'20px'}}
+                    fullWidth
+                    required
+                    type='number'
+                    inputProps={{min: 0}}
+                    label='Questions to pass test'
+                    value={themeToUpdate.questionsQuantity}
+                    onChange={(event) => setThemeToUpdate(prev => ({...prev, questionsQuantity: Number(event.target.value)}))}
+                />
+                <FormControl fullWidth sx={{mt:'20px'}}>
                     <InputLabel id="select-subject">Subject</InputLabel>
                     <Select
                         labelId="select-subject"

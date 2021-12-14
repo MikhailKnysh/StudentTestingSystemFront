@@ -19,19 +19,18 @@ type Props = {
     user: User,
     handleNext: ()=>void,
     handlePrevious: ()=>void,
-    questionState: Question,
-    handleQuestionState: React.Dispatch<React.SetStateAction<Question>>
+    questionState: Question
 }
 
 const StepReview = (props: Props) => {
-    const { user, handleNext, handlePrevious, questionState, handleQuestionState } = props;
+    const { user, handleNext, handlePrevious, questionState } = props;
 
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
                 <Typography variant='h6' sx={{mb:1}}>Make sure everything is right:</Typography>
             </Grid>
-            <QuestionCard user={user} questionState={questionState} handleQuestion={handleQuestionState}/>
+            <QuestionCard user={user} questionState={questionState}/>
             <Grid item xs={12} sx={{display: 'flex'}}>
                 <Button
                     variant='contained'

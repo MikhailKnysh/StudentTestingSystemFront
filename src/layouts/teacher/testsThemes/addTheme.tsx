@@ -12,7 +12,7 @@ export const AddTheme = (props: Props) => {
     const {handleThemes, currentSubjectId} = props
 
     const [count, setCount] = React.useState<number>(6);
-    const [themeToAdd, setThemeToAdd] = React.useState<SubjectTheme>({title:'', id:'', subjectId:''});
+    const [themeToAdd, setThemeToAdd] = React.useState<SubjectTheme>({title:'', id:'', subjectId:'', questionsQuantity: 0});
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setThemeToAdd(prev => ({...prev, title: event.target.value, id: count.toString(), subjectId: currentSubjectId}));
@@ -26,14 +26,25 @@ export const AddTheme = (props: Props) => {
         <Box sx={{display: "flex"}}>
             <Typography sx={{my: "auto", ml: '20px', minWidth: '110px'}} variant="h6">Add theme</Typography>
             <TextField
-                sx={{px:"20px"}}
+                sx={{ml:"20px"}}
                 fullWidth
+                required
+                label='Title'
                 value={themeToAdd.title}
                 onChange={handleChange}
             />
+            <TextField
+                sx={{ml:"20px", width: '370px'}}
+                label='Questions to pass'
+                required
+                type='number'
+                inputProps={{min:0}}
+                value={themeToAdd.questionsQuantity}
+                onChange={(event) => setThemeToAdd(prev => ({...prev, questionsQuantity: Number(event.target.value)}))}
+            />
             <Button
                 variant='contained'
-                sx={{borderRadius: 1}} onClick={handleAdd}
+                sx={{ml:'20px', borderRadius: 1}} onClick={handleAdd}
                 disabled={currentSubjectId === ''}
             >
                 Add
