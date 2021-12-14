@@ -2,9 +2,10 @@ import React from 'react';
 import StepQuestion from "./stepQuestion";
 import StepAnswers from "./stepAnswers";
 import StepReview from "./stepReview";
-import {Question} from "../../config";
+import {Question, User} from "../../config";
 
 type Props = {
+    user: User,
     step: number,
     handleStep: React.Dispatch<React.SetStateAction<number>>,
     questionState: Question,
@@ -12,7 +13,7 @@ type Props = {
 }
 
 export const StepContentContainer = (props: Props) => {
-    const {step, handleStep, questionState, handleQuestionState} = props;
+    const {user, step, handleStep, questionState, handleQuestionState} = props;
 
     const handleNext = () => {
         handleStep(prev=>++prev);
@@ -39,9 +40,11 @@ export const StepContentContainer = (props: Props) => {
                     />
         case 2:
             return <StepReview
+                        user={user}
                         handleNext={handleNext}
                         handlePrevious={handlePrevious}
                         questionState={questionState}
+                        handleQuestionState={handleQuestionState}
                     />
         default:
             throw new Error('No content')

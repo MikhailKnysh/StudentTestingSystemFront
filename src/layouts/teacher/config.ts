@@ -21,7 +21,7 @@ export type Question = {
     isDisabled: boolean,
     linkForHelp: string,
     difficulty: number,
-    timeLimit: number,
+    timeLimit: Date,
     type: questionType,
     answers: Answer[]
 }
@@ -77,3 +77,5 @@ export type AvailableTest = {
     theme: SubjectTheme,
     studentId: string
 }
+
+export const DateTime1970 = new Date(1970, 0 , 1)

@@ -15,10 +15,11 @@ import {NavLink} from "react-router-dom";
 type Props = {
     user: User,
     themeId: string,
+    questionInitialState: Question
 }
 
 export const CreateQuestion = (props: Props) => {
-    const {user, themeId} = props;
+    const {user, themeId, questionInitialState} = props;
     const [step, setStep] = React.useState(0);
     const [questionState, setQuestionState] = React.useState<Question>(questionInitialState);
 
@@ -61,6 +62,7 @@ export const CreateQuestion = (props: Props) => {
                 ) : (
                     <Stack sx={{ width: '100%' }}>
                         <StepContentContainer
+                            user={user}
                             step={step}
                             handleStep={setStep}
                             questionState={questionState}

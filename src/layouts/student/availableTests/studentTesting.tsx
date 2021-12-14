@@ -32,7 +32,7 @@ export const StudentTesting = (props: Props) => {
                 <Typography variant='h6' sx={{mb:1}}>Time limit:</Typography>
             </Grid>
             <Grid item xs={12}>
-            <QuestionCard questionState={question} />
+            <QuestionCard user={user} questionState={question} handleQuestion={setQuestion}/>
             </Grid>
 
             <Grid item xs={12} sx={{display: 'flex'}}>

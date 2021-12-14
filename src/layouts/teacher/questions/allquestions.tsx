@@ -1,5 +1,5 @@
 import React from 'react';
-import {Question, Subject, SubjectTheme} from "../config";
+import {Question, Subject, SubjectTheme, User} from "../config";
 import {Button, Grid, Link, List, MenuItem, Paper, Tab, TextField} from "@mui/material";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
@@ -9,13 +9,14 @@ import {questionsMock} from "./questionsMock";
 import {QuestionCard} from "./components/questionCard";
 
 type Props = {
+    user: User,
     subjects: Subject[],
     themes: SubjectTheme[],
     handleCurrentThemeId: React.Dispatch<React.SetStateAction<string>>
 }
 
 export const AllQuestions = (props: Props) => {
-    const {subjects, themes, handleCurrentThemeId} = props;
+    const {user, subjects, themes, handleCurrentThemeId} = props;
     const [currentSubjectId, setCurrentSubjectId] = React.useState<string>('');
     const [currentThemeId, setCurrentThemeId] = React.useState<string>('');
     const [questions, setQuestions] = React.useState<Question[]>(questionsMock);
@@ -29,7 +30,9 @@ export const AllQuestions = (props: Props) => {
         setCurrentThemeId(event.target.value);
         handleCurrentThemeId(event.target.value);
     }
-
+    const handleQuestion = () => {
+        
+    }
     return (
         <Paper elevation={3} sx={{ maxWidth: '800px', mx: 'auto', p:2}}>
             <Grid container spacing={2}>
@@ -98,7 +101,7 @@ export const AllQuestions = (props: Props) => {
                     .map((question) =>
                         (question.idTheme === currentThemeId) &&
                             <Grid item xs={12}>
-                                <QuestionCard key={question.id} questionState={question} />
+                                <QuestionCard user={user} key={question.id} questionState={question} handleQuestion={handleQuestion}/>
                             </Grid>
                 )}
             </Grid>

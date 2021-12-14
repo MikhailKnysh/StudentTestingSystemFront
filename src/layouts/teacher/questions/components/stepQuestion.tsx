@@ -4,7 +4,6 @@ import {
     FormControlLabel,
     Grid,
     MenuItem,
-    Paper,
     Switch,
     TextField,
     Typography
@@ -12,6 +11,9 @@ import {
 import {Question} from "../../config";
 import {questionDifficultyList, questionTypeList} from "../config";
 import Box from "@mui/material/Box";
+import TimePicker from '@mui/lab/TimePicker';
+import {LocalizationProvider} from "@mui/lab";
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
 
 type Props = {
     step: number,
@@ -26,6 +28,14 @@ const StepQuestion = (props: Props) => {
     const handleChange = ( prop: keyof Question) => (event: React.ChangeEvent<HTMLInputElement>) => {
         handleQuestionState(prev => ({...prev, [prop]:event.target.value}));
     }
+
+    React.useEffect(() => {
+        if (questionState.timeLimit.getMinutes() < 1 && questionState.timeLimit.getSeconds() < 10)
+        {
+            handleQuestionState(prev => ({...prev, timeLimit: new Date(10000)}));
+        }
+        console.log(questionState.timeLimit);
+    }, [questionState.timeLimit])
 
     return (
         <Grid container component='form' spacing={2} onSubmit={handleNext}>
@@ -56,15 +66,21 @@ const StepQuestion = (props: Props) => {
                     </TextField>
                 </Grid>
             <Grid item xs={6}>
-                <TextField
-                    required
-                    type='number'
-                    inputProps={{min: '10'}}
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <TimePicker
+                    ampm={false}
+                    ampmInClock={false}
+                    views={['minutes', 'seconds']}
+                    inputFormat="mm:ss"
+                    mask="__:__"
+                    label="Minutes and seconds"
                     value={questionState.timeLimit}
-                    fullWidth
-                    label='Time Limit (seconds)'
-                    onChange={handleChange('timeLimit')}
+                    onChange={(newValue) =>
+                        handleQuestionState(prev => ({...prev, timeLimit: newValue || new Date(10000)}))
+                    }
+                    renderInput={(params) => <TextField fullWidth {...params} />}
                 />
+                </LocalizationProvider>
             </Grid>
             <Grid item xs={6}>
                 <TextField

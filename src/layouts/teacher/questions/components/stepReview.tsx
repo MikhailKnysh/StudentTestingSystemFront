@@ -1,5 +1,5 @@
 import React from 'react';
-import {Question} from "../../config";
+import {Question, User} from "../../config";
 import {
     Avatar,
     Button,
@@ -13,26 +13,25 @@ import {
     Typography
 } from "@mui/material";
 import Box from "@mui/material/Box";
-import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
-import {blue} from "@mui/material/colors";
-import {AnswersView} from "./answersView";
 import {QuestionCard} from "./questionCard";
 
 type Props = {
+    user: User,
     handleNext: ()=>void,
     handlePrevious: ()=>void,
     questionState: Question,
+    handleQuestionState: React.Dispatch<React.SetStateAction<Question>>
 }
 
 const StepReview = (props: Props) => {
-    const { handleNext, handlePrevious, questionState} = props;
+    const { user, handleNext, handlePrevious, questionState, handleQuestionState } = props;
 
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
                 <Typography variant='h6' sx={{mb:1}}>Make sure everything is right:</Typography>
             </Grid>
-            <QuestionCard questionState={questionState} />
+            <QuestionCard user={user} questionState={questionState} handleQuestion={handleQuestionState}/>
             <Grid item xs={12} sx={{display: 'flex'}}>
                 <Button
                     variant='contained'

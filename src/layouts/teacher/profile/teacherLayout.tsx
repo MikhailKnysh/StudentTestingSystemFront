@@ -11,6 +11,7 @@ import {CreateQuestion} from "../questions/createQuestion";
 import {AllQuestions} from "../questions/allquestions";
 import ShareTest from "../studentsTests/shareTest";
 import CompletedTests from "../studentsTests/completedTests";
+import {questionInitialState} from "../questions/config";
 
 export const subjectsMock: Subject[] = [
     {id: "1", title: 'Math'},
@@ -41,8 +42,8 @@ export const TeacherLayout = (props: any) => {
                     <Route path="/" element={<UserLayout user={user} handleUser={handleUser}/>} />
                     <Route path="/subjects" element={<AllSubjects subjects={subjects} handleSubjects={setSubjects}/>} />
                     <Route path="/themes" element={<AllThemes subjects={subjects} themes={themes} handleThemes={setThemes}/>} />
-                    <Route path="/questions/add" element={<CreateQuestion user={user} themeId={currentThemeId}/>} />
-                    <Route path="/questions" element={<AllQuestions subjects={subjects} themes={themes} handleCurrentThemeId={setCurrentThemeId}/>}/>
+                    <Route path="/questions/add" element={<CreateQuestion user={user} themeId={currentThemeId} questionInitialState={questionInitialState}/>} />
+                    <Route path="/questions" element={<AllQuestions user={user} subjects={subjects} themes={themes} handleCurrentThemeId={setCurrentThemeId}/>}/>
                     <Route path="/tests" element={<CompletedTests handleCurrentThemeId={setCurrentThemeId} themes={themes} subjects={subjects}/>} />
                     <Route path="/tests/share" element={<ShareTest />} />
                 </Routes>

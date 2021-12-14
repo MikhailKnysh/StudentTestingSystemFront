@@ -34,7 +34,7 @@ export const questionInitialState: Question = {
     imageLink: '',
     isDisabled: false,
     linkForHelp: '',
-    timeLimit: 10,
+    timeLimit: new Date(50000),
     title: '',
     type: questionType.Single
 }

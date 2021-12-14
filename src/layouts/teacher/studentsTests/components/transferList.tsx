@@ -10,7 +10,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import {User} from "../../config";
-import {Link} from "@mui/material";
+import {Link, MenuItem, TextField} from "@mui/material";
 import {NavLink} from "react-router-dom";
 
 type Props = {
@@ -33,15 +33,16 @@ function union(a: readonly User[], b: readonly User[]) {
 export function TransferList(props: Props) {
     const {students, themeId} = props;
     const [checked, setChecked] = React.useState<User[]>([]);
-    const [left, setLeft] = React.useState<User[]>(students);
-    const [right, setRight] = React.useState<User[]>([]);
+    const [left, setLeft] = React.useState<User[]>([]);
+    const [right, setRight] = React.useState<User[]>(students);
+    const [prepairingLevel, setPreparingLevel] = React.useState<number>(35);
 
     const leftChecked = intersection(checked, left);
     const rightChecked = intersection(checked, right);
 
     React.useEffect(() => {
-        setLeft(students);
-        setRight([]);
+        setLeft([]);
+        setRight(students);
         setChecked([]);
     }, [students])
 
@@ -144,7 +145,7 @@ export function TransferList(props: Props) {
 
     return (
         <Grid container spacing={2} justifyContent="center" alignItems="center" sx={{ width: 'calc(100% - 16px)', ml: '16px', mt:2}}>
-            <Grid item xs={5}>{customList('Send to:', left)}</Grid>
+            <Grid item xs={5}>{customList('Except for:', left)}</Grid>
             <Grid item xs={2}>
                 <Grid container direction="column" alignItems="center">
                     <Button
@@ -169,10 +170,25 @@ export function TransferList(props: Props) {
                     </Button>
                 </Grid>
             </Grid>
-            <Grid item xs={5}>{customList('Except for:', right)}</Grid>
+            <Grid item xs={5}>{customList('Send to:', right)}</Grid>
+            <Grid item xs={12}>
+                <TextField
+                    select
+                    key="prepair-time"
+                    label="Prepairing time"
+                    fullWidth
+                    value={prepairingLevel}
+                    onChange={(event) => setPreparingLevel(Number(event.target.value))}
+                >
+                        <MenuItem key={0} value={0}>None</MenuItem>
+                        <MenuItem key={15} value={15}>Bad</MenuItem>
+                        <MenuItem key={35} value={35}>Enough</MenuItem>
+                        <MenuItem key={50} value={50}>Good</MenuItem>
+                </TextField>
+            </Grid>
             <Grid item xs={12}>
                 <Link to="/teacher/tests/share" key="completedTests" component={NavLink} sx={{ textDecoration: 'none' }}>
-                    <Button fullWidth variant="contained" color="primary" disabled={left.length < 1 || themeId === ''}>
+                    <Button fullWidth variant="contained" color="primary" disabled={right.length < 1 || themeId === ''}>
                         Assign test
                     </Button>
                 </Link>
