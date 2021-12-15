@@ -30,7 +30,9 @@ const StepReview = (props: Props) => {
             <Grid item xs={12}>
                 <Typography variant='h6' sx={{mb:1}}>Make sure everything is right:</Typography>
             </Grid>
+            <Grid item xs={12}>
             <QuestionCard user={user} questionState={questionState}/>
+            </Grid>
             <Grid item xs={12} sx={{display: 'flex'}}>
                 <Button
                     variant='contained'

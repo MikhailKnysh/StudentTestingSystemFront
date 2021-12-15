@@ -35,11 +35,11 @@ export const QuestionCard = (props: Props) => {
     const handleClose= () => setModalOpen(false);
 
     return (
-        <div>
+        <Box>
             <Modal open={modalOpen} onClose={handleClose} sx={{p: 2, overflow: 'auto', color: '#fff'}}>
                 <CreateQuestion user={user} themeId={questionState.idTheme} questionInitialState={questionState} />
             </Modal>
-            <Card sx={{width: '100%', minHeight: '600px', position: 'relative'}} onMouseOver={handleHoverOn} onMouseLeave={handleHoverOff}>
+            <Card sx={{ position: 'relative'}} onMouseOver={handleHoverOn} onMouseLeave={handleHoverOff}>
                 <Backdrop
                     open={onHover && isEditable}
                     sx={{
@@ -89,6 +89,6 @@ export const QuestionCard = (props: Props) => {
 
                         </Card>
 
-        </div>
+        </Box>
     );
 };

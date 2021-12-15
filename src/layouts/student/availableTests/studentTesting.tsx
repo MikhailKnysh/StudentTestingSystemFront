@@ -3,8 +3,6 @@ import {Question, StudentsTest, User} from "../../teacher/config";
 import {Button, Grid, Link, Paper, Typography} from "@mui/material";
 import {QuestionCard} from "../../teacher/questions/components/questionCard";
 import Box from "@mui/material/Box";
-import {questionInitialState} from "../../teacher/questions/config";
-import {availableTestsMock} from "./availableTestsMock";
 import {testMock} from "./testMock";
 import {NavLink} from "react-router-dom";
 import {StudentTestMock} from "../../teacher/studentsTests/studentTestMock";

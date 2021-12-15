@@ -15,12 +15,16 @@ export const AddTheme = (props: Props) => {
     const [themeToAdd, setThemeToAdd] = React.useState<SubjectTheme>({title:'', id:'', subjectId:'', questionsQuantity: 0});
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setThemeToAdd(prev => ({...prev, title: event.target.value, id: count.toString(), subjectId: currentSubjectId}));
+        setThemeToAdd(prev => ({...prev, title: event.target.value, id: count.toString()}));
     }
     const handleAdd = () => {
         handleThemes(prev => ([...prev, themeToAdd]));
         setCount(prev=> (++prev));
     }
+
+    React.useEffect(()=>{
+        setThemeToAdd(prev => ({...prev, subjectId: currentSubjectId}));
+    }, [currentSubjectId])
 
     return (
         <Box sx={{display: "flex"}}>
