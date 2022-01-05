@@ -2,22 +2,22 @@ import {User, UserRole} from "../teacher/config";
 
 export const SignInUsers: User[] = [
     {
-        idUser: '1',
+        id: '1',
         firstName: 'Petrov',
         lastName: 'Petr',
         token: '1',
         expires: 14400,
         email: 'petr@i.ua',
-        userRole: UserRole.student
+        role: UserRole.student
     },
     {
-        idUser: '2',
+        id: '2',
         firstName: 'Misha',
         lastName: 'Knysh',
         token: '2',
         expires: 14400,
         email: 'mishadnepr347@gmail.com',
-        userRole: UserRole.teacher
+        role: UserRole.teacher
     }
 ]
 

@@ -24,7 +24,7 @@ export const CreateQuestion = (props: Props) => {
     const [questionState, setQuestionState] = React.useState<Question>(questionInitialState);
 
     const handleFinish = () => {
-        setQuestionState((prev) => ({...prev, idTheme: themeId, idTeacher: user.idUser}));
+        setQuestionState((prev) => ({...prev, idTheme: themeId, idTeacher: user.id}));
         setStep(prev => ++prev);
     }
 

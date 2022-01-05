@@ -5,20 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d465c453-9b6c-48b0-90ec-d4eb9ccaaf97" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/image/logo512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/image/parrot.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/image/test.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/image/unnamed.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layouts/auth/signIn/signIn.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layouts/auth/signUp/signUp.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layouts/auth/usersMock.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/signin.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/signup.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/student/availableTests/studentTesting.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/student/availableTests/studentTesting.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/questions/components/questionCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/questions/components/questionCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/questions/components/stepReview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/questions/components/stepReview.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/testsThemes/addTheme.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/testsThemes/addTheme.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/RootRouter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/RootRouter.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +48,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/image" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -68,7 +56,7 @@
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
-    <property name="ts.external.directory.path" value="C:\Users\user\student-testing-system-front\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="C:\Users\user\Projects\StudentTestingSystemFront\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -124,6 +112,13 @@
       <workItem from="1639378189958" duration="14545000" />
       <workItem from="1639464045908" duration="21505000" />
       <workItem from="1639548552256" duration="11146000" />
+      <workItem from="1640099215963" duration="1247000" />
+      <workItem from="1640156958652" duration="770000" />
+      <workItem from="1640157811218" duration="3756000" />
+      <workItem from="1640243476989" duration="853000" />
+      <workItem from="1641307493209" duration="413000" />
+      <workItem from="1641369660697" duration="6602000" />
+      <workItem from="1641377762551" duration="8031000" />
     </task>
     <servers />
   </component>

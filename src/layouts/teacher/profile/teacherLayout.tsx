@@ -12,6 +12,7 @@ import {AllQuestions} from "../questions/allquestions";
 import ShareTest from "../studentsTests/shareTest";
 import CompletedTests from "../studentsTests/completedTests";
 import {questionInitialState} from "../questions/config";
+import {UseUserStateContext} from "../../../Auth/AuthProvider";
 
 export const subjectsMock: Subject[] = [
     {id: "1", title: 'Math'},
@@ -27,19 +28,19 @@ export const themesMock: SubjectTheme[] = [
     {id: "4", subjectId: '5', title: 'Mob x', questionsQuantity: 10},
     {id: "5", subjectId: '5', title: 'Redux', questionsQuantity: 10}
 ]
-export const TeacherLayout = (props: any) => {
-    const {user, handleUser} = props;
+export const TeacherLayout = () => {
     const [subjects, setSubjects] = React.useState<Subject[]>(subjectsMock);
     const [themes, setThemes] = React.useState<SubjectTheme[]>(themesMock);
     const [currentThemeId, setCurrentThemeId] = React.useState<string>('');
+    const {user} = UseUserStateContext();
 
     return (
         <Box sx={{display: 'flex'}}>
-            <TeachersDrawer user={user} handleUser={handleUser}/>
+            <TeachersDrawer />
             <Box sx={{ flexGrow: 1, p: 3 }}>
                 <DrawerHeader />
                 <Routes>
-                    <Route path="/" element={<UserLayout user={user} handleUser={handleUser}/>} />
+                    <Route path="/" element={<UserLayout />} />
                     <Route path="/subjects" element={<AllSubjects subjects={subjects} handleSubjects={setSubjects}/>} />
                     <Route path="/themes" element={<AllThemes subjects={subjects} themes={themes} handleThemes={setThemes}/>} />
                     <Route path="/questions/add" element={<CreateQuestion user={user} themeId={currentThemeId} questionInitialState={questionInitialState}/>} />

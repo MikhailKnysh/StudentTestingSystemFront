@@ -6,16 +6,12 @@ import {PersonalInfo} from "./personalInfo";
 import {Security} from "./security";
 import {Additional} from "./additional";
 import {User} from "../../layouts/teacher/config";
+import {UseUserStateContext} from "../../Auth/AuthProvider";
 
 type TabPanelProps = {
     children?: React.ReactNode;
     index: number;
     value: number;
-}
-
-type Props = {
-    user: User,
-    handleUser: React.Dispatch<React.SetStateAction<User>>
 }
 
 export function TabPanel(props: TabPanelProps) {
@@ -45,9 +41,9 @@ function a11yProps(index: number) {
     };
 }
 
-export const UserLayout = (props: Props) => {
-    const {user, handleUser} = props;
+export const UserLayout = () => {
     const [value, setValue] = React.useState(0);
+    const { user } = UseUserStateContext();
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };

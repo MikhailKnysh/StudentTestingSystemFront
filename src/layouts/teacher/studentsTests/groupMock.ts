@@ -2,8 +2,8 @@ import {Group, User, UserRole} from "../config";
 
 export const Teachers: User[] = [
     {
-        idUser:'m1',
-        userRole: UserRole.teacher,
+        id:'m1',
+        role: UserRole.teacher,
         email: 'ms@i.ua',
         firstName: 'Master Sidor',
         lastName: 'Sidorov',
@@ -11,8 +11,8 @@ export const Teachers: User[] = [
         expires: 14440
     },
     {
-        idUser:'m2',
-        userRole: UserRole.teacher,
+        id:'m2',
+        role: UserRole.teacher,
         email: 'mk@i.ua',
         firstName: 'Master Kozel',
         lastName: 'Kozlov',
@@ -20,8 +20,8 @@ export const Teachers: User[] = [
         expires: 14440
     },
     {
-        idUser:'m3',
-        userRole: UserRole.teacher,
+        id:'m3',
+        role: UserRole.teacher,
         email: 'mi@i.ua',
         firstName: 'Master Ivan',
         lastName: 'Ivanov',
@@ -29,8 +29,8 @@ export const Teachers: User[] = [
         expires: 14440
     },
     {
-        idUser:'m4',
-        userRole: UserRole.teacher,
+        id:'m4',
+        role: UserRole.teacher,
         email: 'mp2@i.ua',
         firstName: 'Master Petr',
         lastName: 'Petrov',
@@ -41,8 +41,8 @@ export const Teachers: User[] = [
 
 export const Students: User[] = [
     {
-        idUser:'1',
-        userRole: UserRole.student,
+        id:'1',
+        role: UserRole.student,
         email: 's@i.ua',
         firstName: 'Sidor',
         lastName: 'Sidorov',
@@ -50,8 +50,8 @@ export const Students: User[] = [
         expires: 14440
     },
     {
-        idUser:'2',
-        userRole: UserRole.student,
+        id:'2',
+        role: UserRole.student,
         email: 'k@i.ua',
         firstName: 'Kozel',
         lastName: 'Kozlov',
@@ -59,8 +59,8 @@ export const Students: User[] = [
         expires: 14440
     },
     {
-        idUser:'3',
-        userRole: UserRole.student,
+        id:'3',
+        role: UserRole.student,
         email: 'i@i.ua',
         firstName: 'Ivan',
         lastName: 'Ivanov',
@@ -68,8 +68,8 @@ export const Students: User[] = [
         expires: 14440
     },
     {
-        idUser:'4',
-        userRole: UserRole.student,
+        id:'4',
+        role: UserRole.student,
         email: 'p2@i.ua',
         firstName: 'Petr',
         lastName: 'Petrov',
@@ -77,8 +77,8 @@ export const Students: User[] = [
         expires: 14440
     },
     {
-        idUser:'5',
-        userRole: UserRole.student,
+        id:'5',
+        role: UserRole.student,
         email: 'p@i.ua',
         firstName: 'Pavel',
         lastName: 'Pavlov',
@@ -86,8 +86,8 @@ export const Students: User[] = [
         expires: 14440
     },
     {
-        idUser:'6',
-        userRole: UserRole.student,
+        id:'6',
+        role: UserRole.student,
         email: 'm@i.ua',
         firstName: 'Maksim',
         lastName: 'Maksimov',
@@ -95,8 +95,8 @@ export const Students: User[] = [
         expires: 14440
     },
     {
-        idUser:'7',
-        userRole: UserRole.student,
+        id:'7',
+        role: UserRole.student,
         email: 'm2@i.ua',
         firstName: 'Mihail',
         lastName: 'Mihailov',
@@ -104,8 +104,8 @@ export const Students: User[] = [
         expires: 14440
     },
     {
-        idUser:'8',
-        userRole: UserRole.student,
+        id:'8',
+        role: UserRole.student,
         email: 'k2@i.ua',
         firstName: 'Konstantin',
         lastName: 'Konstantinov',
@@ -113,8 +113,8 @@ export const Students: User[] = [
         expires: 14440
     },
     {
-        idUser:'9',
-        userRole: UserRole.student,
+        id:'9',
+        role: UserRole.student,
         email: 'r@i.ua',
         firstName: 'Rostik',
         lastName: 'Rostikov',
@@ -122,8 +122,8 @@ export const Students: User[] = [
         expires: 14440
     },
     {
-        idUser:'10',
-        userRole: UserRole.student,
+        id:'10',
+        role: UserRole.student,
         email: 'a@i.ua',
         firstName: 'Aleksei',
         lastName: 'Alekseev',

@@ -59,19 +59,20 @@ export type Group = {
 }
 
 export type User = {
-    idUser: string,
+    id: string,
     firstName: string,
     lastName: string,
     email: string,
-    userRole: UserRole,
+    role: UserRole,
     token: string,
     expires: number
 }
 
 export enum UserRole {
-    guest = "guest",
-    student = "student",
-    teacher = "teacher"
+    guest = "Guest",
+    student = "Student",
+    teacher = "Teacher",
+    admin = "Admin"
 }
 
 export type AvailableTest = {
@@ -80,3 +81,14 @@ export type AvailableTest = {
 }
 
 export const DateTime1970 = new Date(1970, 0 , 1)
+
+
+export const userInitialState: User = {
+    id: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    role: UserRole.guest,
+    token: "",
+    expires: 0
+}

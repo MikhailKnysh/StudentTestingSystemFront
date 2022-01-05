@@ -5,29 +5,34 @@ import {TeacherLayout} from "../layouts/teacher/profile/teacherLayout";
 import {UserRole} from "../layouts/teacher/config";
 import { SignIn } from '../layouts/auth/signIn/signIn';
 import {SignUp} from "../layouts/auth/signUp/signUp";
+import {UseUserStateContext} from "../Auth/AuthProvider";
 
-export const RootRouter = (props:any) => {
-    const {user, handleUser} = props;
+export const RootRouter = () => {
+    const { user } = UseUserStateContext();
 
+    React.useEffect(() =>
+    {
+        console.log("User^ ", user)
+    },[user])
     return (
         <BrowserRouter>
             <Routes>
-                {user.userRole === UserRole.guest &&
+                {(user.role === UserRole.guest || user.role === UserRole.admin)  &&
                 <>
-                    <Route path="/signin" element={<SignIn handleUser={handleUser}/>}/>
+                    <Route path="/signin" element={<SignIn />}/>
                     <Route path="/signup" element={<SignUp />}/>
                     <Route path="/*" element={<Navigate replace to="/signin" />} />
                 </>
                 }
-                {user.userRole === UserRole.student &&
+                {user.role === UserRole.student &&
                 <>
-                    <Route path="/student/*" element={<StudentsLayout user={user} handleUser={handleUser}/>}/>
+                    <Route path="/student/*" element={<StudentsLayout />}/>
                     <Route path="/*" element={<Navigate replace to="/student" />} />
                 </>
                 }
-                {user.userRole === UserRole.teacher &&
+                {user.role === UserRole.teacher &&
                 <>
-                    <Route path="/teacher/*" element={<TeacherLayout user={user} handleUser={handleUser}/>}/>
+                    <Route path="/teacher/*" element={<TeacherLayout />}/>
                     <Route path="/*" element={<Navigate replace to="/teacher" />} />
                 </>
                 }

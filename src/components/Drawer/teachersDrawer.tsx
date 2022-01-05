@@ -12,22 +12,16 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import PersonIcon from '@mui/icons-material/Person';
 import {Button, Link} from "@mui/material";
-import {User} from "../../layouts/teacher/config";
-import {userInitialState} from "../../App";
+import {User, userInitialState} from "../../layouts/teacher/config";
 import {teacherRouting} from "../../routes/config";
 import {NavLink} from "react-router-dom";
+import {UseUserStateContext} from "../../Auth/AuthProvider";
 
 const drawerWidth = 240;
-type Props = {
-    user: User,
-    handleUser: React.Dispatch<React.SetStateAction<User>>
-}
 
-export function TeachersDrawer(props: Props) {
-    const {user, handleUser} = props;
-    const handleLogout = () =>  {
-        handleUser(userInitialState);
-    }
+export function TeachersDrawer() {
+    const {handleLogout} = UseUserStateContext();
+
     return (
         <>
             <CssBaseline />

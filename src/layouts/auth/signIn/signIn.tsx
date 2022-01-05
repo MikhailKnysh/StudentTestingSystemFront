@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {User} from "../../teacher/config";
+import {User, userInitialState} from "../../teacher/config";
 import Misha from "../../../image/logo512.png";
 import TestPNG from "../../../image/test.png";
 import Unnamed from "../../../image/unnamed.jpg";
@@ -17,8 +17,8 @@ import Parrot from "../../../image/parrot.gif";
 import {Collapse, IconButton, InputAdornment} from "@mui/material";
 import {Login, SignInUsers, UsersPasswords} from '../usersMock';
 import {Visibility, VisibilityOff} from "@mui/icons-material";
-import {userInitialState} from "../../../App";
 import {NavLink} from "react-router-dom";
+import {UseUserStateContext} from "../../../Auth/AuthProvider";
 
 function Copyright(props: any) {
     return (
@@ -35,17 +35,13 @@ function Copyright(props: any) {
 
 const theme = createTheme();
 
-type Props = {
-    handleUser: React.Dispatch<React.SetStateAction<User>>
-}
-
-export function SignIn(props: Props) {
-    const {handleUser} = props;
+export function SignIn() {
     const [login, setLogin] = React.useState<Login>({email:'',password:''})
     const [showPassword, setShowPassword] = React.useState(false);
     const [isPashalka, setIsPashalka] = React.useState<boolean>(false);
     const [isPashalka2, setIsPashalka2] = React.useState<boolean>(false);
     const [isPashalka3, setIsPashalka3] = React.useState<boolean>(false);
+    const {user, handleAuth} = UseUserStateContext();
 
     const handleClickShowPassword = React.useCallback(() => setShowPassword((prevState) => !prevState), []);
 
@@ -55,14 +51,7 @@ export function SignIn(props: Props) {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(login);
-        const exist = UsersPasswords.find(x => x.password === login.password && x.email === login.email);
-
-        if (exist) {
-            handleUser(prev => SignInUsers.find(x => x.email === exist.email) || userInitialState);
-        } else {
-            alert('Not found user');
-        }
+        handleAuth(login.email, login.password);
     };
 
     return (
