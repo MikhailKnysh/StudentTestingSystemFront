@@ -5,14 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d465c453-9b6c-48b0-90ec-d4eb9ccaaf97" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/APIs/config.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/APIs/sessionService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Auth/AuthProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Auth/AuthProvider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Profile/UserLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/UserLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/auth/signIn/signIn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/auth/signIn/signIn.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/RootRouter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/RootRouter.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

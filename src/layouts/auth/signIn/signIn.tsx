@@ -19,6 +19,7 @@ import {Login, SignInUsers, UsersPasswords} from '../usersMock';
 import {Visibility, VisibilityOff} from "@mui/icons-material";
 import {NavLink} from "react-router-dom";
 import {UseUserStateContext} from "../../../Auth/AuthProvider";
+import { v4 as uuidv4 } from 'uuid';
 
 function Copyright(props: any) {
     return (
@@ -36,7 +37,7 @@ function Copyright(props: any) {
 const theme = createTheme();
 
 export function SignIn() {
-    const [login, setLogin] = React.useState<Login>({email:'',password:''})
+    const [login, setLogin] = React.useState<Login>({email: uuidv4(),password:''})
     const [showPassword, setShowPassword] = React.useState(false);
     const [isPashalka, setIsPashalka] = React.useState<boolean>(false);
     const [isPashalka2, setIsPashalka2] = React.useState<boolean>(false);

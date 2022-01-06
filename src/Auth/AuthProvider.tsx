@@ -29,15 +29,20 @@ export const AuthProvider = (props: Props) =>
     const { enqueueSnackbar } = useSnackbar();
     const [user, setUser] = React.useState(userInitialState);
 
+    React.useEffect(() => {
+        setUser(JSON.parse(localStorage.getItem('user') || JSON.stringify(userInitialState)));
+        console.log(user);
+    }, [])
+
+    React.useEffect(() => {
+        localStorage.setItem('user', JSON.stringify(user));
+    }, [user])
+
     const handleUser = async (email:string, password:string) =>
     {
-        const responseUser = await sessionApi().login(email, password)
-            .then(response => response.data)
+        await sessionApi().login(email, password)
+            .then(response => setUser(response.data))
             .catch(error => enqueueSnackbar(error.message, {variant: 'error'}));
-        if (typeof responseUser === 'object')
-        {
-            setUser(responseUser);
-        }
     }
 
     const handleLogout = () =>

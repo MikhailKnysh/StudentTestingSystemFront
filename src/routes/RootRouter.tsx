@@ -10,10 +10,6 @@ import {UseUserStateContext} from "../Auth/AuthProvider";
 export const RootRouter = () => {
     const { user } = UseUserStateContext();
 
-    React.useEffect(() =>
-    {
-        console.log("User^ ", user)
-    },[user])
     return (
         <BrowserRouter>
             <Routes>
