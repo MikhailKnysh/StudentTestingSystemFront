@@ -2,26 +2,38 @@ import React from 'react';
 import Box from "@mui/material/Box";
 import {Button, TextField, Typography} from "@mui/material";
 import {Subject} from "../config";
+import {subjectApi} from "../../../APIs/subjectService";
+import {UseUserStateContext} from "../../../Auth/AuthProvider";
+import {useSnackbar} from "notistack";
+import { v4 as uuidv4 } from 'uuid';
+
+const intialSubject: Subject = {id: uuidv4(), title:''};
 
 type Props = {
-    handleSubjects: React.Dispatch<React.SetStateAction<Subject[]>>
+    handleGetAll: () => void
 }
 
 const AddSubject = (props: Props) => {
-    const {handleSubjects} = props;
-    const [subjectToCreate, setSubjectToCreate] = React.useState<Subject>({id:'', title:''});
-    const [count, setCount] = React.useState<number>(6);
+    const { handleGetAll } = props;
+
+    const [subjectToCreate, setSubjectToCreate] = React.useState<Subject>(intialSubject);
+    const { user } = UseUserStateContext();
+    const { enqueueSnackbar } = useSnackbar();
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSubjectToCreate(prev => ({
-            ...prev, title: event.target.value, id: count.toString()
+            ...prev, title: event.target.value
         }));
     }
 
-    const handleAdd = () => {
-        handleSubjects(prev=>(
-            [...prev, subjectToCreate]));
-        setCount(prev=> (++prev));
+    const handleAdd = () =>
+    {
+        subjectApi(user.token)
+            .create(subjectToCreate)
+            .catch(error => enqueueSnackbar(error, { variant: 'error'}));
+
+        setSubjectToCreate( intialSubject);
+        handleGetAll();
     }
 
     return (

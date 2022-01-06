@@ -6,7 +6,6 @@ import { SnackbarProvider } from 'notistack';
 
 
 function App() {
-
   return (
     <div className="App">
         <SnackbarProvider autoHideDuration={3000}>

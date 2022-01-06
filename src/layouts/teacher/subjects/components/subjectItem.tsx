@@ -16,18 +16,22 @@ import Divider from "@mui/material/Divider";
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import {Subject} from "../../config";
-import {Visibility, VisibilityOff} from "@mui/icons-material";
+import {useSnackbar} from "notistack";
+import {subjectApi} from "../../../../APIs/subjectService";
+import {UseUserStateContext} from "../../../../Auth/AuthProvider";
 
 type Props  = {
-    subject: Subject,
-    handleChange: (subjectToUpdate: Subject)=>void
+    subject: Subject
+    handleGetAll: () => void
 }
 
 export const SubjectItem = (props: Props) => {
-    const {subject, handleChange} = props;
+    const { subject, handleGetAll } = props;
 
     const [isEditable, setIsEditable] = React.useState<boolean>(false);
     const [subjectToUpdate, setSubjectToUpdate] = React.useState<Subject>(subject);
+    const { user } = UseUserStateContext();
+    const { enqueueSnackbar } = useSnackbar();
 
     const handleSubjectChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     {
@@ -38,6 +42,15 @@ export const SubjectItem = (props: Props) => {
     const handleClose = () => {
         setSubjectToUpdate((prevState) => ({...prevState, title:subject.title, id:subject.id}));
         ToggleEditable();
+    }
+
+    const handleUpdate = () =>
+    {
+        subjectApi(user.token)
+            .update(subjectToUpdate)
+            .catch(error => enqueueSnackbar(error, { variant: 'error'}));
+
+        handleGetAll();
     }
 
     return (
@@ -69,7 +82,7 @@ export const SubjectItem = (props: Props) => {
                         InputProps={{
                             endAdornment: (
                                 <InputAdornment position="end">
-                                    <IconButton onClick={() => handleChange(subjectToUpdate)}>
+                                    <IconButton onClick={handleUpdate}>
                                         <CheckIcon color="success"/>
                                     </IconButton>
                                     <IconButton onClick={handleClose}>

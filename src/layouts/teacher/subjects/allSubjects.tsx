@@ -9,6 +9,9 @@ import AddSubject from "./addSubject";
 import Tabs from "@mui/material/Tabs";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
+import {subjectApi} from "../../../APIs/subjectService";
+import {UseUserStateContext} from "../../../Auth/AuthProvider";
+import { useSnackbar } from 'notistack';
 
 type Props = {
     subjects: Subject[],
@@ -16,15 +19,21 @@ type Props = {
 }
 
 export const AllSubjects = (props: Props) => {
-    const {subjects, handleSubjects} = props;
 
     const [filter, setFilter] = React.useState<string>('');
+    const [subjects, setSubjects] = React.useState<Subject[]>([]);
+    const { enqueueSnackbar } = useSnackbar();
+    const { user } = UseUserStateContext();
 
-    const handleChange = (subjectToUpdate: Subject) => {
-        handleSubjects((prevState =>
-                prevState.map(subject => subject.id === subjectToUpdate.id ? subjectToUpdate : subject)
-        ));
-    }
+    const handleGetAll = React.useCallback(() =>
+    {
+        subjectApi(user.token)
+            .getAll()
+            .then(response => setSubjects(() => response.data))
+            .catch(error => enqueueSnackbar(error,{variant: 'error'}));
+    },[])
+
+    React.useEffect(handleGetAll,[])
 
     return (
         <Paper elevation={3} sx={{ maxWidth: '800px', mx: 'auto', p:2}}>
@@ -37,7 +46,7 @@ export const AllSubjects = (props: Props) => {
                     </Box>
                 </Grid>
                 <Grid item xs={12}>
-                    <AddSubject handleSubjects={handleSubjects}/>
+                    <AddSubject handleGetAll={ handleGetAll } />
                 </Grid>
                 <Grid item xs={12}>
                     <Divider />
@@ -56,7 +65,7 @@ export const AllSubjects = (props: Props) => {
                         {subjects
                             .filter((subject) => subject.title.toLowerCase().includes(filter.toLowerCase()))
                             .map((subject) =>
-                                <SubjectItem key={subject.title} subject={subject} handleChange={handleChange}/>
+                                <SubjectItem key={subject.title} subject={subject} handleGetAll={handleGetAll}/>
                         )}
                     </List>
                 </Grid>
