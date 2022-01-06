@@ -58,7 +58,7 @@ export type Group = {
     users: User[]
 }
 
-export type User = {
+export interface User {
     id: string,
     firstName: string,
     lastName: string,

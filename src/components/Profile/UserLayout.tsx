@@ -5,7 +5,6 @@ import {Paper, Tab, Typography} from "@mui/material";
 import {PersonalInfo} from "./personalInfo";
 import {Security} from "./security";
 import {Additional} from "./additional";
-import {User} from "../../layouts/teacher/config";
 import {UseUserStateContext} from "../../Auth/AuthProvider";
 
 type TabPanelProps = {
@@ -18,7 +17,7 @@ export function TabPanel(props: TabPanelProps) {
     const { children, value, index, ...other } = props;
 
     return (
-        <div
+        <Box
             role="tabpanel"
             hidden={value !== index}
             id={`simple-tabpanel-${index}`}
@@ -26,11 +25,11 @@ export function TabPanel(props: TabPanelProps) {
             {...other}
         >
             {value === index && (
-                <Box sx={{ p: 0 }}>
-                    <Typography>{children}</Typography>
+                <Box sx={{ p: 0, pt: 4 }}>
+                    <Box>{children}</Box>
                 </Box>
             )}
-        </div>
+        </Box>
     );
 }
 

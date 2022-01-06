@@ -1,5 +1,7 @@
 import React from "react";
-import {User, userInitialState, UserRole} from "../layouts/teacher/config";
+import {User, userInitialState} from "../layouts/teacher/config";
+import {sessionApi} from "../APIs/sessionService";
+import {useSnackbar} from "notistack";
 type Auth = {
     user: User,
     handleAuth: (email:string, password: string) => void
@@ -7,8 +9,7 @@ type Auth = {
 }
 
 type Props = {
-    loginCall: (email:string, password:string) =>  Promise<User>,
-    children?: any
+    children?: React.ReactNode
 }
 
 const UserStateContext = React.createContext<Auth>({
@@ -24,13 +25,19 @@ export const UseUserStateContext = () =>
 
 export const AuthProvider = (props: Props) =>
 {
-    const {children, loginCall} = props;
+    const {children} = props;
+    const { enqueueSnackbar } = useSnackbar();
     const [user, setUser] = React.useState(userInitialState);
 
     const handleUser = async (email:string, password:string) =>
     {
-        const responseUser = await loginCall(email, password);
-        setUser(responseUser);
+        const responseUser = await sessionApi().login(email, password)
+            .then(response => response.data)
+            .catch(error => enqueueSnackbar(error.message, {variant: 'error'}));
+        if (typeof responseUser === 'object')
+        {
+            setUser(responseUser);
+        }
     }
 
     const handleLogout = () =>
