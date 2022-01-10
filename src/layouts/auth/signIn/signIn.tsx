@@ -89,6 +89,7 @@ export function SignIn() {
                             label="Email Address"
                             name="email"
                             autoComplete="email"
+                            type="email"
                             autoFocus
                             value={login.email}
                             onChange={handleChange('email')}

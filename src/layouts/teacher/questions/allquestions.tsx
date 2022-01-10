@@ -1,5 +1,5 @@
 import React from 'react';
-import {Question, Subject, SubjectTheme, User} from "../config";
+import {Question, Subject, SubjectTheme} from "../config";
 import {Button, Grid, Link, List, MenuItem, Paper, Tab, TextField} from "@mui/material";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
@@ -7,20 +7,21 @@ import Divider from "@mui/material/Divider";
 import {NavLink} from "react-router-dom";
 import {questionsMock} from "./questionsMock";
 import {QuestionCard} from "./components/questionCard";
+import {UseSubjectsContext} from "../Providers/SubjectsProvider";
 
 type Props = {
-    user: User,
-    subjects: Subject[],
     themes: SubjectTheme[],
     handleCurrentThemeId: React.Dispatch<React.SetStateAction<string>>
 }
 
 export const AllQuestions = (props: Props) => {
-    const {user, subjects, themes, handleCurrentThemeId} = props;
+    const {themes, handleCurrentThemeId} = props;
+
     const [currentSubjectId, setCurrentSubjectId] = React.useState<string>('');
     const [currentThemeId, setCurrentThemeId] = React.useState<string>('');
     const [questions, setQuestions] = React.useState<Question[]>(questionsMock);
     const [filter, setFilter] = React.useState<string>('');
+    const {subjects} = UseSubjectsContext();
 
     const handleSubjectChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCurrentSubjectId(event.target.value);
@@ -30,9 +31,7 @@ export const AllQuestions = (props: Props) => {
         setCurrentThemeId(event.target.value);
         handleCurrentThemeId(event.target.value);
     }
-    const handleQuestion = () => {
-        
-    }
+
     return (
         <Paper elevation={3} sx={{ maxWidth: '800px', mx: 'auto', p:2}}>
             <Grid container spacing={2}>
@@ -101,7 +100,7 @@ export const AllQuestions = (props: Props) => {
                     .map((question) =>
                         (question.idTheme === currentThemeId) &&
                             <Grid item xs={12}>
-                                <QuestionCard user={user} key={question.id} questionState={question} isEditable={true}/>
+                                <QuestionCard key={question.id} questionState={question} isEditable={true}/>
                             </Grid>
                 )}
             </Grid>

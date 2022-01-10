@@ -9,15 +9,15 @@ import {TestItem} from "../../../components/TestItem/TestItem";
 import {TabPanel} from "../../../components/Profile/UserLayout";
 import {Groups} from "./groupMock";
 import {TransferList} from "./components/transferList";
+import {UseSubjectsContext} from "../Providers/SubjectsProvider";
 
 type Props = {
-    subjects: Subject[],
     themes: SubjectTheme[],
     handleCurrentThemeId: React.Dispatch<React.SetStateAction<string>>
 }
 
 const CompletedTests = (props: Props) => {
-    const {subjects, themes, handleCurrentThemeId} = props;
+    const { themes, handleCurrentThemeId} = props;
 
     const [currentSubjectId, setCurrentSubjectId] = React.useState<string>('');
     const [currentThemeId, setCurrentThemeId] = React.useState<string>('');
@@ -26,6 +26,7 @@ const CompletedTests = (props: Props) => {
     const [tab, setTab] = React.useState(0);
     const [groups, setGroups] = React.useState<Group[]>(Groups);
     const [currentGroup, setCurrentGroup] = React.useState<Group>(groups[1]);
+    const {subjects} = UseSubjectsContext();
 
     const handleCurrentGroup = (event: React.ChangeEvent<HTMLInputElement>) => {
        const current = groups.find(group => group.id === event.target.value);

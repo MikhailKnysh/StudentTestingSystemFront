@@ -14,18 +14,17 @@ import {
 import {blue} from "@mui/material/colors";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import {AnswersView} from "./answersView";
-import {Question, User} from "../../config";
+import {Question} from "../../config";
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import {CreateQuestion} from "../createQuestion";
 
 type Props = {
-    user: User,
     questionState: Question,
     isEditable?: boolean
 }
 
 export const QuestionCard = (props: Props) => {
-    const {user, questionState, isEditable = false} = props;
+    const { questionState, isEditable = false} = props;
     const [modalOpen, setModalOpen] = React.useState<boolean>(false);
     const [onHover, setOnHover] = React.useState<boolean>(false);
 
@@ -37,7 +36,7 @@ export const QuestionCard = (props: Props) => {
     return (
         <Box>
             <Modal open={modalOpen} onClose={handleClose} sx={{p: 2, overflow: 'auto', color: '#fff'}}>
-                <CreateQuestion user={user} themeId={questionState.idTheme} questionInitialState={questionState} />
+                <CreateQuestion themeId={questionState.idTheme} questionInitialState={questionState} />
             </Modal>
             <Card sx={{ position: 'relative'}} onMouseOver={handleHoverOn} onMouseLeave={handleHoverOff}>
                 <Backdrop

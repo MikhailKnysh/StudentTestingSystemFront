@@ -1,4 +1,3 @@
-import React from "react";
 import axios from "axios";
 import {apiBase} from "./config";
 import {Subject} from "../layouts/teacher/config";

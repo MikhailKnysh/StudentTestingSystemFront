@@ -16,30 +16,48 @@ import {Subject, SubjectTheme} from "../../config";
 import Divider from "@mui/material/Divider";
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
+import {UseUserStateContext} from "../../../../Auth/AuthProvider";
+import {themeApi} from "../../../../APIs/themesService";
+import {useSnackbar} from "notistack";
 
 type Props = {
     theme: SubjectTheme,
     subjects: Subject[],
-    handleThemeChange: (themeToUpdate: SubjectTheme)=>void,
-    handleSubjectIdChange: (id:string, subjectId:string)=>void
 }
 
 export const TestsThemesItem = (props: Props) => {
-    const {theme, subjects, handleThemeChange, handleSubjectIdChange} = props;
+    const {theme, subjects} = props;
     const [themeToUpdate, setThemeToUpdate] = React.useState<SubjectTheme>(theme);
     const [isEditable, setIsEditable] = React.useState<boolean>(false);
+    const {user} = UseUserStateContext();
+    const {enqueueSnackbar} = useSnackbar();
 
     const handleTheme = () => {
-        handleThemeChange(themeToUpdate);
-        ToggleEditable();
+        themeApi(user.token).update(themeToUpdate)
+            .then(() => {
+                setIsEditable(prev => !prev);
+            })
+            .catch(error => enqueueSnackbar(error, {variant: 'error'}));
     }
+
+    const handleSubjectIdChange = (subjectId: string) =>
+    {
+        const subjectIdUpdate: SubjectTheme = {...theme, subjectId:subjectId};
+
+        themeApi(user.token).update(subjectIdUpdate)
+            .then(() => {
+                setIsEditable(prev => !prev);
+            })
+            .catch(error => enqueueSnackbar(error, {variant: 'error'}));
+    }
+
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     {
         setThemeToUpdate(prevState => ({...prevState, title:event.target.value}));
     }
     const ToggleEditable = () => setIsEditable(prev=>!prev);
     const handleClose = () => {
-        setThemeToUpdate((prevState) => ({...prevState, title:theme.title, id:theme.id, subjectId:theme.subjectId}));
+        setThemeToUpdate(() => theme);
         ToggleEditable();
     }
 
@@ -100,7 +118,7 @@ export const TestsThemesItem = (props: Props) => {
                         id="select-subject"
                         label="Subject"
                         value={theme.subjectId}
-                        onChange={(event: SelectChangeEvent) => (handleSubjectIdChange(theme.id, event.target.value))}
+                        onChange={(event: SelectChangeEvent) => (handleSubjectIdChange(event.target.value))}
                     >
                         {subjects.map((subject) =>
                             <MenuItem value={subject.id}>{subject.title}</MenuItem>

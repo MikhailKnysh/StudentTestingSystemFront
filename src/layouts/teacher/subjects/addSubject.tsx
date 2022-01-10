@@ -6,19 +6,21 @@ import {subjectApi} from "../../../APIs/subjectService";
 import {UseUserStateContext} from "../../../Auth/AuthProvider";
 import {useSnackbar} from "notistack";
 import { v4 as uuidv4 } from 'uuid';
+import {UseSubjectsContext} from "../Providers/SubjectsProvider";
 
 const intialSubject: Subject = {id: uuidv4(), title:''};
 
 type Props = {
-    handleGetAll: () => void
+    handleIsLoading:  React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const AddSubject = (props: Props) => {
-    const { handleGetAll } = props;
+    const { handleIsLoading } = props;
 
     const [subjectToCreate, setSubjectToCreate] = React.useState<Subject>(intialSubject);
     const { user } = UseUserStateContext();
     const { enqueueSnackbar } = useSnackbar();
+    const { handleSubjects } = UseSubjectsContext();
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSubjectToCreate(prev => ({
@@ -28,11 +30,14 @@ const AddSubject = (props: Props) => {
 
     const handleAdd = () =>
     {
+        handleIsLoading(prev => !prev);
+
         subjectApi(user.token)
             .create(subjectToCreate)
             .then(() => {
                 setSubjectToCreate( intialSubject);
-                handleGetAll();
+                handleSubjects();
+                handleIsLoading(prev => !prev);
             })
             .catch(error => enqueueSnackbar(error, { variant: 'error'}));
     }

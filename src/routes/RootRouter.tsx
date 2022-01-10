@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
 import {StudentsLayout} from "../layouts/student/studentsLayout";
-import {TeacherLayout} from "../layouts/teacher/profile/teacherLayout";
+import {TeacherLayout} from "../layouts/teacher/teacherLayout";
 import {UserRole} from "../layouts/teacher/config";
 import { SignIn } from '../layouts/auth/signIn/signIn';
 import {SignUp} from "../layouts/auth/signUp/signUp";

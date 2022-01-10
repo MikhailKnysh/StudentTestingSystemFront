@@ -1,25 +1,32 @@
 import Box from '@mui/material/Box/Box';
 import React from 'react';
 import {Button, TextField, Typography} from "@mui/material";
-import {SubjectTheme} from "../config";
+import {SubjectTheme, userInitialState} from "../config";
+import {themeApi} from "../../../APIs/themesService";
+import {UseUserStateContext} from "../../../Auth/AuthProvider";
+import {useSnackbar} from "notistack";
 
 type Props = {
-    handleThemes: React.Dispatch<React.SetStateAction<SubjectTheme[]>>,
     currentSubjectId: string
 }
+const themeInitState: SubjectTheme = {title:'', id:'', subjectId:'', questionsQuantity: 0};
 
 export const AddTheme = (props: Props) => {
-    const {handleThemes, currentSubjectId} = props
+    const {currentSubjectId} = props
 
-    const [count, setCount] = React.useState<number>(6);
-    const [themeToAdd, setThemeToAdd] = React.useState<SubjectTheme>({title:'', id:'', subjectId:'', questionsQuantity: 0});
+    const [themeToAdd, setThemeToAdd] = React.useState<SubjectTheme>(themeInitState);
+    const {user} = UseUserStateContext();
+    const { enqueueSnackbar } = useSnackbar();
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setThemeToAdd(prev => ({...prev, title: event.target.value, id: count.toString()}));
+        setThemeToAdd(prev => ({...prev, title: event.target.value, id: ''}));
     }
     const handleAdd = () => {
-        handleThemes(prev => ([...prev, themeToAdd]));
-        setCount(prev=> (++prev));
+        themeApi(user.token).create(themeToAdd)
+            .then(() => {
+                setThemeToAdd(prev => ({...prev, title:'', questionsQuantity: 0}));
+            })
+            .catch(error => enqueueSnackbar(error, {variant:'error'}));
     }
 
     React.useEffect(()=>{

@@ -19,19 +19,21 @@ import {Subject} from "../../config";
 import {useSnackbar} from "notistack";
 import {subjectApi} from "../../../../APIs/subjectService";
 import {UseUserStateContext} from "../../../../Auth/AuthProvider";
+import {UseSubjectsContext} from "../../Providers/SubjectsProvider";
 
 type Props  = {
-    subject: Subject
-    handleGetAll: () => void
+    subject: Subject,
+    handleIsLoading:  React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const SubjectItem = (props: Props) => {
-    const { subject, handleGetAll } = props;
+    const { subject, handleIsLoading } = props;
 
     const [isEditable, setIsEditable] = React.useState<boolean>(false);
     const [subjectToUpdate, setSubjectToUpdate] = React.useState<Subject>(subject);
     const { user } = UseUserStateContext();
     const { enqueueSnackbar } = useSnackbar();
+    const { handleSubjects } = UseSubjectsContext();
 
     const handleSubjectChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     {
@@ -46,12 +48,15 @@ export const SubjectItem = (props: Props) => {
 
     const handleUpdate = () =>
     {
+        handleIsLoading(prev => !prev);
+
         subjectApi(user.token)
             .update(subjectToUpdate)
             .then(() =>
             {
-                setSubjectToUpdate(subject);
-                handleGetAll();
+                setIsEditable(prev => !prev);
+                handleSubjects();
+                handleIsLoading(prev => !prev);
             })
             .catch(error => enqueueSnackbar(error, { variant: 'error'}));
     }

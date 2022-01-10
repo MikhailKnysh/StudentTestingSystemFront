@@ -4,24 +4,25 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Stepper from '@mui/material/Stepper';
 import React from 'react';
-import {questionInitialState, questionsSteps} from "./config";
+import {questionsSteps} from "./config";
 import {ColorLibStepIcon} from "./components/colorLibStepIcon";
 import {StepContentContainer} from "./components/stepContentContainer";
 import {Question, User} from "../config";
 import {Button, Link, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
 import {NavLink} from "react-router-dom";
+import {UseUserStateContext} from "../../../Auth/AuthProvider";
 
 type Props = {
-    user: User,
     themeId: string,
     questionInitialState: Question
 }
 
 export const CreateQuestion = (props: Props) => {
-    const {user, themeId, questionInitialState} = props;
+    const { themeId, questionInitialState} = props;
     const [step, setStep] = React.useState(0);
     const [questionState, setQuestionState] = React.useState<Question>(questionInitialState);
+    const {user} = UseUserStateContext();
 
     const handleFinish = () => {
         setQuestionState((prev) => ({...prev, idTheme: themeId, idTeacher: user.id}));

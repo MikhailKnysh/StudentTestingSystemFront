@@ -8,13 +8,12 @@ import {NavLink} from "react-router-dom";
 import {StudentTestMock} from "../../teacher/studentsTests/studentTestMock";
 
 type Props = {
-    user: User,
     handleCompletedTest: React.Dispatch<React.SetStateAction<StudentsTest>>,
     currentThemeId: string
 }
 
 export const StudentTesting = (props: Props) => {
-    const {user, currentThemeId, handleCompletedTest} = props;
+    const { currentThemeId, handleCompletedTest} = props;
     const [question, setQuestion] = React.useState<Question>(testMock[0]);
     const [currentQuestion, setCurrentQuestion] = React.useState<number>(0);
 
@@ -30,7 +29,7 @@ export const StudentTesting = (props: Props) => {
                 <Typography variant='h6' sx={{mb:1}}>Time limit:</Typography>
             </Grid>
             <Grid item xs={12}>
-            <QuestionCard user={user} questionState={question}/>
+            <QuestionCard questionState={question}/>
             </Grid>
 
             <Grid item xs={12} sx={{display: 'flex'}}>

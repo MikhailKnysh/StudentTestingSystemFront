@@ -9,37 +9,19 @@ import AddSubject from "./addSubject";
 import Tabs from "@mui/material/Tabs";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
-import {subjectApi} from "../../../APIs/subjectService";
-import {UseUserStateContext} from "../../../Auth/AuthProvider";
-import { useSnackbar } from 'notistack';
 import {Loader} from "../../../components/Loader/Loader";
+import {UseSubjectsContext} from "../Providers/SubjectsProvider";
 
-type Props = {
-    subjects: Subject[],
-    handleSubjects: React.Dispatch<React.SetStateAction<Subject[]>>
-}
-
-export const AllSubjects = (props: Props) => {
+export const AllSubjects = () => {
 
     const [filter, setFilter] = React.useState<string>('');
-    const [subjects, setSubjects] = React.useState<Subject[]>([]);
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
-    const { enqueueSnackbar } = useSnackbar();
-    const { user } = UseUserStateContext();
+    const {subjects, handleSubjects} = UseSubjectsContext();
 
-    const handleGetAll = React.useCallback(() =>
+    React.useEffect(() =>
     {
-        setIsLoading(prev => !prev);
-        subjectApi(user.token)
-            .getAll()
-            .then(response => setSubjects(() => {
-                setIsLoading(prev => !prev);
-                return response.data;
-            }))
-            .catch(error => enqueueSnackbar(error,{variant: 'error'}));
-    },[])
-
-    React.useEffect(handleGetAll,[])
+        handleSubjects();
+    }, []);
 
     return (
         <Paper elevation={3} sx={{ maxWidth: '800px', position: 'relative', mx: 'auto', p:2}}>
@@ -52,7 +34,7 @@ export const AllSubjects = (props: Props) => {
                     </Box>
                 </Grid>
                 <Grid item xs={12}>
-                    <AddSubject handleGetAll={ handleGetAll } />
+                    <AddSubject handleIsLoading ={setIsLoading}/>
                 </Grid>
                 <Grid item xs={12}>
                     <Divider />
@@ -71,7 +53,7 @@ export const AllSubjects = (props: Props) => {
                         {subjects
                             .filter((subject) => subject.title.toLowerCase().includes(filter.toLowerCase()))
                             .map((subject) =>
-                                <SubjectItem key={subject.title} subject={subject} handleGetAll={handleGetAll}/>
+                                <SubjectItem key={subject.id} subject={subject} handleIsLoading ={setIsLoading}/>
                         )}
                     </List>
                 </Grid>

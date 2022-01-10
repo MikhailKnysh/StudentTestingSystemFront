@@ -40,7 +40,6 @@ export const StepContentContainer = (props: Props) => {
                     />
         case 2:
             return <StepReview
-                        user={user}
                         handleNext={handleNext}
                         handlePrevious={handlePrevious}
                         questionState={questionState}

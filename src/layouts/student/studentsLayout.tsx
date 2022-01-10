@@ -5,7 +5,7 @@ import {DrawerHeader} from "../../components/Drawer/DrawerHeader";
 import {UserLayout} from "../../components/Profile/UserLayout";
 import {Route, Routes} from "react-router-dom";
 import {StudentsTest, Subject, SubjectTheme} from "../teacher/config";
-import {subjectsMock, themesMock} from "../teacher/profile/teacherLayout";
+import {subjectsMock, themesMock} from "../teacher/teacherLayout";
 import {AvailableTests} from "./availableTests/availableTests";
 import {StudentTesting} from "./availableTests/studentTesting";
 import {ResultTest} from "./availableTests/resultTest";
@@ -18,7 +18,6 @@ export const StudentsLayout = () => {
     const [themes, setThemes] = React.useState<SubjectTheme[]>(themesMock);
     const [complitedTest, setComplitedTest] = React.useState<StudentsTest>(StudentTestMock[0]);
     const [currentThemeId, setCurrentThemeId] = React.useState<string>('');
-    const {user, handleAuth} = UseUserStateContext();
 
     return (
         <Box sx={{display: 'flex'}}>
@@ -29,7 +28,7 @@ export const StudentsLayout = () => {
                     <Route path="/" element={<UserLayout />} />
                     <Route path="/available" element={<AvailableTests subjects={subjects} handleCurrentThemeId={setCurrentThemeId}/>} />
                     <Route path="/completed" element={<CompletedTests subjects={subjects} themes={themes} handleCurrentThemeId={setCurrentThemeId}/>} />
-                    <Route path="/available/testing" element={<StudentTesting user={user} currentThemeId={currentThemeId} handleCompletedTest={setComplitedTest}/>} />
+                    <Route path="/available/testing" element={<StudentTesting currentThemeId={currentThemeId} handleCompletedTest={setComplitedTest}/>} />
                     <Route path="/available/result" element={<ResultTest test={complitedTest}/>} />
                 </Routes>
             </Box>

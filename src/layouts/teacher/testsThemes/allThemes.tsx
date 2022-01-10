@@ -7,30 +7,19 @@ import Tabs from "@mui/material/Tabs";
 import {TestsThemesItem} from "./components/testsThemesItem";
 import Divider from "@mui/material/Divider";
 import { AddTheme } from './addTheme';
+import {UseSubjectsContext} from "../Providers/SubjectsProvider";
 
 type Props = {
-    subjects: Subject[],
     themes: SubjectTheme[],
     handleThemes: React.Dispatch<React.SetStateAction<SubjectTheme[]>>
 }
 
 export const AllThemes = (props: Props) => {
-    const {subjects, themes, handleThemes} = props;
+    const {themes, handleThemes} = props;
 
     const [currentSubjectId, setCurrentSubjectId] = React.useState<string>('');
     const [filter, setFilter] = React.useState<string>('');
-
-    const handleThemeChange = (themeToUpdate:SubjectTheme) => {
-        handleThemes(
-            themes.map(theme => theme.id === themeToUpdate.id ? {...theme, title:themeToUpdate.title, subjectId: currentSubjectId} : theme)
-        )
-    }
-
-    const handleSubjectIdChange = (id: string, subjectId: string) => {
-        handleThemes(
-            themes.map(theme => theme.id === id ? {...theme, subjectId: subjectId} : theme)
-        )
-    }
+    const {subjects} = UseSubjectsContext();
 
     return (
         <Paper elevation={3} sx={{ maxWidth: '800px', mx: 'auto', p:2}}>
@@ -43,7 +32,7 @@ export const AllThemes = (props: Props) => {
                     </Box>
                 </Grid>
                 <Grid item xs={12}>
-                    <AddTheme handleThemes={handleThemes} currentSubjectId={currentSubjectId}/>
+                    <AddTheme currentSubjectId={currentSubjectId}/>
                 </Grid>
                 <Grid item xs={12}>
                     <Divider/>
@@ -81,7 +70,7 @@ export const AllThemes = (props: Props) => {
                         {themes
                             .filter(theme => (theme.title.toLowerCase().includes(filter.toLowerCase())))
                             .map((theme) => (theme.subjectId === currentSubjectId) &&
-                                <TestsThemesItem key={theme.id} theme={theme} subjects={subjects} handleThemeChange={handleThemeChange} handleSubjectIdChange={handleSubjectIdChange}/>
+                                <TestsThemesItem key={theme.id} theme={theme} subjects={subjects} />
                         )}
                     </List>
                 </Grid>

@@ -1,29 +1,21 @@
 import React from 'react';
 import {Question, User} from "../../config";
 import {
-    Avatar,
     Button,
-    Card,
-    CardContent,
-    CardHeader,
-    CardMedia,
-    CssBaseline,
     Grid,
-    Paper,
     Typography
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import {QuestionCard} from "./questionCard";
 
 type Props = {
-    user: User,
     handleNext: ()=>void,
     handlePrevious: ()=>void,
     questionState: Question
 }
 
 const StepReview = (props: Props) => {
-    const { user, handleNext, handlePrevious, questionState } = props;
+    const {  handleNext, handlePrevious, questionState } = props;
 
     return (
         <Grid container spacing={2}>
@@ -31,7 +23,7 @@ const StepReview = (props: Props) => {
                 <Typography variant='h6' sx={{mb:1}}>Make sure everything is right:</Typography>
             </Grid>
             <Grid item xs={12}>
-            <QuestionCard user={user} questionState={questionState}/>
+            <QuestionCard questionState={questionState}/>
             </Grid>
             <Grid item xs={12} sx={{display: 'flex'}}>
                 <Button
