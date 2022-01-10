@@ -20,6 +20,7 @@ import {Visibility, VisibilityOff} from "@mui/icons-material";
 import {NavLink} from "react-router-dom";
 import {UseUserStateContext} from "../../../Auth/AuthProvider";
 import { v4 as uuidv4 } from 'uuid';
+import { Loader } from '../../../components/Loader/Loader';
 
 function Copyright(props: any) {
     return (

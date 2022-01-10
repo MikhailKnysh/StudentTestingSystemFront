@@ -2,13 +2,39 @@ import React from 'react';
 import Box from "@mui/material/Box";
 import Button from '@mui/material/Button';
 import {Grid, TextField} from "@mui/material";
+import {UseUserStateContext} from "../../Auth/AuthProvider";
+import {useSnackbar} from "notistack";
+import {User} from "../../layouts/teacher/config";
+import {userApi} from "../../APIs/userApi";
+import { Loader } from '../Loader/Loader';
 
 export const PersonalInfo = () => {
+    const { user } = UseUserStateContext();
+    const { enqueueSnackbar } = useSnackbar();
+    const [isLoading, setIsLoading] = React.useState<boolean>(false);
     const [isEditable, setIsEditable] = React.useState<boolean>(false);
+    const [userToUpdate, setUserToUpdate] = React.useState<User>(user);
+
+    const handleChange = (prop: keyof User) => (event: React.ChangeEvent<HTMLInputElement>) => {
+        setUserToUpdate((prev) => ({...prev, [prop]: event.target.value}))
+    }
+
     const handleIsEditable = React.useCallback(() => setIsEditable(prevState => !prevState), []);
 
+    const handleUpdate = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        setIsLoading(prev => !prev)
+        userApi(user.token).update(userToUpdate)
+            .then(() => {
+                setIsLoading(prev => !prev);
+                setIsEditable(prev => !prev);
+            })
+            .catch(error => enqueueSnackbar(error, {variant:'error'}));
+    }
+
     return (
-        <Grid component="form" container spacing={3} sx={{maxWidth: "800px"}}>
+        <Grid component="form" container onSubmit={handleUpdate} spacing={3} sx={{maxWidth: "800px"}}>
             <Grid item xs={12}>
                 <TextField
                     id="first-name"
@@ -17,6 +43,8 @@ export const PersonalInfo = () => {
                     fullWidth
                     autoComplete="given-name"
                     variant="outlined"
+                    value={userToUpdate.firstName}
+                    onChange={handleChange("firstName")}
                     disabled={!isEditable}
                 />
             </Grid>
@@ -27,6 +55,8 @@ export const PersonalInfo = () => {
                     label="Last name"
                     fullWidth
                     variant="outlined"
+                    value={userToUpdate.lastName}
+                    onChange={handleChange("lastName")}
                     disabled={!isEditable}
                 />
             </Grid>
@@ -38,29 +68,20 @@ export const PersonalInfo = () => {
                     type="email"
                     fullWidth
                     variant="outlined"
+                    value={userToUpdate.email}
+                    onChange={handleChange("email")}
                     disabled={!isEditable}
                 />
             </Grid>
             <Grid item xs={12}>
                 <TextField
-                    id="confirm-email"
-                    name="confirm-email"
-                    label="Confirm e-mail"
-                    type="email"
+                    id="role"
+                    name="role"
+                    label="User-role"
                     fullWidth
                     variant="outlined"
-                    disabled={!isEditable}
-                />
-            </Grid>
-            <Grid item xs={12}>
-                <TextField
-                    id="about"
-                    name="about"
-                    label="About"
-                    multiline
-                    fullWidth
-                    variant="outlined"
-                    disabled={!isEditable}
+                    value={userToUpdate.role}
+                    disabled
                 />
             </Grid>
             {
@@ -81,6 +102,7 @@ export const PersonalInfo = () => {
                         </Button>
                     </Grid>
             }
+            <Loader show={isLoading} />
         </Grid>
     );
 };

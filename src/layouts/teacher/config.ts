@@ -68,6 +68,12 @@ export interface User {
     expires: number
 }
 
+export type ChangedPassword = {
+    "email": string,
+    "oldPassword": string,
+    "newPassword": string
+}
+
 export enum UserRole {
     guest = "Guest",
     student = "Student",

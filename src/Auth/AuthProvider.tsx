@@ -2,6 +2,7 @@ import React from "react";
 import {User, userInitialState} from "../layouts/teacher/config";
 import {sessionApi} from "../APIs/sessionService";
 import {useSnackbar} from "notistack";
+import { Loader } from "../components/Loader/Loader";
 type Auth = {
     user: User,
     handleAuth: (email:string, password: string) => void
@@ -28,6 +29,7 @@ export const AuthProvider = (props: Props) =>
     const {children} = props;
     const { enqueueSnackbar } = useSnackbar();
     const [user, setUser] = React.useState(userInitialState);
+    const [isLoading, setISLoading] = React.useState<boolean>(false);
 
     React.useEffect(() => {
         setUser(JSON.parse(localStorage.getItem('user') || JSON.stringify(userInitialState)));
@@ -40,9 +42,15 @@ export const AuthProvider = (props: Props) =>
 
     const handleUser = async (email:string, password:string) =>
     {
+        setISLoading(prev => !prev);
         await sessionApi().login(email, password)
             .then(response => setUser(response.data))
-            .catch(error => enqueueSnackbar(error.message, {variant: 'error'}));
+            .catch(error => {
+                let message = error.message;
+                error.response.data.items.map((i:string) => message += `| ${i}`);
+                enqueueSnackbar(message, {variant: 'error'})
+            })
+            .finally(() => setISLoading(prev => !prev));
     }
 
     const handleLogout = () =>
@@ -53,6 +61,7 @@ export const AuthProvider = (props: Props) =>
     return (
         <UserStateContext.Provider value={{user: user, handleAuth: handleUser, handleLogout: handleLogout}}>
             {children}
+            <Loader show={isLoading} />
         </UserStateContext.Provider>
     );
 }

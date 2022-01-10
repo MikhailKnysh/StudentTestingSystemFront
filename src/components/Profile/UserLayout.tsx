@@ -42,18 +42,16 @@ function a11yProps(index: number) {
 
 export const UserLayout = () => {
     const [value, setValue] = React.useState(0);
-    const { user } = UseUserStateContext();
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
 
     return (
-        <Paper elevation={3} sx={{ maxWidth: '800px', minHeight: '600px' ,mx: 'auto', p:2}}>
+        <Paper elevation={3} sx={{ maxWidth: '800px', minHeight: '600px' ,mx: 'auto', p:2, position: 'relative'}}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                     <Tab label="Personal Info" {...a11yProps(0)} />
                     <Tab label="Security" {...a11yProps(1)} />
-                    <Tab label="Additional" {...a11yProps(2)} />
                 </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
@@ -61,9 +59,6 @@ export const UserLayout = () => {
             </TabPanel>
             <TabPanel value={value} index={1}>
                 <Security />
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-                <Additional />
             </TabPanel>
         </Paper>
     );
