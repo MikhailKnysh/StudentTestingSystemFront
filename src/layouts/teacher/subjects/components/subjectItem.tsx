@@ -48,9 +48,12 @@ export const SubjectItem = (props: Props) => {
     {
         subjectApi(user.token)
             .update(subjectToUpdate)
+            .then(() =>
+            {
+                setSubjectToUpdate(subject);
+                handleGetAll();
+            })
             .catch(error => enqueueSnackbar(error, { variant: 'error'}));
-
-        handleGetAll();
     }
 
     return (
@@ -95,6 +98,7 @@ export const SubjectItem = (props: Props) => {
                 </Box>
             </Collapse>
             <Divider sx={{mt:1}}/>
+
         </Box>
     );
 };

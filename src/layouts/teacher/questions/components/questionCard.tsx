@@ -50,8 +50,6 @@ export const QuestionCard = (props: Props) => {
                 >
                     <Button variant='contained' sx={{width: '25%', height: '10%'}} onClick={handleOpen}>Edit</Button>
                 </Backdrop>
-
-
                         <CardHeader
                                 sx={{textAlign: 'left'}}
                                 avatar={<Avatar sx={{bgcolor: blue[700]}}><QuestionAnswerIcon /></Avatar>}

@@ -30,10 +30,11 @@ const AddSubject = (props: Props) => {
     {
         subjectApi(user.token)
             .create(subjectToCreate)
+            .then(() => {
+                setSubjectToCreate( intialSubject);
+                handleGetAll();
+            })
             .catch(error => enqueueSnackbar(error, { variant: 'error'}));
-
-        setSubjectToCreate( intialSubject);
-        handleGetAll();
     }
 
     return (

@@ -12,6 +12,7 @@ import Divider from "@mui/material/Divider";
 import {subjectApi} from "../../../APIs/subjectService";
 import {UseUserStateContext} from "../../../Auth/AuthProvider";
 import { useSnackbar } from 'notistack';
+import {Loader} from "../../../components/Loader/Loader";
 
 type Props = {
     subjects: Subject[],
@@ -22,21 +23,26 @@ export const AllSubjects = (props: Props) => {
 
     const [filter, setFilter] = React.useState<string>('');
     const [subjects, setSubjects] = React.useState<Subject[]>([]);
+    const [isLoading, setIsLoading] = React.useState<boolean>(false);
     const { enqueueSnackbar } = useSnackbar();
     const { user } = UseUserStateContext();
 
     const handleGetAll = React.useCallback(() =>
     {
+        setIsLoading(prev => !prev);
         subjectApi(user.token)
             .getAll()
-            .then(response => setSubjects(() => response.data))
+            .then(response => setSubjects(() => {
+                setIsLoading(prev => !prev);
+                return response.data;
+            }))
             .catch(error => enqueueSnackbar(error,{variant: 'error'}));
     },[])
 
     React.useEffect(handleGetAll,[])
 
     return (
-        <Paper elevation={3} sx={{ maxWidth: '800px', mx: 'auto', p:2}}>
+        <Paper elevation={3} sx={{ maxWidth: '800px', position: 'relative', mx: 'auto', p:2}}>
             <Grid container spacing={2}>
                 <Grid item xs={12} >
                     <Box sx={{ borderBottom: 1, borderColor: 'divider'}}>
@@ -70,6 +76,7 @@ export const AllSubjects = (props: Props) => {
                     </List>
                 </Grid>
             </Grid>
+            <Loader show={isLoading}/>
         </Paper>
     );
 };
