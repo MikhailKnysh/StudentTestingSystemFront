@@ -1,15 +1,16 @@
 import Box from '@mui/material/Box/Box';
 import React from 'react';
 import {Button, TextField, Typography} from "@mui/material";
-import {SubjectTheme, userInitialState} from "../config";
+import {SubjectTheme} from "../config";
 import {themeApi} from "../../../APIs/themesService";
 import {UseUserStateContext} from "../../../Auth/AuthProvider";
 import {useSnackbar} from "notistack";
+import { v4 as uuidv4 } from 'uuid';
 
 type Props = {
     currentSubjectId: string
 }
-const themeInitState: SubjectTheme = {title:'', id:'', subjectId:'', questionsQuantity: 0};
+const themeInitState: SubjectTheme = {title:'', id: uuidv4(), subjectId:'', questionsQuantity: 0};
 
 export const AddTheme = (props: Props) => {
     const {currentSubjectId} = props
@@ -19,14 +20,19 @@ export const AddTheme = (props: Props) => {
     const { enqueueSnackbar } = useSnackbar();
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setThemeToAdd(prev => ({...prev, title: event.target.value, id: ''}));
+        setThemeToAdd(prev => ({...prev, title: event.target.value}));
     }
     const handleAdd = () => {
+        console.log(themeToAdd);
         themeApi(user.token).create(themeToAdd)
             .then(() => {
                 setThemeToAdd(prev => ({...prev, title:'', questionsQuantity: 0}));
             })
-            .catch(error => enqueueSnackbar(error, {variant:'error'}));
+            .catch(error => {
+                let message = error.message;
+                error.response.data.items?.map((i:string) => message += `| ${i}`);
+                enqueueSnackbar(message, {variant: 'error'})
+            });
     }
 
     React.useEffect(()=>{

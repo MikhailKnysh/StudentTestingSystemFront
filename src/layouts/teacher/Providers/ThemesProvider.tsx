@@ -3,24 +3,29 @@ import {useSnackbar} from "notistack";
 import {subjectApi} from "../../../APIs/subjectService";
 import {UseUserStateContext} from "../../../Auth/AuthProvider";
 import {SubjectTheme} from "../config";
+import {themeApi} from "../../../APIs/themesService";
 
 type Themes = {
     themes: SubjectTheme[],
-    handleThemes: () => void
+    handleThemes: (subjectId: string) => void,
+    currentThemeId: string,
+    handleCurrentThemeId: React.Dispatch<React.SetStateAction<string>>
 }
 
 type Props = {
     children?: React.ReactNode
 }
 
-const SubjectsContext = React.createContext<Themes>({
+const ThemesContext = React.createContext<Themes>({
     themes: [],
-    handleThemes:() => {}
+    handleThemes:(subjectId: string) => {},
+    currentThemeId: '',
+    handleCurrentThemeId: () => {}
 });
 
 export const UseThemesContext = () =>
 {
-    return React.useContext(SubjectsContext);
+    return React.useContext(ThemesContext);
 }
 
 export const ThemesProvider = (props: Props) =>
@@ -29,21 +34,29 @@ export const ThemesProvider = (props: Props) =>
     const { user } = UseUserStateContext();
     const { enqueueSnackbar } = useSnackbar();
     const [themes, setThemes] = React.useState<SubjectTheme[]>([]);
+    const [currentThemeId, setCurrentThemeId] = React.useState<string>('');
 
-    const handleGetAll = React.useCallback(() =>
+    const handleGetAll = React.useCallback((subjectId: string) =>
     {
-        subjectApi(user.token)
-            .getAll()
+        themeApi(user.token)
+            .getAll(subjectId)
             .then(response => setThemes(() =>  response.data))
-            .catch(error => enqueueSnackbar(error,{variant: 'error'}));
+            .catch(error => {
+                enqueueSnackbar(error.message, {variant: 'error'})
+            });
 
     },[])
 
-    React.useEffect(() => handleGetAll(), [])
-
     return (
-        <SubjectsContext.Provider value={{themes: themes, handleThemes: handleGetAll}}>
+        <ThemesContext.Provider
+            value={{
+                themes: themes,
+                handleThemes: handleGetAll,
+                currentThemeId: currentThemeId,
+                handleCurrentThemeId: setCurrentThemeId
+                }}
+        >
             {children}
-        </SubjectsContext.Provider>
+        </ThemesContext.Provider>
     );
 }

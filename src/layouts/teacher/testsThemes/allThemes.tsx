@@ -8,18 +8,20 @@ import {TestsThemesItem} from "./components/testsThemesItem";
 import Divider from "@mui/material/Divider";
 import { AddTheme } from './addTheme';
 import {UseSubjectsContext} from "../Providers/SubjectsProvider";
+import {UseThemesContext} from "../Providers/ThemesProvider";
 
-type Props = {
-    themes: SubjectTheme[],
-    handleThemes: React.Dispatch<React.SetStateAction<SubjectTheme[]>>
-}
 
-export const AllThemes = (props: Props) => {
-    const {themes, handleThemes} = props;
 
+export const AllThemes = () => {
+    const {themes, handleThemes} = UseThemesContext();
     const [currentSubjectId, setCurrentSubjectId] = React.useState<string>('');
     const [filter, setFilter] = React.useState<string>('');
     const {subjects} = UseSubjectsContext();
+
+    const handleCurrentSubjectId = (event: SelectChangeEvent) => {
+        setCurrentSubjectId(event.target.value);
+        handleThemes(event.target.value);
+    }
 
     return (
         <Paper elevation={3} sx={{ maxWidth: '800px', mx: 'auto', p:2}}>
@@ -45,7 +47,7 @@ export const AllThemes = (props: Props) => {
                             id="select-subject"
                             label="Subject"
                             value={currentSubjectId}
-                            onChange={(event: SelectChangeEvent) => (setCurrentSubjectId(event.target.value))}
+                            onChange={handleCurrentSubjectId}
                             >
                             {subjects.map((subject) =>
                                 <MenuItem key={subject.id} value={subject.id}>{subject.title}</MenuItem>
@@ -69,7 +71,7 @@ export const AllThemes = (props: Props) => {
                     <List>
                         {themes
                             .filter(theme => (theme.title.toLowerCase().includes(filter.toLowerCase())))
-                            .map((theme) => (theme.subjectId === currentSubjectId) &&
+                            .map((theme) =>
                                 <TestsThemesItem key={theme.id} theme={theme} subjects={subjects} />
                         )}
                     </List>

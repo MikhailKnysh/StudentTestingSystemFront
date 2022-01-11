@@ -18,6 +18,6 @@ export const userApi = (token: string) =>
 
         changePassword(changedPassword: ChangedPassword)
         {
-            return response(token).put('User/change/password', changedPassword);
+            return response(token).post('User/change/password', changedPassword);
         },
     })

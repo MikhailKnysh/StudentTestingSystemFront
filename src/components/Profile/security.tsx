@@ -7,13 +7,20 @@ import {useSnackbar} from "notistack";
 import {ChangedPassword} from "../../layouts/teacher/config";
 import {userApi} from "../../APIs/userApi";
 
+const changePasswordInitState = {
+    email: '',
+    newPassword: '',
+    oldPassword: '',
+    confirmPassword: ''
+}
+
 export const Security = () => {
 
     const { user } = UseUserStateContext();
     const { enqueueSnackbar } = useSnackbar();
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
     const [isEditable, setIsEditable] = React.useState<boolean>(false);
-    const [changePassword, setChangePassword] = React.useState<ChangedPassword>({email: user.email, newPassword: '', oldPassword: ''});
+    const [changePassword, setChangePassword] = React.useState<ChangedPassword>({...changePasswordInitState, email: user.email});
 
     const handleChange = (prop: keyof ChangedPassword) => (event: React.ChangeEvent<HTMLInputElement>) => {
         setChangePassword((prev) => ({...prev, [prop]: event.target.value}))
@@ -21,17 +28,21 @@ export const Security = () => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-
+        if (changePassword.newPassword == changePassword.confirmPassword){
         userApi(user.token).changePassword(changePassword)
             .then(() => {
                 setIsEditable(prev => !prev);
                 setIsLoading(prev => !prev);
+                setChangePassword({...changePasswordInitState, email: user.email});
             })
-            .catch(error => enqueueSnackbar(error, {variant: 'error'}));
+            .catch(error => enqueueSnackbar(error.message, {variant: 'error'}));
+        } else {
+            enqueueSnackbar("Not matching", {variant: "warning"})
+        }
     }
 
     const handleIsEditable = React.useCallback(() => {
-        setChangePassword({email: user.email, newPassword: '', oldPassword: ''});
+        setChangePassword({...changePasswordInitState, email: user.email});
         setIsEditable(prevState => !prevState)
     }, []);
 
@@ -71,6 +82,8 @@ export const Security = () => {
                     label={"Confirm new password"}
                     fullWidth
                     required
+                    value={changePassword.confirmPassword}
+                    onChange={handleChange("confirmPassword")}
                     disabled={!isEditable}
                 />
             </Grid>

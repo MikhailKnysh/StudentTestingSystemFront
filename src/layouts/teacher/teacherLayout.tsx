@@ -43,7 +43,7 @@ export const TeacherLayout = () => {
                         <Routes>
                             <Route path="/" element={<UserLayout />} />
                             <Route path="/subjects" element={<AllSubjects />} />
-                            <Route path="/themes" element={<AllThemes themes={themes} handleThemes={setThemes}/>} />
+                            <Route path="/themes" element={<AllThemes />} />
                             <Route path="/questions/add" element={<CreateQuestion themeId={currentThemeId} questionInitialState={questionInitialState}/>} />
                             <Route path="/questions" element={<AllQuestions themes={themes} handleCurrentThemeId={setCurrentThemeId}/>}/>
                             <Route path="/tests" element={<CompletedTests handleCurrentThemeId={setCurrentThemeId} themes={themes} />} />

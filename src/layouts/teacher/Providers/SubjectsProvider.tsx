@@ -36,7 +36,7 @@ export const SubjectsProvider = (props: Props) =>
             .then(response => {
                 setSubjects(() =>  response.data)
             })
-            .catch(error => enqueueSnackbar(error,{variant: 'error'}));
+            .catch(error => enqueueSnackbar(error.message,{variant: 'error'}));
 
     },[])
 

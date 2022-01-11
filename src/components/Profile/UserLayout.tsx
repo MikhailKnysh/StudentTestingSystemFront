@@ -4,8 +4,6 @@ import Tabs from "@mui/material/Tabs";
 import {Paper, Tab, Typography} from "@mui/material";
 import {PersonalInfo} from "./personalInfo";
 import {Security} from "./security";
-import {Additional} from "./additional";
-import {UseUserStateContext} from "../../Auth/AuthProvider";
 
 type TabPanelProps = {
     children?: React.ReactNode;

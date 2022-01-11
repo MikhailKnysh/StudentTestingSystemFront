@@ -77,7 +77,7 @@ export const TestsThemesItem = (props: Props) => {
                 </ListItemAvatar>
                 <ListItemText
                     primary = {theme.title}
-                    secondary={'Questions to pass test: ' + theme.questionsQuantity.toString()}
+                    secondary={'Questions to pass test: ' + theme.questionsQuantity}
                 />
             </ListItem>
             <Collapse in={isEditable} sx={{px:'70px'}}>

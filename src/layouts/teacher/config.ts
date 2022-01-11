@@ -71,7 +71,8 @@ export interface User {
 export type ChangedPassword = {
     "email": string,
     "oldPassword": string,
-    "newPassword": string
+    "newPassword": string,
+    "confirmPassword": string
 }
 
 export enum UserRole {

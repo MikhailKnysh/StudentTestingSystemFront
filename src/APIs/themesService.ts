@@ -16,14 +16,9 @@ export const themeApi = (token: string) =>
             return response(token).post('Theme/create', theme);
         },
 
-        getById(themeId: string)
-        {
-            return response(token).get(`Theme/${themeId}`);
-        },
-
         getAll(subjectId: string)
         {
-            return response(token).get(`Theme/${subjectId}`);
+            return response(token).get(`Theme/get/all/subject/${subjectId}`);
         },
 
         update(theme: SubjectTheme)
