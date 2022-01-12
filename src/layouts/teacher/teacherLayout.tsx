@@ -23,11 +23,11 @@ export const subjectsMock: Subject[] = [
     {id: "5", title: 'React'}
 ]
 export const themesMock: SubjectTheme[] = [
-    {id: "1", subjectId: 'e2afd622-c812-465e-ae20-08d9d124fadf', title: 'React', questionsQuantity: 10},
-    {id: "2", subjectId: 'e2afd622-c812-465e-ae20-08d9d124fadf', title: 'React Native', questionsQuantity: 10},
-    {id: "3", subjectId: 'e2afd622-c812-465e-ae20-08d9d124fadf', title: 'React Router Dom', questionsQuantity: 10},
-    {id: "4", subjectId: '5', title: 'Mob x', questionsQuantity: 10},
-    {id: "5", subjectId: '5', title: 'Redux', questionsQuantity: 10}
+    {id: "1", subjectId: 'e2afd622-c812-465e-ae20-08d9d124fadf', title: 'React', countQuestions: 10},
+    {id: "2", subjectId: 'e2afd622-c812-465e-ae20-08d9d124fadf', title: 'React Native', countQuestions: 10},
+    {id: "3", subjectId: 'e2afd622-c812-465e-ae20-08d9d124fadf', title: 'React Router Dom', countQuestions: 10},
+    {id: "4", subjectId: '5', title: 'Mob x', countQuestions: 10},
+    {id: "5", subjectId: '5', title: 'Redux', countQuestions: 10}
 ]
 export const TeacherLayout = () => {
     const [themes, setThemes] = React.useState<SubjectTheme[]>(themesMock);

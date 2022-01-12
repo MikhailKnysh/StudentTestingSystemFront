@@ -9,11 +9,13 @@ import Divider from "@mui/material/Divider";
 import { AddTheme } from './addTheme';
 import {UseSubjectsContext} from "../Providers/SubjectsProvider";
 import {UseThemesContext} from "../Providers/ThemesProvider";
+import {Loader} from "../../../components/Loader/Loader";
 
 
 
 export const AllThemes = () => {
     const {themes, handleThemes} = UseThemesContext();
+    const [isLoading, setIsLoading] = React.useState<boolean>(false);
     const [currentSubjectId, setCurrentSubjectId] = React.useState<string>('');
     const [filter, setFilter] = React.useState<string>('');
     const {subjects} = UseSubjectsContext();
@@ -34,7 +36,7 @@ export const AllThemes = () => {
                     </Box>
                 </Grid>
                 <Grid item xs={12}>
-                    <AddTheme currentSubjectId={currentSubjectId}/>
+                    <AddTheme currentSubjectId={currentSubjectId} handleIsLoading={setIsLoading}/>
                 </Grid>
                 <Grid item xs={12}>
                     <Divider/>
@@ -75,6 +77,7 @@ export const AllThemes = () => {
                                 <TestsThemesItem key={theme.id} theme={theme} subjects={subjects} />
                         )}
                     </List>
+                    <Loader show={isLoading}/>
                 </Grid>
             </Grid>
         </Paper>

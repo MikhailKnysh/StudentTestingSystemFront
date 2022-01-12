@@ -7,7 +7,7 @@ export const availableTestsMock: AvailableTest[] = [
         id: '1',
         title: 'React',
         subjectId: '5',
-        questionsQuantity: 10
+        countQuestions: 10
     }
     },
     {
@@ -16,7 +16,7 @@ export const availableTestsMock: AvailableTest[] = [
             id: '2',
             title: 'React Native',
             subjectId: '5',
-            questionsQuantity: 10
+            countQuestions: 10
         }
     },
     {
@@ -25,7 +25,7 @@ export const availableTestsMock: AvailableTest[] = [
             id: '3',
             title: 'React Router Dom',
             subjectId: '5',
-            questionsQuantity: 10
+            countQuestions: 10
         }
     },
     {
@@ -34,7 +34,7 @@ export const availableTestsMock: AvailableTest[] = [
             id: '4',
             title: 'Mob x',
             subjectId: '5',
-            questionsQuantity: 10
+            countQuestions: 10
         }
     },
     {
@@ -43,7 +43,7 @@ export const availableTestsMock: AvailableTest[] = [
             id: '5',
             title: 'Redux',
             subjectId: '5',
-            questionsQuantity: 10
+            countQuestions: 10
         }
     }
 ]

@@ -9,7 +9,7 @@ export type SubjectTheme = {
     id: string,
     subjectId: string,
     title: string
-    questionsQuantity: number
+    countQuestions: number
 }
 
 export type Question = {

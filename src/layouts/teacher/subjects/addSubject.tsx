@@ -37,9 +37,9 @@ const AddSubject = (props: Props) => {
             .then(() => {
                 setSubjectToCreate( intialSubject);
                 handleSubjects();
-                handleIsLoading(prev => !prev);
             })
-            .catch(error => enqueueSnackbar(error, { variant: 'error'}));
+            .catch(error => enqueueSnackbar(error, { variant: 'error'}))
+            .finally(() => handleIsLoading(prev => !prev));
     }
 
     return (

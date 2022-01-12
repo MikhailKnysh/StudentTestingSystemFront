@@ -77,7 +77,7 @@ export const TestsThemesItem = (props: Props) => {
                 </ListItemAvatar>
                 <ListItemText
                     primary = {theme.title}
-                    secondary={'Questions to pass test: ' + theme.questionsQuantity}
+                    secondary={`Questions to pass test: ${theme.countQuestions}`}
                 />
             </ListItem>
             <Collapse in={isEditable} sx={{px:'70px'}}>
@@ -108,8 +108,8 @@ export const TestsThemesItem = (props: Props) => {
                     type='number'
                     inputProps={{min: 0}}
                     label='Questions to pass test'
-                    value={themeToUpdate.questionsQuantity}
-                    onChange={(event) => setThemeToUpdate(prev => ({...prev, questionsQuantity: Number(event.target.value)}))}
+                    value={themeToUpdate.countQuestions}
+                    onChange={(event) => setThemeToUpdate(prev => ({...prev, countQuestions: Number(event.target.value)}))}
                 />
                 <FormControl fullWidth sx={{mt:'20px'}}>
                     <InputLabel id="select-subject">Subject</InputLabel>

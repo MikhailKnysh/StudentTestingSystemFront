@@ -3,7 +3,6 @@ import {
     Grid, Paper, Tab, TextField,
 } from "@mui/material";
 import List from "@mui/material/List";
-import {Subject} from "../config";
 import {SubjectItem} from "./components/subjectItem";
 import AddSubject from "./addSubject";
 import Tabs from "@mui/material/Tabs";

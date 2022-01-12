@@ -6,15 +6,17 @@ import {themeApi} from "../../../APIs/themesService";
 import {UseUserStateContext} from "../../../Auth/AuthProvider";
 import {useSnackbar} from "notistack";
 import { v4 as uuidv4 } from 'uuid';
+import {UseThemesContext} from "../Providers/ThemesProvider";
 
 type Props = {
-    currentSubjectId: string
+    currentSubjectId: string,
+    handleIsLoading:  React.Dispatch<React.SetStateAction<boolean>>
 }
-const themeInitState: SubjectTheme = {title:'', id: uuidv4(), subjectId:'', questionsQuantity: 0};
+const themeInitState: SubjectTheme = {title:'', id: uuidv4(), subjectId:'', countQuestions: 0};
 
 export const AddTheme = (props: Props) => {
-    const {currentSubjectId} = props
-
+    const {currentSubjectId, handleIsLoading} = props
+    const {handleThemes} = UseThemesContext();
     const [themeToAdd, setThemeToAdd] = React.useState<SubjectTheme>(themeInitState);
     const {user} = UseUserStateContext();
     const { enqueueSnackbar } = useSnackbar();
@@ -23,16 +25,18 @@ export const AddTheme = (props: Props) => {
         setThemeToAdd(prev => ({...prev, title: event.target.value}));
     }
     const handleAdd = () => {
-        console.log(themeToAdd);
+        handleIsLoading(prev => !prev);
         themeApi(user.token).create(themeToAdd)
             .then(() => {
-                setThemeToAdd(prev => ({...prev, title:'', questionsQuantity: 0}));
+                setThemeToAdd(prev => ({...prev, title:'', countQuestions: 0}));
+                handleThemes(currentSubjectId);
             })
             .catch(error => {
                 let message = error.message;
                 error.response.data.items?.map((i:string) => message += `| ${i}`);
                 enqueueSnackbar(message, {variant: 'error'})
-            });
+            })
+            .finally(() => handleIsLoading(prev => !prev));
     }
 
     React.useEffect(()=>{
@@ -56,8 +60,8 @@ export const AddTheme = (props: Props) => {
                 required
                 type='number'
                 inputProps={{min:0}}
-                value={themeToAdd.questionsQuantity}
-                onChange={(event) => setThemeToAdd(prev => ({...prev, questionsQuantity: Number(event.target.value)}))}
+                value={themeToAdd.countQuestions}
+                onChange={(event) => setThemeToAdd(prev => ({...prev, countQuestions: Number(event.target.value)}))}
             />
             <Button
                 variant='contained'
