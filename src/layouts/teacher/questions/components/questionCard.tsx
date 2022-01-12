@@ -36,7 +36,7 @@ export const QuestionCard = (props: Props) => {
     return (
         <Box>
             <Modal open={modalOpen} onClose={handleClose} sx={{p: 2, overflow: 'auto', color: '#fff'}}>
-                <CreateQuestion themeId={questionState.idTheme} questionInitialState={questionState} />
+                <CreateQuestion questionInitialState={questionState} isUpdate={true}/>
             </Modal>
             <Card sx={{ position: 'relative'}} onMouseOver={handleHoverOn} onMouseLeave={handleHoverOff}>
                 <Backdrop
@@ -52,7 +52,7 @@ export const QuestionCard = (props: Props) => {
                         <CardHeader
                                 sx={{textAlign: 'left'}}
                                 avatar={<Avatar sx={{bgcolor: blue[700]}}><QuestionAnswerIcon /></Avatar>}
-                                title={questionState.title + '. Time limit: ' + questionState.timeLimit.getMinutes() + ':' + questionState.timeLimit.getSeconds() + ' min.'}
+                                title={questionState.title + '. Time limit: ' + questionState.timeLimitDate.getMinutes() + ':' + questionState.timeLimitDate.getSeconds() + ' min.'}
                                 subheader={questionState.isDisabled &&
                                 <Typography color='error'>Question is disabled</Typography>
                                 }

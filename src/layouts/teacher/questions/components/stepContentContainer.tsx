@@ -5,15 +5,15 @@ import StepReview from "./stepReview";
 import {Question, User} from "../../config";
 
 type Props = {
-    user: User,
     step: number,
     handleStep: React.Dispatch<React.SetStateAction<number>>,
     questionState: Question,
-    handleQuestionState: React.Dispatch<React.SetStateAction<Question>>
+    handleQuestionState: React.Dispatch<React.SetStateAction<Question>>,
+    isUpdate: boolean
 }
 
 export const StepContentContainer = (props: Props) => {
-    const {user, step, handleStep, questionState, handleQuestionState} = props;
+    const { step, handleStep, questionState, handleQuestionState, isUpdate} = props;
 
     const handleNext = () => {
         handleStep(prev=>++prev);
@@ -43,6 +43,7 @@ export const StepContentContainer = (props: Props) => {
                         handleNext={handleNext}
                         handlePrevious={handlePrevious}
                         questionState={questionState}
+                        isUpdate={isUpdate}
                     />
         default:
             throw new Error('No content')

@@ -1,4 +1,5 @@
 import {Answer, Question} from "../config";
+import {v4 as uuidv4} from 'uuid';
 
 export const questionsSteps = ["Question", "Answers", "Review"];
 
@@ -25,7 +26,7 @@ export const questionDifficultyList: questionDifficulty[] = [
 ]
 
 export const questionInitialState: Question = {
-    id: '',
+    id: uuidv4(),
     answers: [],
     difficulty: 2,
     questionBody: '',
@@ -34,13 +35,14 @@ export const questionInitialState: Question = {
     imageLink: '',
     isDisabled: false,
     linkForHelp: '',
-    timeLimit: new Date(50000),
+    timeLimitDate: new Date(50000),
+    timeLimit: 10,
     title: '',
     type: questionType.Single
 }
 
 export const answerInitialState: Answer = {
-    id: '',
+    id: uuidv4(),
     isCorrect: false,
     body: ''
 }

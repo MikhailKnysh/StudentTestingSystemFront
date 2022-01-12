@@ -12,22 +12,18 @@ import {Button, Link, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
 import {NavLink} from "react-router-dom";
 import {UseUserStateContext} from "../../../Auth/AuthProvider";
+import {UseThemesContext} from "../Providers/ThemesProvider";
 
 type Props = {
-    themeId: string,
+    isUpdate: boolean,
     questionInitialState: Question
 }
 
 export const CreateQuestion = (props: Props) => {
-    const { themeId, questionInitialState} = props;
+    const {questionInitialState, isUpdate} = props;
     const [step, setStep] = React.useState(0);
     const [questionState, setQuestionState] = React.useState<Question>(questionInitialState);
-    const {user} = UseUserStateContext();
 
-    const handleFinish = () => {
-        setQuestionState((prev) => ({...prev, idTheme: themeId, idTeacher: user.id}));
-        setStep(prev => ++prev);
-    }
 
     return (
         <Paper elevation={3} sx={{mx:'auto', maxWidth:'800px', minHeight: '600px', p:4}}>
@@ -45,7 +41,7 @@ export const CreateQuestion = (props: Props) => {
                     <Stack >
                         <Box>
                             <Typography variant="h5" gutterBottom>
-                                Success! You created new question!
+                                Success! You {isUpdate ? "updated" : "created new"} question!
                             </Typography>
                             <Typography variant="subtitle1">You can add more questions or go to all questions.</Typography>
                         </Box>
@@ -63,11 +59,11 @@ export const CreateQuestion = (props: Props) => {
                 ) : (
                     <Stack sx={{ width: '100%' }}>
                         <StepContentContainer
-                            user={user}
                             step={step}
                             handleStep={setStep}
                             questionState={questionState}
                             handleQuestionState={setQuestionState}
+                            isUpdate={isUpdate}
                         />
                     </Stack>
                 )}

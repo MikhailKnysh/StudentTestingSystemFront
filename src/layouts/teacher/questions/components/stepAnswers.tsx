@@ -10,9 +10,6 @@ import {
 } from "@mui/material";
 import {answerInitialState} from "../config";
 import Divider from "@mui/material/Divider";
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import CancelIcon from '@mui/icons-material/Cancel';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import {AnswerItem} from "./answerItem";
 
 type Props = {

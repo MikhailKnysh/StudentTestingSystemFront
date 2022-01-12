@@ -8,28 +8,36 @@ import {NavLink} from "react-router-dom";
 import {questionsMock} from "./questionsMock";
 import {QuestionCard} from "./components/questionCard";
 import {UseSubjectsContext} from "../Providers/SubjectsProvider";
+import {UseThemesContext} from "../Providers/ThemesProvider";
+import {questionsApi} from "../../../APIs/questionsService";
+import {UseUserStateContext} from "../../../Auth/AuthProvider";
+import {useSnackbar} from "notistack";
+import {Loader} from "../../../components/Loader/Loader";
 
-type Props = {
-    themes: SubjectTheme[],
-    handleCurrentThemeId: React.Dispatch<React.SetStateAction<string>>
-}
-
-export const AllQuestions = (props: Props) => {
-    const {themes, handleCurrentThemeId} = props;
-
-    const [currentSubjectId, setCurrentSubjectId] = React.useState<string>('');
-    const [currentThemeId, setCurrentThemeId] = React.useState<string>('');
-    const [questions, setQuestions] = React.useState<Question[]>(questionsMock);
-    const [filter, setFilter] = React.useState<string>('');
+export const AllQuestions = () => {
+    const {themes, currentThemeId, handleThemes, handleCurrentThemeId} = UseThemesContext();
+    const {user} = UseUserStateContext();
     const {subjects} = UseSubjectsContext();
+    const {enqueueSnackbar} = useSnackbar();
+    const [isLoading, setIsLoading] = React.useState<boolean>(false);
+    const [currentSubjectId, setCurrentSubjectId] = React.useState<string>('');
+    const [questions, setQuestions] = React.useState<Question[]>([]);
+    const [filter, setFilter] = React.useState<string>('');
 
     const handleSubjectChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCurrentSubjectId(event.target.value);
-        setCurrentThemeId('');
+        handleCurrentThemeId('');
+        handleThemes(event.target.value);
     }
     const handleThemeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setCurrentThemeId(event.target.value);
         handleCurrentThemeId(event.target.value);
+        setIsLoading(prev => !prev);
+        questionsApi(user.token).getAll(event.target.value)
+            .then(response => {
+                setQuestions(response.data);
+            })
+            .catch(error => enqueueSnackbar(error.message, {variant: "error"}))
+            .finally(() => setIsLoading(prev => !prev))
     }
 
     return (
@@ -104,6 +112,7 @@ export const AllQuestions = (props: Props) => {
                             </Grid>
                 )}
             </Grid>
+            <Loader show={isLoading} />
         </Paper>
     );
 };

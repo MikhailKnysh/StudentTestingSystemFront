@@ -30,12 +30,12 @@ const StepQuestion = (props: Props) => {
     }
 
     React.useEffect(() => {
-        if (questionState.timeLimit.getMinutes() < 1 && questionState.timeLimit.getSeconds() < 10)
+        if (questionState.timeLimitDate.getMinutes() < 1 && questionState.timeLimitDate.getSeconds() < 10)
         {
-            handleQuestionState(prev => ({...prev, timeLimit: new Date(10000)}));
+            handleQuestionState(prev => ({...prev, timeLimitDate: new Date(10000)}));
         }
-        console.log(questionState.timeLimit);
-    }, [questionState.timeLimit])
+        console.log(questionState.timeLimitDate);
+    }, [questionState.timeLimitDate])
 
     return (
         <Grid container component='form' spacing={2} onSubmit={handleNext}>
@@ -74,9 +74,9 @@ const StepQuestion = (props: Props) => {
                     inputFormat="mm:ss"
                     mask="__:__"
                     label="Minutes and seconds"
-                    value={questionState.timeLimit}
+                    value={questionState.timeLimitDate}
                     onChange={(newValue) =>
-                        handleQuestionState(prev => ({...prev, timeLimit: newValue || new Date(10000)}))
+                        handleQuestionState(prev => ({...prev, timeLimitDate: newValue || new Date(10000)}))
                     }
                     renderInput={(params) => <TextField fullWidth {...params} />}
                 />

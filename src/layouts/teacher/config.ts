@@ -22,7 +22,8 @@ export type Question = {
     isDisabled: boolean,
     linkForHelp: string,
     difficulty: number,
-    timeLimit: Date,
+    timeLimitDate: Date,
+    timeLimit: number,
     type: questionType,
     answers: Answer[]
 }
