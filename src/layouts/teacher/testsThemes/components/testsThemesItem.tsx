@@ -19,6 +19,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import {UseUserStateContext} from "../../../../Auth/AuthProvider";
 import {themeApi} from "../../../../APIs/themesService";
 import {useSnackbar} from "notistack";
+import {UseThemesContext} from "../../Providers/ThemesProvider";
 
 type Props = {
     theme: SubjectTheme,
@@ -27,15 +28,18 @@ type Props = {
 
 export const TestsThemesItem = (props: Props) => {
     const {theme, subjects} = props;
+
+    const {user} = UseUserStateContext();
+    const {handleThemes} = UseThemesContext();
+    const {enqueueSnackbar} = useSnackbar();
     const [themeToUpdate, setThemeToUpdate] = React.useState<SubjectTheme>(theme);
     const [isEditable, setIsEditable] = React.useState<boolean>(false);
-    const {user} = UseUserStateContext();
-    const {enqueueSnackbar} = useSnackbar();
 
     const handleTheme = () => {
         themeApi(user.token).update(themeToUpdate)
             .then(() => {
                 setIsEditable(prev => !prev);
+                handleThemes(theme.subjectId);
             })
             .catch(error => enqueueSnackbar(error, {variant: 'error'}));
     }
@@ -47,6 +51,7 @@ export const TestsThemesItem = (props: Props) => {
         themeApi(user.token).update(subjectIdUpdate)
             .then(() => {
                 setIsEditable(prev => !prev);
+                handleThemes(subjectId);
             })
             .catch(error => enqueueSnackbar(error, {variant: 'error'}));
     }

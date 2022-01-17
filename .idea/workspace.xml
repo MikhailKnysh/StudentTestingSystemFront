@@ -5,23 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d465c453-9b6c-48b0-90ec-d4eb9ccaaf97" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/APIs/questionsService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIs/testsService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/APIs/subjectService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/APIs/subjectService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/APIs/themesService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/APIs/themesService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/APIs/userApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/APIs/userApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/student/availableTests/testMock.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/student/availableTests/testMock.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/questions/allquestions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/questions/allquestions.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/questions/components/questionCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/questions/components/questionCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/questions/components/stepAnswers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/questions/components/stepAnswers.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/questions/components/stepContentContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/questions/components/stepContentContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/questions/components/stepQuestion.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/questions/components/stepQuestion.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/questions/components/stepReview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/questions/components/stepReview.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/questions/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/questions/config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/questions/createQuestion.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/questions/createQuestion.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/questions/questionsMock.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/questions/questionsMock.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/teacherLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/teacherLayout.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,8 +16,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -70,7 +55,7 @@
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
-    <property name="ts.external.directory.path" value="C:\Users\user\student-testing-system-front\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="C:\Users\user\Projects\StudentTestingSystemFront\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">

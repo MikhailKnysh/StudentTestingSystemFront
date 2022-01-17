@@ -52,7 +52,7 @@ export const QuestionCard = (props: Props) => {
                         <CardHeader
                                 sx={{textAlign: 'left'}}
                                 avatar={<Avatar sx={{bgcolor: blue[700]}}><QuestionAnswerIcon /></Avatar>}
-                                title={questionState.title + '. Time limit: ' + questionState.timeLimitDate.getMinutes() + ':' + questionState.timeLimitDate.getSeconds() + ' min.'}
+                                title={questionState.title + '. Time limit: ' + questionState.timeLimitDate?.getMinutes() + ':' + questionState.timeLimitDate?.getSeconds() + ' min.'}
                                 subheader={questionState.isDisabled &&
                                 <Typography color='error'>Question is disabled</Typography>
                                 }

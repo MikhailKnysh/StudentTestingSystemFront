@@ -24,20 +24,21 @@ export const AllQuestions = () => {
     const [questions, setQuestions] = React.useState<Question[]>([]);
     const [filter, setFilter] = React.useState<string>('');
 
-    const handleSubjectChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setCurrentSubjectId(event.target.value);
-        handleCurrentThemeId('');
-        handleThemes(event.target.value);
-    }
     const handleThemeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         handleCurrentThemeId(event.target.value);
         setIsLoading(prev => !prev);
         questionsApi(user.token).getAll(event.target.value)
             .then(response => {
-                setQuestions(response.data);
+               response.data && setQuestions(response.data);
             })
             .catch(error => enqueueSnackbar(error.message, {variant: "error"}))
             .finally(() => setIsLoading(prev => !prev))
+    }
+
+    const handleSubjectChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setCurrentSubjectId(event.target.value);
+        handleCurrentThemeId('');
+        handleThemes(event.target.value);
     }
 
     return (
@@ -103,8 +104,8 @@ export const AllQuestions = () => {
                 </Grid>
 
                 {questions
-                    .filter(questions =>
-                        (questions.title.toLowerCase().includes(filter.toLowerCase()) || questions.questionBody.toLowerCase().includes(filter.toLowerCase())))
+                    .filter(question =>
+                        (question.title.toLowerCase().includes(filter.toLowerCase()) || question.questionBody.toLowerCase().includes(filter.toLowerCase())))
                     .map((question) =>
                         (question.idTheme === currentThemeId) &&
                             <Grid item xs={12}>

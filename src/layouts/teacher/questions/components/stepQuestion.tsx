@@ -30,7 +30,7 @@ const StepQuestion = (props: Props) => {
     }
 
     React.useEffect(() => {
-        if (questionState.timeLimitDate.getMinutes() < 1 && questionState.timeLimitDate.getSeconds() < 10)
+        if (questionState.timeLimitDate?.getMinutes() < 1 && questionState.timeLimitDate?.getSeconds() < 10)
         {
             handleQuestionState(prev => ({...prev, timeLimitDate: new Date(10000)}));
         }
