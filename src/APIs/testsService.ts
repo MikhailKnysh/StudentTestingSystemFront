@@ -24,4 +24,9 @@ export const testsApi = (token: string) =>
         {
             return request(token).get(`Test/get/all/student/${userid}`);
         },
+        getAvailableTestsForStudent(studentId: string)
+        {
+            return request(token).post(`/Test/get/availabletest/${studentId}`);
+        },
+
     })

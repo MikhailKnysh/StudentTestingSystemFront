@@ -5,19 +5,34 @@ import Tabs from "@mui/material/Tabs";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import {AvailableTest, Subject, SubjectTheme} from "../../teacher/config";
-import {availableTestsMock} from "./availableTestsMock";
+import {availableTestsInit} from "./availableTestsInit";
 import {AvailableTestItem} from "./components/availableTestItem";
+import {testsApi} from "../../../APIs/testsService";
+import {UseUserStateContext} from "../../../Auth/AuthProvider";
+import {useSnackbar} from "notistack";
+import {Loader} from "../../../components/Loader/Loader";
 
 type Props = {
     subjects: Subject[],
-    handleCurrentThemeId: React.Dispatch<React.SetStateAction<string>>
+    handleAvailableTest: React.Dispatch<React.SetStateAction<AvailableTest>>
 }
 
 export const AvailableTests = (props: Props) => {
-    const {subjects, handleCurrentThemeId} = props;
+    const {subjects, handleAvailableTest} = props;
+    const {user} = UseUserStateContext();
+    const {enqueueSnackbar} = useSnackbar();
     const [currentSubjectId, setCurrentSubjectId] = React.useState<string>('All');
-    const [availableTests, setAvailableTests] = React.useState<AvailableTest[]>(availableTestsMock);
+    const [availableTests, setAvailableTests] = React.useState<AvailableTest[]>(availableTestsInit);
     const [filter, setFilter] = React.useState<string>('');
+    const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
+    React.useEffect( () => {
+        setIsLoading(prev => !prev);
+        testsApi(user.token).getAvailableTestsForStudent(user.id)
+            .then(response => setAvailableTests(response.data))
+            .catch(error => enqueueSnackbar(error.message, {variant: "error"}))
+            .finally(() => setIsLoading(prev => !prev))
+    }, [])
 
     return (
         <Paper elevation={3} sx={{ maxWidth: '800px', mx: 'auto', p:2}}>
@@ -67,10 +82,11 @@ export const AvailableTests = (props: Props) => {
                             .filter(test => test.theme.title.toLowerCase().includes(filter.toLowerCase()))
                             .filter(test => (currentSubjectId === 'All' || test.theme.subjectId === currentSubjectId))
                             .map(test =>
-                            <AvailableTestItem test={test} handleCurrentThemeId={handleCurrentThemeId}/>
+                            <AvailableTestItem test={test} handleAvailableTest={handleAvailableTest}/>
                         )}
                     </List>
                 </Grid>
+                <Loader show={isLoading} />
             </Grid>
         </Paper>
     );

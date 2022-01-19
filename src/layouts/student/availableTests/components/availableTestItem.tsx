@@ -6,11 +6,11 @@ import {NavLink} from "react-router-dom";
 
 type Props = {
     test: AvailableTest,
-    handleCurrentThemeId: React.Dispatch<React.SetStateAction<string>>
+    handleAvailableTest: React.Dispatch<React.SetStateAction<AvailableTest>>
 }
 
 export const AvailableTestItem = (props: Props) => {
-    const {test, handleCurrentThemeId} = props;
+    const {test, handleAvailableTest} = props;
 
     return (
         <Paper elevation={1} sx={{mt: 2, p:2, display: 'flex', textAlign: 'left', alignItems:'center'}}>
@@ -18,7 +18,7 @@ export const AvailableTestItem = (props: Props) => {
             <Typography sx={{mx:2}} variant='h6'>{test.theme.title}</Typography>
             <Box sx={{flexGrow:1}}/>
             <Link to='/student/available/testing' component={NavLink} sx={{textDecoration: 'none'}}>
-                <Button onClick={()=>handleCurrentThemeId(test.theme.id)}>Start</Button>
+                <Button onClick={() => handleAvailableTest(test)}>Start</Button>
             </Link>
         </Paper>
     );

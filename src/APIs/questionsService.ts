@@ -1,6 +1,7 @@
 import axios from "axios";
 import {apiBase} from "./config";
-import {Question, StudentAnswer} from "../layouts/teacher/config";
+import {AvailableTest, Question, StudentAnswer} from "../layouts/teacher/config";
+import {v4 as uuidv4} from "uuid";
 
 const request = (token: string) => axios.create({
     baseURL: apiBase,
@@ -19,7 +20,13 @@ export const questionsApi = (token: string) => ({
     update(question: Question){
         return request(token).put('Question/update', question);
     },
-    getNext(answer: StudentAnswer){
-        return request(token).post('Question/get/next', answer);
+    getNext(){
+        return request(token).post('Question/get/next', {studentId: uuidv4(), answerId: uuidv4(), questionID: uuidv4(), answerDuration: 10});
+    },
+    getInitQuestion(availableTest: AvailableTest){
+        return request(token).post('Question/init/test', availableTest);
+    },
+    studentAnswerCreate(studentAnswer: StudentAnswer){
+        return request(token).post('StudentAnswer/create', studentAnswer)
     }
 })

@@ -23,4 +23,4 @@ export const groupApi = (token: string) => ({
         return request(token).post('Group/addrange', {groupId: groupId, usersIds: userIds});
     }
 })
-})
+

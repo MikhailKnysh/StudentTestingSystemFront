@@ -35,9 +35,9 @@ export type Answer = {
 }
 
 export type StudentAnswer = {
-    idTest: string,
-    question: Question,
-    answer: Answer[],
+    studentId: string,
+    questionID: string,
+    answerId: string,
     answerDuration: number
 }
 

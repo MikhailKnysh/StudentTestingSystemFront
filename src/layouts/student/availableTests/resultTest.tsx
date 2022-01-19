@@ -3,6 +3,7 @@ import {Button, Divider, Grid, Link, Paper, Typography} from "@mui/material";
 import {NavLink} from "react-router-dom";
 import {StudentsTest} from "../../teacher/config";
 import {TestItem} from "../../../components/TestItem/TestItem";
+import {UseUserStateContext} from "../../../Auth/AuthProvider";
 
 type Props = {
     test: StudentsTest
@@ -10,7 +11,11 @@ type Props = {
 
 export const ResultTest = (props: Props) => {
     const { test } = props;
-
+    const {user} = UseUserStateContext();
+    React.useEffect(() => {
+        let tmp = `${user.firstName} ${user.lastName}`;
+        test.title = tmp;
+    }, [])
 
     return (
         <Paper elevation={3} sx={{ maxWidth: '800px', mx: 'auto', p:2}}>
