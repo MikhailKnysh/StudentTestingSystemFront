@@ -11,7 +11,6 @@ import {StudentTesting} from "./availableTests/studentTesting";
 import {ResultTest} from "./availableTests/resultTest";
 import {StudentTestMock} from "../teacher/studentsTests/studentTestMock";
 import {CompletedTests} from "./completedTests/completedTests";
-import {UseUserStateContext} from "../../Auth/AuthProvider";
 
 export const StudentsLayout = () => {
     const [subjects, setSubjects] = React.useState<Subject[]>(subjectsMock);
@@ -27,7 +26,7 @@ export const StudentsLayout = () => {
                 <Routes>
                     <Route path="/" element={<UserLayout />} />
                     <Route path="/available" element={<AvailableTests subjects={subjects} handleCurrentThemeId={setCurrentThemeId}/>} />
-                    <Route path="/completed" element={<CompletedTests subjects={subjects} themes={themes} handleCurrentThemeId={setCurrentThemeId}/>} />
+                    <Route path="/completed" element={<CompletedTests />} />
                     <Route path="/available/testing" element={<StudentTesting currentThemeId={currentThemeId} handleCompletedTest={setComplitedTest}/>} />
                     <Route path="/available/result" element={<ResultTest test={complitedTest}/>} />
                 </Routes>

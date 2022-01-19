@@ -1,1 +1,1 @@
-export const apiBase = "https://stsapplication.azurewebsites.net/";
+export const apiBase = "http://40.113.150.220:2248/";

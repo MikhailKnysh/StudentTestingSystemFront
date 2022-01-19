@@ -1,5 +1,4 @@
 import React from 'react';
-import {Subject, SubjectTheme} from "../config";
 import {FormControl, Grid, InputLabel, MenuItem, Paper, Select, SelectChangeEvent, Tab, TextField} from "@mui/material";
 import List from "@mui/material/List";
 import Box from "@mui/material/Box";

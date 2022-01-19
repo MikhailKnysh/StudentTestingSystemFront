@@ -4,33 +4,30 @@ import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Divider from "@mui/material/Divider";
 import {StudentsTest, Subject, SubjectTheme} from "../../teacher/config";
-import {StudentTestMock} from "../../teacher/studentsTests/studentTestMock";
 import {TestItem} from "../../../components/TestItem/TestItem";
+import {UseUserStateContext} from "../../../Auth/AuthProvider";
+import {useSnackbar} from "notistack";
+import {testsApi} from "../../../APIs/testsService";
+import {Loader} from "../../../components/Loader/Loader";
 
 
-type Props = {
-    subjects: Subject[],
-    themes: SubjectTheme[],
-    handleCurrentThemeId: React.Dispatch<React.SetStateAction<string>>
-}
+export const CompletedTests = () => {
 
-export const CompletedTests = (props: Props) => {
-    const {subjects, themes, handleCurrentThemeId} = props;
-
-    const [currentSubjectId, setCurrentSubjectId] = React.useState<string>('');
-    const [currentThemeId, setCurrentThemeId] = React.useState<string>('');
-    const [studentTests, setStudentTests] = React.useState<StudentsTest[]>(StudentTestMock);
+    const { user } = UseUserStateContext();
+    const { enqueueSnackbar } = useSnackbar();
+    const [studentTests, setStudentTests] = React.useState<StudentsTest[]>([]);
     const [filter, setFilter] = React.useState<string>('');
+    const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
-    const handleSubjectChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setCurrentSubjectId(event.target.value);
-        setCurrentThemeId('');
-    }
-
-    const handleThemeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setCurrentThemeId(event.target.value);
-        handleCurrentThemeId(event.target.value);
-    }
+    React.useEffect(() => {
+        setIsLoading(prev => !prev);
+        testsApi(user.token).getAllForStudent(user.id)
+            .then(response => {
+                response.data && setStudentTests(response.data);
+            })
+            .catch(error => enqueueSnackbar(error.message, {variant: "error"}))
+            .finally(() => setIsLoading(prev => !prev))
+    }, [])
 
     return (
         <Paper elevation={3} sx={{ maxWidth: '800px', mx: 'auto', p:2}}>
@@ -42,34 +39,7 @@ export const CompletedTests = (props: Props) => {
                         </Tabs>
                     </Box>
                 </Grid>
-                <Grid item xs={6}>
-                    <TextField
-                        select
-                        fullWidth
-                        label="Subject"
-                        id="select-subject"
-                        value={currentSubjectId}
-                        onChange={handleSubjectChange}
-                    >
-                        {subjects.map((subject) =>
-                            <MenuItem key={subject.id} value={subject.id}>{subject.title}</MenuItem>
-                        )}
-                    </TextField>
-                </Grid>
-                <Grid item xs={6}>
-                    <TextField
-                        select
-                        fullWidth
-                        label="Themes"
-                        id="select-themes"
-                        value={currentThemeId}
-                        onChange={handleThemeChange}
-                    >
-                        {themes.map((theme) => (theme.subjectId === currentSubjectId) &&
-                            <MenuItem key={theme.id} value={theme.id}>{theme.title}</MenuItem>
-                        )}
-                    </TextField>
-                </Grid>
+
                 <Grid item xs={12}>
                     <Divider />
                 </Grid>
@@ -84,12 +54,13 @@ export const CompletedTests = (props: Props) => {
                 </Grid>
                 {studentTests
                     .filter(test => test.title.toLowerCase().includes(filter.toLowerCase()))
-                    .map((test) => (test.idTheme === currentThemeId) &&
+                    .map((test) =>
                         <Grid item xs={12}>
                             <TestItem test={test} />
                         </Grid>
                 )}
             </Grid>
+            <Loader show={isLoading} />
         </Paper>
     );
 };

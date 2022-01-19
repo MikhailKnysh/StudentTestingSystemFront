@@ -17,11 +17,11 @@ export const testsApi = (token: string) =>
 
         getById(testId: string)
         {
-            return request(token).get(`/Test/get/${testId}`);
+            return request(token).get(`Test/get/${testId}`);
         },
 
         getAllForStudent(userid: string)
         {
-            return request(token).get(`/Test/get/all/student/${userid}`);
+            return request(token).get(`Test/get/all/student/${userid}`);
         },
     })
