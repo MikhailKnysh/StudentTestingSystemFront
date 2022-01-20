@@ -20,8 +20,8 @@ export const questionsApi = (token: string) => ({
     update(question: Question){
         return request(token).put('Question/update', question);
     },
-    getNext(){
-        return request(token).post('Question/get/next', {studentId: uuidv4(), answerId: uuidv4(), questionID: uuidv4(), answerDuration: 10});
+    getNext(studentId: string, themeId: string){
+        return request(token).post(`Question/get/next/${studentId}/${themeId}` );
     },
     getInitQuestion(availableTest: AvailableTest){
         return request(token).post('Question/init/test', availableTest);

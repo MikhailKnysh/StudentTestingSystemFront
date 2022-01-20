@@ -39,7 +39,7 @@ export const StudentTesting = (props: Props) => {
         questionsApi(user.token).studentAnswerCreate({studentId: user.id, answerId:currentAnswerId, answerDuration: 45, questionID: question.id})
             .then(() => {
                 setCurrentQuestion(prev => ++prev);
-            questionsApi(user.token).getNext()
+            questionsApi(user.token).getNext(user.id, question.idTheme)
                 .then(response => setQuestion(response.data))
                 .catch(error => enqueueSnackbar(error.message, {variant: "error"}))
                 .finally(() => setIsLoading(prev => !prev))

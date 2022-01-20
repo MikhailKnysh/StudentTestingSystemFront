@@ -42,7 +42,7 @@ export const TestItem = (props: Props) => {
                         disabled
                         fullWidth
                         margin="normal"
-                        value={Date.now() - 150000}
+                        value={new Date(Date.now() - 150000)}
                         key="timeStart"
                         label="Time start"
                     />
@@ -52,7 +52,7 @@ export const TestItem = (props: Props) => {
                         disabled
                         fullWidth
                         margin="normal"
-                        value={Date.now()}
+                        value={new Date(Date.now())}
                         key="timeFinish"
                         label="Time finish"
                     />

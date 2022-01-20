@@ -5,24 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d465c453-9b6c-48b0-90ec-d4eb9ccaaf97" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/layouts/student/availableTests/availableTestsInit.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layouts/student/availableTests/components/answerItem.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layouts/student/availableTests/components/questionItem.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/APIs/groupService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/APIs/groupService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/APIs/questionsService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/APIs/questionsService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/APIs/testsService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/APIs/testsService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/TestItem/TestItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TestItem/TestItem.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/student/availableTests/availableTests.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/student/availableTests/availableTests.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/student/availableTests/availableTestsMock.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/student/availableTests/components/availableTestItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/student/availableTests/components/availableTestItem.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/student/availableTests/resultTest.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/student/availableTests/resultTest.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layouts/student/availableTests/studentTesting.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/student/availableTests/studentTesting.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/student/completedTests/completedTests.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/student/completedTests/completedTests.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/student/studentsLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/student/studentsLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/teacher/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/teacher/config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,6 +123,7 @@
       <workItem from="1641480314104" duration="2433000" />
       <workItem from="1641800253648" duration="15647000" />
       <workItem from="1641969407724" duration="11363000" />
+      <workItem from="1642659184589" duration="1622000" />
     </task>
     <servers />
   </component>
